@@ -1,0 +1,38 @@
+/** CSS mobile */
+
+.card-anime{
+    width: 18rem;
+}
+
+.row-badges{
+    margin-bottom: 10px;
+    padding-left: px;
+    gap: 5px;
+}
+
+
+@media (min-width: 200px) and (max-width: 670px) {
+    .card-anime{
+        width: 80%;
+    }
+}
+
+@media (min-width: 680px) and (orientation: landscape ) {
+    .card-anime{
+        width: 100%;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 1080px) {
+    .card-anime{
+        width: 25%;
+    }
+}
+
+
+@media (min-width: 800px) and (orientation: landscape ) {
+    .card-anime{
+        width: 25%;
+    }
+}
+
