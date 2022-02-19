@@ -1,19 +1,19 @@
-import React from "react";
-import "./badges.css";
-import PropTypes from "prop-types";
+// import React from "react";
+// import "./badges.css";
+// import PropTypes from "prop-types";
 
 
-const Badges = (props) => {
+// const Badges = (props) => {
 
-    return (
-        <span className="badge card-badges">{props.text}</span>
-    )
+//     return (
+//         <span className="badge card-badges">{props.text}</span>
+//     )
 
-}
+// }
 
 
-Badges.propTypes = {
-    text: PropTypes.string
-}
+// Badges.propTypes = {
+//     text: PropTypes.string
+// }
 
-export default Badges;
+// export default Badges;

@@ -25,9 +25,9 @@ const AppRouter = () => {
 							<Route exact path="/">
 								<Home />
 							</Route>
-							<Route exact path="/anime/:id">
+							{/* <Route exact path="/anime/:id">
 								<Detail />
-							</Route>
+							</Route> */}
 							<Route>
 								<h1>Not found!</h1>
 							</Route>
