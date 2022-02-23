@@ -5,6 +5,8 @@ import { Context } from "../../store/appContext.js"
 //Service 
 import { getTopAnime } from "../../service/anime.js";
 
+import { Link } from "react-router-dom";
+
 // Component
 
 const Home = () => {    

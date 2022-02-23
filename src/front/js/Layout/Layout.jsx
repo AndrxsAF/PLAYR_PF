@@ -4,6 +4,9 @@ import PropTypes from "prop-types";
 import { Navbar } from "./Navbar/Navbar.jsx";
 import { Footer } from "./Footer/Footer.jsx";
 
+
+import Register from "../views/Home/register.jsx";
+
 const Layout = (props) => {
 
     return (
