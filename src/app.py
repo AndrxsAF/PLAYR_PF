@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
 from api.models.db import db
-# from api.app.user.router import users
+from api.app.user.router import users
 # from api.app.post.router import posts
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
@@ -41,7 +41,7 @@ CORS(app)
 setup_admin(app)
 
 
-# app.register_blueprint(users, url_prefix="/api/user")
+app.register_blueprint(users, url_prefix="/api/main")
 # app.register_blueprint(posts, url_prefix="/api/post")
 
 # Handle/serialize errors like a JSON object

@@ -1,3 +1,5 @@
+# EXTRA CODE - DO NOT UNCOMMENT - GONNA USE LATER TO REFACTORIZE
+
 # from api.shared.encrypte_pass import encryp_pass, compare_pass
 # from api.models.index import db, User
 # from flask_jwt_extended import create_access_token
