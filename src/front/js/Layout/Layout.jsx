@@ -5,8 +5,6 @@ import { Navbar } from "./Navbar/Navbar.jsx";
 import { Footer } from "./Footer/Footer.jsx";
 
 
-import Register from "../views/Home/register.jsx";
-
 const Layout = (props) => {
 
     return (
@@ -25,7 +23,7 @@ const Layout = (props) => {
 }
 
 Layout.propTyps = {
-    children: PropTypes.func
+    children: PropTypes.any
 }
 
 export default Layout
