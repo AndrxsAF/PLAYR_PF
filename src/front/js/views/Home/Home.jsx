@@ -9,7 +9,7 @@ const Home = () => {
     return(
         <div className="container-fluid">
 
-            Hola 
+            Hola
                 
         </div>
     )
