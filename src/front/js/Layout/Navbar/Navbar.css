@@ -1,0 +1,18 @@
+.logo {
+    height: 44px;
+}
+
+.search-bar {
+    width: 270px;
+}
+
+.profile-pic {
+    height: 44px;
+    width: 44px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.username {
+    font-weight: 600;
+}
