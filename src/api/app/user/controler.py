@@ -18,7 +18,7 @@ def register_user(body):
         hash_pass = encryp_pass(body['password'])
 
         new_user = User(email=body['email'],
-                        password=hash_pass, username=body['username'])
+        password=hash_pass, username=body['username'])
 
         db.session.add(new_user)
         db.session.commit()
@@ -68,11 +68,8 @@ def config_user(user):
         img = request.files
         if img.to_dict() == {}:
             body = request.form.to_dict()
-            print(list(body.keys())[0])
             if list(body.keys())[0] == "password":
-                print("hello")
                 hash_pass = encryp_pass(list(body.values())[0])
-                print(hash_pass)
                 setattr(user, "password", hash_pass)
                 db.session.commit()
                 return 3  # Password changed succesfully.
