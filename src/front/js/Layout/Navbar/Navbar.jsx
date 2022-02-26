@@ -50,11 +50,11 @@ export const Navbar = () => {
   }
  
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+		<nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between position-fixed navbar-z-index">
       <img src={Logo} alt="PLAYR" className="logo ps-5"/>
       <img src={PhoneLogo} alt="PLAYR" className="phone-logo"/>
 
-      <div class="input-group search-bar">
+      <div className="input-group search-bar">
         <input type="text" className="form-control search-form" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1"/>
       </div>
 

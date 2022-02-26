@@ -1,10 +1,15 @@
+.navbar-z-index {
+    z-index: 1;
+    width: 100%;
+}
+
 .logo {
     height: 44px;
 }
 
 .user-menu {
     left: auto;
-    top: 100%;
+    top: 98%;
 }
 
 .search-menu {
@@ -38,7 +43,7 @@
     position: absolute;
     left: 0px;
     width: 100vw;
-    top: 100%
+    top: 98%
 }
 
 @media only screen and (max-width: 1000px) {
@@ -69,7 +74,7 @@
         position: absolute;
         left: 0px;
         width: 100vw;
-        top: 100%
+        top: 98%
     }
 }
 

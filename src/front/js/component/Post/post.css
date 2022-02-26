@@ -1,0 +1,11 @@
+.profile-pic-post {
+    height: 44px;
+    width: 44px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.post-pic {
+    width: 100%;
+    object-fit: cover;
+}
