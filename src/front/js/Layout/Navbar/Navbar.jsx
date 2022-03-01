@@ -1,63 +1,103 @@
 import React, {useState, useContext, useEffect} from "react";
 import {  NavLink } from "react-router-dom";
 import { Context } from "../../store/appContext"
+import Logo from "../../../img/logo-proyecto.png"
+import PhoneLogo from "../../../img/small-logo.png"
+import Rigo from "../../../img/rigo-baby.jpg"
+import "./Navbar.css"
 
 export const Navbar = () => {
-  const {store, actions} = useContext(Context)
 
-  const handelChange = (e) => {
-    const search = e.target.value;
-    console.log(search)
-    if(search === ""){
-      actions.setTopAnime(store.copyTopAnime);
-    }else{
-      const newListFilterTopAnime = store.copyTopAnime.filter( anime =>  {
-        const tilteAnime = anime.title.toLowerCase();
-        if(tilteAnime.indexOf(search.toLowerCase()) >= 0){
-          return anime;
-        }
-      });
-      console.log({newListFilterTopAnime})
-      actions.setTopAnime(newListFilterTopAnime)
+  const { store, actions } = useContext(Context)
+	const [addClass, setClass] = useState("visually-hidden")
+  const [addClassSearch, setClassSearch] = useState("visually-hidden")
+  const [addClassNotifications, setClassNotifications] = useState("visually-hidden")
+
+  const classToggle = () => {
+    if (addClass == "d-block") {
+      setClass("visually-hidden")
+      setClassSearch("visually-hidden")
+      setClassNotifications("visually-hidden")
+    } else {
+      setClass("d-block")
+      setClassSearch("visually-hidden")
+      setClassNotifications("visually-hidden")
     }
   }
-  console.log(store.copyTopAnime)
+
+	const searchClassToggle = () => {
+    if (addClassSearch == "d-block") {
+      setClass("visually-hidden")
+      setClassSearch("visually-hidden")
+      setClassNotifications("visually-hidden")
+    } else {
+      setClass("visually-hidden")
+      setClassSearch("d-block")
+      setClassNotifications("visually-hidden")
+    }
+  }
+
+  const notificationsClassToggle = () => {
+    if (addClassNotifications == "d-block") {
+      setClass("visually-hidden")
+      setClassSearch("visually-hidden")
+      setClassNotifications("visually-hidden")
+    } else {
+      setClass("visually-hidden")
+      setClassSearch("visually-hidden")
+      setClassNotifications("d-block")
+    }
+  }
+ 
 	return (
-		<nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <div className="container-fluid">
-    <a className="navbar-brand" href="#">Anime 4GeeksAcademy</a>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <NavLink className="nav-link active" aria-current="page" to="/">Top Anime</NavLink>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
-        </li>
-        <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
-            <li><hr className="dropdown-divider" /></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
+		<nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between position-fixed navbar-z-index">
+      <img src={Logo} alt="PLAYR" className="logo ps-5"/>
+      <img src={PhoneLogo} alt="PLAYR" className="phone-logo"/>
+
+      <div className="input-group search-bar">
+        <input type="text" className="form-control search-form" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1"/>
+      </div>
+
+      <div className="d-flex pe-5 user">
+        <div onClick={() => searchClassToggle()} className="me-3 icon d-flex align-items-center">
+        <img className="search" src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png"/>
+        <ul className={"bg-light dropdown-menu search search-dropdown " + addClassSearch}>
+            <li className="px-3"><input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1"/></li>
+        </ul>
+        </div>
+        <div className="d-flex align-items-center me-3 icon">
+          <img src="https://img.icons8.com/ios-filled/30/000000/plus-math.png"/>
+          <p className="m-0 ps-1 text-icon">Nuevo</p>
+        </div>
+        <div onClick={() => notificationsClassToggle()} className="d-flex align-items-center me-3 icon">
+          <img src="https://img.icons8.com/fluency-systems-regular/30/000000/star--v1.png"/>
+          <p className="m-0 ps-1 text-icon">Notificaciones</p>
+          <ul className={"bg-light dropdown-menu user-menu " + addClassNotifications}>
+            <li><a className="dropdown-item" href="#">Notificación 1</a></li>
+            <li><hr className="dropdown-divider"/></li>
+            <li><a className="dropdown-item" href="#">Notificación 2</a></li>
+            <li><hr className="dropdown-divider"/></li>
+            <li><a className="dropdown-item" href="#">Notificación 3</a></li>
+            <li><hr className="dropdown-divider"/></li>
+            <li><a className="dropdown-item" href="#">Notificación 4</a></li>
+            <li><hr className="dropdown-divider"/></li>
+            <li><a className="dropdown-item" href="#">Notificación 5</a></li>
           </ul>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link disabled">Disabled</a>
-        </li>
-      </ul>
-      <form className="d-flex" onChange={handelChange}>
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+        </div>
+        <div className="d-flex align-items-center me-3 icon">
+          <img src="https://img.icons8.com/ios-filled/30/000000/hashtag.png"/>
+          <p className="m-0 ps-1 text-icon">Explora</p>
+        </div>
+        <div onClick={() => classToggle()} className="d-flex align-items-center justify-content-end">
+          <p className="m-0 pe-1 username text-icon">USUARIO</p>
+          <img src={Rigo} alt="User" className="profile-pic"/>
+          <ul className={"bg-light dropdown-menu user-menu " + addClass}>
+            <li><a className="dropdown-item" href="#">Perfil</a></li>
+            <li><hr className="dropdown-divider"/></li>
+            <li><a className="dropdown-item" href="#">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 	);
 };
