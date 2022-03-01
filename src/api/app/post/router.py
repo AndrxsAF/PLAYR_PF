@@ -37,7 +37,6 @@ def delete_create():
 #     "post_id": (POST TO DELETE)
 # }
 
-
 @posts.route("/", methods=['GET'])
 def get_post():
     body = request.get_json()

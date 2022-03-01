@@ -4,7 +4,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     img_url = db.Column(db.String(300))
     description = db.Column(db.String(280))
-    game = db.Column(db.String(50))
+    game = db.Column(db.String(70))
     console = db.Column(db.String(50))
     date = db.Column(db.DateTime(timezone=True), server_default=func.now())
     tag1 = db.Column(db.String(50))
