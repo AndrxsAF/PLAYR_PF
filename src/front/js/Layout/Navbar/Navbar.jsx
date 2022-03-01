@@ -6,12 +6,20 @@ import PhoneLogo from "../../../img/small-logo.png"
 import Rigo from "../../../img/rigo-baby.jpg"
 import "./Navbar.css"
 
+// Service 
+import { getUser } from "../../service/home.js";
+
 export const Navbar = () => {
 
   const { store, actions } = useContext(Context)
 	const [addClass, setClass] = useState("visually-hidden")
   const [addClassSearch, setClassSearch] = useState("visually-hidden")
   const [addClassNotifications, setClassNotifications] = useState("visually-hidden")
+  const [user, setUser] = useState({})
+  // const [token, setToken] = useState(sessionStorage.getItem("token"))
+  
+  // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
+  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NjE3NzU1MywianRpIjoiMDE5ZjcxOTUtZmY4Ni00MjU1LWE3ZDgtZDM4NmRhODI0NDE2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Mn0sIm5iZiI6MTY0NjE3NzU1MywiZXhwIjoxNjQ2MTc4NDUzfQ.Rq-AMU0R7_pZxsFuJSmbbryWHgswmFgxzvWsR9Wb0Xc"
 
   const classToggle = () => {
     if (addClass == "d-block") {
@@ -48,6 +56,22 @@ export const Navbar = () => {
       setClassNotifications("d-block")
     }
   }
+
+  const getToken = async (token) => {
+		try {
+			const res = await getUser(token);
+			const dataJSON = await res.json();
+            setUser(dataJSON)
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+  useEffect(() => {
+      getToken(token)
+	}, []);
+
+  console.log(user)
  
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between position-fixed navbar-z-index">
@@ -89,8 +113,8 @@ export const Navbar = () => {
           <p className="m-0 ps-1 text-icon">Explora</p>
         </div>
         <div onClick={() => classToggle()} className="d-flex align-items-center justify-content-end">
-          <p className="m-0 pe-1 username text-icon">USUARIO</p>
-          <img src={Rigo} alt="User" className="profile-pic"/>
+          <p className="m-0 pe-1 username text-icon">{user.username}</p>
+          <img src={user.img_url ? user.img_url : Rigo} alt="User" className="profile-pic"/>
           <ul className={"bg-light dropdown-menu user-menu " + addClass}>
             <li><a className="dropdown-item" href="#">Perfil</a></li>
             <li><hr className="dropdown-divider"/></li>

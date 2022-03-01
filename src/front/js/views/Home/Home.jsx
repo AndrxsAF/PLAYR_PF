@@ -5,7 +5,7 @@ import { Context } from "../../store/appContext.js"
 // Pics
 
 // Service 
-import { getAllPosts } from "../../service/home.js";
+import { getAllPosts, getUser } from "../../service/home.js";
 
 // Component
 import Post from "../../component/Post/Post.jsx"
@@ -14,7 +14,11 @@ import SideMenu from "../../component/SideMenu/SideMenu.jsx"
 
 const Home = () => {
 
+    // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
+    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NjE3NzU1MywianRpIjoiMDE5ZjcxOTUtZmY4Ni00MjU1LWE3ZDgtZDM4NmRhODI0NDE2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Mn0sIm5iZiI6MTY0NjE3NzU1MywiZXhwIjoxNjQ2MTc4NDUzfQ.Rq-AMU0R7_pZxsFuJSmbbryWHgswmFgxzvWsR9Wb0Xc"
     const [allPosts, setAllPosts] = useState({})
+    // const [token, setToken] = useState(sessionStorage.getItem("token"))
+    const [user, setUser] = useState({})
 
     const getPosts = async () => {
 		try {
@@ -26,11 +30,20 @@ const Home = () => {
 		}
 	};
 
+    const getToken = async (token) => {
+		try {
+			const res = await getUser(token);
+			const dataJSON = await res.json();
+            setUser(dataJSON)
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
     useEffect(() => {
 		getPosts()
+        getToken(token)
 	}, []);
-
-    console.log(allPosts)
 
     return(
         <div className="container-fluid container-main-page p-0">
@@ -46,8 +59,11 @@ const Home = () => {
                 </div>
                 <div className="container-right-support p-0">
                 </div>
-
-                <SideMenu/>
+                    
+                {user 
+                    ? (<SideMenu img={user.img_url} username={user.username} biography={user.biography} />)
+                    : (<Spinner/>)
+                }
 
             </div>
         </div>

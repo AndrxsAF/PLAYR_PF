@@ -34,8 +34,6 @@ const Post = (props) => {
 		getUser(props.user_id)
 	}, []);
 
-    console.log(users)
-
     return (
         <div className="container-fluid p-0 mb-3">
             <div className="container-fluid bg-light d-flex justify-content-between align-items-center py-2 px-3">

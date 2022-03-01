@@ -18,10 +18,17 @@ const SideMenu = (props) => {
             <div className="container-profile-main p-0">
                 <div className="container-fluid p-2 border d-flex mb-3">
                     <div className="container-fluid p-0">
-                        <p className="d-flex align-items-center username mb-2 fs-4"><img className="pe-2" src="https://img.icons8.com/fluency-systems-filled/30/000000/fairytale.png" />USUARIO</p>
-                        <p className="m-0">Aquí iría la descripción del usuario, me gusta jugar a la nintendo y soy fan de pokemon.</p>
+                        <p className="d-flex align-items-center username mb-2 fs-4"><img className="pe-2" src="https://img.icons8.com/fluency-systems-filled/30/000000/fairytale.png" />{props.username}</p>
+                        <p className="m-0">{props.biography}</p>
                     </div>
-                    <img className="profile-pic-main ms-3 d-flex align-self-center" src={Rigo} alt="Profile-Pic" />
+
+                    {
+                        props.img ? (
+                            <img className="profile-pic-main ms-3 d-flex align-self-center" src={props.img} alt="Profile-Pic" />
+                        ) : (
+                            <img className="profile-pic-main ms-3 d-flex align-self-center" src={Rigo} alt="Profile-Pic" />
+                        )}
+
                 </div>
                 <button type="button" className="btn btn-danger w-100 d-flex align-items-top justify-content-center"><p className="m-0 fs-2 line-height">+</p><p className="m-0 fs-5 ps-2">Nuevo Post</p></button>
             </div>
@@ -42,12 +49,9 @@ const SideMenu = (props) => {
 }
 
 SideMenu.propTypes = {
-    // id: PropTypes.number,
-    // img: PropTypes.string,
-    // title: PropTypes.string,
-    // genres: PropTypes.array,
-    // status: PropTypes.string,
-    // year: PropTypes.number
+    img: PropTypes.string,
+    username: PropTypes.string,
+    biography: PropTypes.string
 }
 
 export default SideMenu;
