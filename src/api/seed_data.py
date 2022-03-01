@@ -39,7 +39,7 @@ data = {
             "tag3": "#Legends",
             "tag4": "#Awesome",
             "tag5": "#5Stars",
-            "user_id": 29
+            "user_id": 1
         },
         {
             "img_url": "https://res.cloudinary.com/andrxsaf/image/upload/v1646160780/legend-zelda-breath-wild-nuevas-imagenes_1_tfbwqp.jpg",
@@ -51,7 +51,7 @@ data = {
             "tag3": "#Triforce",
             "tag4": "",
             "tag5": "",
-            "user_id": 30
+            "user_id": 2
         },
         {
             "img_url": "https://res.cloudinary.com/andrxsaf/image/upload/v1646160773/horizon-2-forbidden-west-embargo-14-febrero-2609225_fq4nix.jpg",
@@ -63,7 +63,7 @@ data = {
             "tag3": "#Amazing",
             "tag4": "#f4f",
             "tag5": "",
-            "user_id": 31
+            "user_id": 3
         },
         {
             "img_url": "",
@@ -75,7 +75,7 @@ data = {
             "tag3": "",
             "tag4": "",
             "tag5": "",
-            "user_id": 32
+            "user_id": 4
         },
         {
             "img_url": "https://res.cloudinary.com/andrxsaf/image/upload/v1646160762/pokxmon_legends_arceus_podrxa_ser_en_realidad_un_videojuego_lineal.jpg_976912859_uh29nm.jpg",
@@ -87,7 +87,7 @@ data = {
             "tag3": "#Chill",
             "tag4": "",
             "tag5": "",
-            "user_id": 31
+            "user_id": 5
         },
         {
             "img_url": "https://res.cloudinary.com/andrxsaf/image/upload/v1646161003/1580968638_718742_1580977415_noticia_normal_mcda8p.jpg",
@@ -99,7 +99,7 @@ data = {
             "tag3": "#Fun",
             "tag4": "",
             "tag5": "",
-            "user_id": 30
+            "user_id": 1
         },
         {
             "img_url": "https://res.cloudinary.com/andrxsaf/image/upload/v1646161007/final-fantasy-vii-remake-demo_9qr4_o2rfav.jpg",
@@ -111,7 +111,7 @@ data = {
             "tag3": "",
             "tag4": "",
             "tag5": "",
-            "user_id": 29
+            "user_id": 2
         }
     ]
 }
