@@ -9,3 +9,14 @@
     width: 100%;
     object-fit: cover;
 }
+
+.games {
+    bottom: -20px;
+    right: 0px;
+    left: 0px;
+    text-align: initial;
+}
+
+.color-black {
+    color: black;
+}
