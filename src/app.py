@@ -9,7 +9,7 @@ from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
 from api.models.db import db
 from api.app.user.router import users
-# from api.app.post.router import posts
+from api.app.post.router import posts
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
 #from models import Person
@@ -48,8 +48,8 @@ CORS(app)
 setup_admin(app)
 
 
-app.register_blueprint(users, url_prefix="/api/main")
-# app.register_blueprint(posts, url_prefix="/api/post")
+app.register_blueprint(users, url_prefix="/api/user")
+app.register_blueprint(posts, url_prefix="/api/post")
 
 cloudinary.config( 
   cloud_name = app.config["CLOUD_NAME"], 

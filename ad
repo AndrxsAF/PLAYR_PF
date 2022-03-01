@@ -1,0 +1,10 @@
+ id |                                       img_url                                        |    description     |      game       | console |             date              |  tag1   |   tag2   |  tag3   |   tag4    |  tag5   | user_id 
+----+--------------------------------------------------------------------------------------+--------------------+-----------------+---------+-------------------------------+---------+----------+---------+-----------+---------+---------
+  1 |                                                                                      |                    |                 |         | 2022-02-28 17:22:27.469667+00 | #Switch | #Pokemon |         |           |         |       1
+ 12 |                                                                                      | OMG NEW POST ADDED | Pokemon Legends | Switch  | 2022-03-01 04:23:04.210337+00 | #Arceus | #Palkia  | #Dialga | #Giratina | #Origin |       2
+ 13 | http://res.cloudinary.com/andrxsaf/image/upload/v1646108632/aqbbocijvu7ghiuohyzk.jpg | OMG NEW POST ADDED | Pokemon Legends | Switch  | 2022-03-01 04:23:52.448125+00 | #Arceus | #Palkia  | #Dialga | #Giratina | #Origin |       2
+ 14 |                                                                                      | OMG NEW POST ADDED | Pokemon Legends | Switch  | 2022-03-01 04:23:55.079169+00 | #Arceus | #Palkia  | #Dialga | #Giratina | #Origin |       2
+ 15 |                                                                                      |                    | Pokemon Legends | Switch  | 2022-03-01 04:26:54.409818+00 | #Arceus | #Palkia  | #Dialga | #Giratina | #Origin |       2
+ 16 |                                                                                      |                    | Pokemon Legends | Switch  | 2022-03-01 04:27:14.099027+00 | #Arceus | #Palkia  | #Dialga | #Giratina | #Origin |       2
+(6 rows)
+
