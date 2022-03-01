@@ -13,7 +13,6 @@ data = {
             "username": "andresaf",
             "password": encryp_pass("1234567"),
             "email": "andresaf@gmail.com",
-            "email": 'lenceriegegscardo@gmail.com',
             "biography": "Level 37 PRO GAMER.",
             "img_url": 'https://res.cloudinary.com/andrxsaf/image/upload/v1646173737/1fc5e2e5a5ba8d1701af1ce06a3581fc_hnhnu1.jpg'
         },
