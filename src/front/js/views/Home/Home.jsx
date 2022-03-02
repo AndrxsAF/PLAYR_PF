@@ -2,61 +2,70 @@ import React, { useEffect, useContext, useState } from "react";
 import "./home.css";
 import { Context } from "../../store/appContext.js"
 
-//Service 
-import { getTopAnime } from "../../service/anime.js";
+// Pics
+
+// Service 
+import { getAllPosts, getUser } from "../../service/home.js";
 
 // Component
+import Post from "../../component/Post/Post.jsx"
+import Spinner from "../../component/Spinner/Spinner.jsx";
+import SideMenu from "../../component/SideMenu/SideMenu.jsx"
 
-const Home = () => {    
-    // const {store, actions} = useContext(Context);
+const Home = () => {
 
-    // const [loading, setLoading] = useState(false);
+    // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
+    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NjE3NzU1MywianRpIjoiMDE5ZjcxOTUtZmY4Ni00MjU1LWE3ZDgtZDM4NmRhODI0NDE2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Mn0sIm5iZiI6MTY0NjE3NzU1MywiZXhwIjoxNjQ2MTc4NDUzfQ.Rq-AMU0R7_pZxsFuJSmbbryWHgswmFgxzvWsR9Wb0Xc"
+    const [allPosts, setAllPosts] = useState({})
+    // const [token, setToken] = useState(sessionStorage.getItem("token"))
+    const [user, setUser] = useState({})
 
-    // console.log(store)
-    // const topAnime = async () => {
-    //     try{
-    //         setLoading(true);
-    //         const res = await getTopAnime();
-    //         const json = await res.json();
-    //         console.log(json);
-    //         actions.setTopAnime(json.data);
-    //         actions.setCopyTopAnime(json.data);
-    //     }catch(err){
-    //         console.log(err);
-    //     }finally{
-    //         setLoading(false);
-    //     }
-    // }
+    const getPosts = async () => {
+		try {
+			const res = await getAllPosts();
+			const dataJSON = await res.json();
+			setAllPosts(dataJSON)
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
-    // useEffect(() => {
-    //     topAnime();
-    // }, [])
+    const getToken = async (token) => {
+		try {
+			const res = await getUser(token);
+			const dataJSON = await res.json();
+            setUser(dataJSON)
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+    useEffect(() => {
+		getPosts()
+        getToken(token)
+	}, []);
 
     return(
-        <div className="container-fluid">
+        <div className="container-fluid container-main-page p-0">
+            <div className="d-flex justify-content-center p-0 container-main-phoneview">
+                <div className="container-left ps-3 pe-4 pt-4 m-0">
+                    {allPosts ?    
+                        (allPosts.length > 0
+                        ? allPosts.map((post, index) => (
+                                <Post key={index} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />
+                        ))
+                        : null)
+                    : (<Spinner/>)}   
+                </div>
+                <div className="container-right-support p-0">
+                </div>
+                    
+                {user 
+                    ? (<SideMenu img={user.img_url} username={user.username} biography={user.biography} />)
+                    : (<Spinner/>)
+                }
 
-            Hola 
-                {/* <div className=" row text-center">
-                    <h1>Top Anime</h1>
-                </div>
-                <div className="row anime-rows">
-                    {
-                        loading ? <Spinner /> 
-                        : store.topAnime.map( anime => 
-                            <Card 
-                                key={anime.mal_id}
-                                id={anime.mal_id}
-                                img = {anime.images.jpg.large_image_url} 
-                                title = {anime.title}
-                                genres = {anime.genres}
-                                status = {anime.status}
-                                year = {anime.year}
-                            />
-                        )
-                    }
-                
-                </div>
-                 */}
+            </div>
         </div>
     )
 

@@ -48,3 +48,8 @@ def get_post():
 # {
 #     "post_id": (POST TO DELETE)
 # }
+
+@posts.route('/all', methods=['GET'])
+def show_all_post():
+    posts = Post.query.all()
+    return jsonify(list(map(lambda post: post.serialize(), posts))), 200

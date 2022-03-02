@@ -1,0 +1,80 @@
+.navbar-z-index {
+    z-index: 1;
+    width: 100%;
+}
+
+.logo {
+    height: 44px;
+}
+
+.user-menu {
+    left: auto;
+    top: 98%;
+}
+
+.search-menu {
+    width: 100vw;
+}
+
+.phone-logo {
+    display: none;
+}
+
+.search-bar {
+    width: 270px;
+}
+
+.profile-pic {
+    height: 44px;
+    width: 44px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.username {
+    font-weight: 600;
+}
+
+.search {
+    display: none;
+}
+
+.search-dropdown {
+    position: absolute;
+    left: 0px;
+    width: 100vw;
+    top: 98%
+}
+
+@media only screen and (max-width: 1000px) {
+    .logo {
+        display: none;
+    }
+    .phone-logo {
+        padding-left: 10px;
+        display: block;
+        height: 36px;
+    }
+    .search-bar {
+        display: none;
+    }
+    .search {
+        display: block;
+    }
+    .text-icon {
+        display: none;
+    }
+    .user {
+        padding-right: 10px !important;
+    }
+    .icon {
+        margin-right: 5px !important;
+    }
+    .user-menu {
+        position: absolute;
+        left: 0px;
+        width: 100vw;
+        top: 98%
+    }
+}
+

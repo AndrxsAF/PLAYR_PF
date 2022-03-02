@@ -71,3 +71,8 @@ def user_config():
         return jsonify('User not found.'), 500
     else:
         return jsonify('Internal server error'), 500
+
+@users.route('/<id>', methods=['GET'])
+def get_users(id):
+    user = User.query.get(id)
+    return jsonify(user.serialize())

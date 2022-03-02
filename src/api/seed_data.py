@@ -5,27 +5,37 @@ data = {
         {
             "username": "rlence",
             "password":  encryp_pass("12345678"),
-            "email": 'lenceriegegscardo@gmail.com'
+            "email": 'lenceriegegscardo@gmail.com',
+            "biography": "Teacher",
+            "img_url": 'https://res.cloudinary.com/andrxsaf/image/upload/v1646173755/5335553_eo0y3c.jpg'
         },
         {
             "username": "andresaf",
             "password": encryp_pass("1234567"),
-            "email": "andresaf@gmail.com"
+            "email": "andresaf@gmail.com",
+            "biography": "Level 37 PRO GAMER.",
+            "img_url": 'https://res.cloudinary.com/andrxsaf/image/upload/v1646173737/1fc5e2e5a5ba8d1701af1ce06a3581fc_hnhnu1.jpg'
         },
         {
             "username": "andres",
             "password":  encryp_pass("123456"),
-            "email": 'andres@gmail.com'
+            "email": 'andres@gmail.com',
+            "biography": "Zelda Lover.",
+            "img_url": 'https://res.cloudinary.com/andrxsaf/image/upload/v1646173726/14f0831e5f4a80eae38d2a460508ebdd_osywbz.jpg'
         },
         {
             "username": "camiloo",
             "password":  encryp_pass("123456"),
-            "email": 'camilo@gmail.com'
+            "email": 'camilo@gmail.com',
+            "biography": "Student.",
+            "img_url": 'https://res.cloudinary.com/andrxsaf/image/upload/v1646173723/anime-avatar-profile-picture-thypix-55-700x700_figcye.jpg'
         },
         {
             "username": "otracuenta",
             "password":  encryp_pass("123456"),
-            "email": 'otracuenta@gmail.com'
+            "email": 'otracuenta@gmail.com',
+            "biography": "This is just another description.",
+            "img_url": 'https://res.cloudinary.com/andrxsaf/image/upload/v1646173716/gyaru-anime-character-yl_j5c7q2.jpg'
         }
     ],
     "Post":[
