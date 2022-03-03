@@ -1,0 +1,22 @@
+.container-right {
+    position: fixed;
+    right: calc((100vw - 1000px) / 2);
+    width: 400px;
+}
+
+.profile-pic-main {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.line-height {
+    line-height: 25px;
+}
+
+@media only screen and (max-width: 1000px) { 
+    .container-right {
+        display: none;
+    }
+}
