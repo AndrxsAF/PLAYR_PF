@@ -7,7 +7,7 @@ import injectContext from "./store/appContext";
 import Home from "./views/Home/Home.jsx";
 import Detail from "./views/Detail/Detail.jsx";
 
-import Register from "./views/register/register.jsx";
+import Register from "./views/Register/register.jsx";
 
 // Layout
 import Layout from "./Layout/Layout.jsx";
