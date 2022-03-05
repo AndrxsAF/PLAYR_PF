@@ -2,17 +2,6 @@ import React, { useEffect, useContext, useState } from "react";
 import "./home.css";
 import { Context } from "../../store/appContext.js"
 
-<<<<<<< HEAD
-
-
-const Home = () => {    
- 
-    return(
-        <div className="container-fluid">
-
-            Hola
-                
-=======
 // Pics
 
 // Service 
@@ -77,7 +66,6 @@ const Home = () => {
                 }
 
             </div>
->>>>>>> a032bb64e9fbbc1daede790d553c8f463c3744a4
         </div>
     )
 
