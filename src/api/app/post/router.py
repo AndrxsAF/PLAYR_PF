@@ -55,3 +55,10 @@ def get_post():
 def show_all_post():
     posts = Post.query.all()
     return jsonify(list(map(lambda post: post.serialize(), posts))), 200
+
+@posts.route('/user/<id>', methods=['GET'])
+def show_user_post(id):
+    print(id)
+    posts = db.session.query(Post).filter(Post.user_id == id)
+    print(posts)
+    return jsonify(list(map(lambda post: post.serialize(), posts))), 200

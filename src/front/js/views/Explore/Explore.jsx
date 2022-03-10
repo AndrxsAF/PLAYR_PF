@@ -2,9 +2,6 @@ import React, { useEffect, useContext, useState } from "react";
 import "./explore.css";
 import { Context } from "../../store/appContext.js"
 
-// Pics
-import pic from "../../../img/pokémon-legends-arceus.jpg"
-
 // Service 
 import { getAllPosts, getUser } from "../../service/explore.js";
 
@@ -41,7 +38,7 @@ const Explore = () => {
 		} catch (err) {
 			console.log(err);
 		}
-	};
+	};  
 
     useEffect(() => {
 		getPosts()
