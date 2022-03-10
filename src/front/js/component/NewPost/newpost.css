@@ -1,0 +1,16 @@
+.img-preview {
+    height: 210px;
+    width: 210px;
+}
+
+.pop-up-post {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: auto;
+    width: 550px;
+    background-color: white;
+    border: 1px solid rgb(99, 98, 98);
+}

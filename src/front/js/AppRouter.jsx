@@ -5,7 +5,7 @@ import injectContext from "./store/appContext";
 
 // Views
 import Home from "./views/Home/Home.jsx";
-import Detail from "./views/Detail/Detail.jsx";
+import Explore from "./views/Explore/Explore.jsx";
 
 // Layout
 import Layout from "./Layout/Layout.jsx";
@@ -25,9 +25,9 @@ const AppRouter = () => {
 							<Route exact path="/">
 								<Home />
 							</Route>
-							{/* <Route exact path="/anime/:id">
-								<Detail />
-							</Route> */}
+							<Route exact path="/explore">
+								<Explore />
+							</Route>
 							<Route>
 								<h1>Not found!</h1>
 							</Route>

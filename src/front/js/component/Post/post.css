@@ -15,6 +15,7 @@
     right: 0px;
     left: 0px;
     text-align: initial;
+    display: block !important;
 }
 
 .color-black {

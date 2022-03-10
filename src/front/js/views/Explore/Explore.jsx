@@ -1,18 +1,19 @@
 import React, { useEffect, useContext, useState } from "react";
-import "./home.css";
+import "./explore.css";
 import { Context } from "../../store/appContext.js"
 
 // Pics
+import pic from "../../../img/pokémon-legends-arceus.jpg"
 
 // Service 
-import { getAllPosts, getUser } from "../../service/home.js";
+import { getAllPosts, getUser } from "../../service/explore.js";
 
 // Component
-import Post from "../../component/Post/Post.jsx"
+import Squares from "../../component/Squares/Squares.jsx"
 import Spinner from "../../component/Spinner/Spinner.jsx";
 import SideMenu from "../../component/SideMenu/SideMenu.jsx"
 
-const Home = () => {
+const Explore = () => {
 
     const { store, actions } = useContext(Context)
 
@@ -50,16 +51,17 @@ const Home = () => {
     return(
         <div className="container-fluid container-main-page p-0">
             <div className="d-flex justify-content-center p-0 container-main-phoneview">
-                <div className="container-left ps-3 pe-4 pt-4 m-0">
+                <div className="explore-container-left ps-3 pe-4 py-4 m-0 row">
                     {allPosts ?    
                         (allPosts.length > 0
                         ? allPosts.map((post, index) => (
-                                <Post key={index} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />
+                                <Squares key={index} console={post.console} game={post.game} img={post.img_url} />
                         ))
                         : null)
                     : (<Spinner/>)}   
+                    
                 </div>
-                <div className="container-right-support p-0">
+                <div className="container-right-support explore-4kscreen p-0">
                 </div>
                     
                 {user 
@@ -73,4 +75,4 @@ const Home = () => {
 
 }
 
-export default Home;
+export default Explore;

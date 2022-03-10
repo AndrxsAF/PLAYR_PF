@@ -44,7 +44,7 @@ const Post = (props) => {
                 props.img ? (
                     <div className="carousel-inner container-fluid p-0 ">
                         <img className="post-pic" src={props.img} alt="Post" />
-                        <div className="ps-2 games carousel-caption d-none d-md-block">
+                        <div className="px-2 games carousel-caption d-none d-md-block">
                             <h6>{`${props.game} / ${props.console}`}</h6>
                         </div>
                     </div>
