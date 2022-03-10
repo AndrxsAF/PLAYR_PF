@@ -52,12 +52,10 @@ const Explore = () => {
         <div className="container-fluid container-main-page p-0">
             <div className="d-flex justify-content-center p-0 container-main-phoneview">
                 <div className="explore-container-left ps-3 pe-4 py-4 m-0 row">
-                    {allPosts ?    
-                        (allPosts.length > 0
+                    {allPosts.length > 0
                         ? allPosts.map((post, index) => (
                                 <Squares key={index} console={post.console} game={post.game} img={post.img_url} />
                         ))
-                        : null)
                     : (<Spinner/>)}   
                     
                 </div>

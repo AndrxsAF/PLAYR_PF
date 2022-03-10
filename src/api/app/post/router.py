@@ -12,6 +12,8 @@ def post_create():
     token = get_jwt_identity()
     body = request.form.to_dict()
     img = request.files
+    print(img)
+    print(body)
     new_post = create_post(token, body, img)
     if new_post == 'Internal Server Error.':
         return jsonify('Internal Server Error.'), 500

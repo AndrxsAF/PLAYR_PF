@@ -18,6 +18,7 @@ const Home = () => {
 
     // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
     const token = store.token
+    
     const [allPosts, setAllPosts] = useState({})
     // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [user, setUser] = useState({})
@@ -44,6 +45,9 @@ const Home = () => {
 
     useEffect(() => {
 		getPosts()
+    }, [store.refresh]);
+
+    useEffect(() => {
         getToken(token)
 	}, []);
 
@@ -51,13 +55,10 @@ const Home = () => {
         <div className="container-fluid container-main-page p-0">
             <div className="d-flex justify-content-center p-0 container-main-phoneview">
                 <div className="container-left ps-3 pe-4 pt-4 m-0">
-                    {allPosts ?    
-                        (allPosts.length > 0
+                    {allPosts.length > 0
                         ? allPosts.map((post, index) => (
                                 <Post key={index} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />
-                        ))
-                        : null)
-                    : (<Spinner/>)}   
+                        )) : (<Spinner/>)}   
                 </div>
                 <div className="container-right-support p-0">
                 </div>

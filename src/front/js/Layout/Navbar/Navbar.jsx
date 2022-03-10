@@ -72,8 +72,6 @@ export const Navbar = () => {
     getToken(token)
   }, []);
 
-  console.log(user)
-
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between position-fixed navbar-z-index">
       <img src={Logo} alt="PLAYR" className="logo ps-5" />
