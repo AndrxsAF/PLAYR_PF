@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0Njg3MTc4NywianRpIjoiMTE1NDdmZTUtOTI2NS00ODhhLWIxN2UtNDlmMDI2NDZiODJmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6M30sIm5iZiI6MTY0Njg3MTc4NywiZXhwIjoxNjQ2ODcyNjg3fQ.UDlsDLbGTnmKOgp0OB89ms6mM4Cf4d600d4TIC8CG5Q"
+			token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NjkzMTUyMywianRpIjoiZTYzNmYwM2YtNGE5NS00Y2RiLWFhOGItYTA3MGM1OTU5NjZjIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6M30sIm5iZiI6MTY0NjkzMTUyMywiZXhwIjoxNjQ2OTMyNDIzfQ.J2WRBrsTWR040_P23HoOvDeLUdZMd_3XhYjmhDNOVp4",
+			showNewPost: false
 		},
 		actions: {
 			setTopAnime: (topAnimeList) => {
@@ -12,6 +13,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			setCopyTopAnime: (copyTopAnime) => {
 				setStore({copyTopAnime: copyTopAnime})
+			},
+			handleShow: () => {
+				const store = getStore()
+				return store.showNewPost ? setStore({showNewPost: false}) : setStore({showNewPost: true})
 			}
 		}
 	};

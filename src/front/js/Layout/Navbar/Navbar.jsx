@@ -17,8 +17,6 @@ export const Navbar = () => {
   const [addClassSearch, setClassSearch] = useState("visually-hidden")
   const [addClassNotifications, setClassNotifications] = useState("visually-hidden")
   const [user, setUser] = useState({})
-  const [show, setShow] = useState(false);
-  const handleShow = () => show ? setShow(false) : setShow(true);
   // const [token, setToken] = useState(sessionStorage.getItem("token"))
 
   // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
@@ -91,13 +89,13 @@ export const Navbar = () => {
             <li className="px-3"><input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1" /></li>
           </ul>
         </div>
-        <div className="d-flex align-items-center me-3 icon" onClick={handleShow}>
+        <div className="d-flex align-items-center me-3 icon" onClick={() => actions.handleShow()}>
           <img src="https://img.icons8.com/ios-filled/30/000000/plus-math.png" />
           <p className="m-0 ps-1 text-icon">Nuevo</p>
         </div>
 
         {
-            show ? <NewPost close={handleShow}/> : null
+            store.showNewPost ? <NewPost close={() => actions.handleShow()}/> : null
         }
 
 
