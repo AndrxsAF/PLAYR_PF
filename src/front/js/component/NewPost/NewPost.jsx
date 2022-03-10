@@ -20,8 +20,8 @@ const NewPost = (props) => {
                 <button onClick={() => props.close()} type="button" className="btn-close"></button>
             </div>
             <div className="d-flex">
-                <div className="container-fluid mb-1 p-0 pe-2">
-                    <div className="img-preview mb-2">
+                <div className="container-fluid mb-1 p-0 pe-2 pt-1">
+                    <div className="img-preview mb-2 bg-light">
 
                     </div>
                     <label htmlFor="formFile" className="form-label mb-1">Sube una imágen:</label>
