@@ -26,8 +26,8 @@
 }
 
 .profile-pic-mainuser {
-  height: 220px;
-  width: 220px;
+  height: 200px;
+  width: 200px;
   object-fit: cover;
   border-radius: 100%;
 }
@@ -36,6 +36,11 @@
     font-weight: 600;
     size: 20px;
 }
+
+.mainuser-data-container {
+    height: 150px;
+}
+
 
 @media only screen and (max-width: 1000px) {
   .user-container-right {

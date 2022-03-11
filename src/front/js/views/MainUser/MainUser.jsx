@@ -79,7 +79,7 @@ const MainUser = () => {
                 <div className="user-container-left-support explore-4kscreen p-0">
                 </div>
 
-                
+
                 <div className="mainuser-menu p-3">
                     <div className="d-flex justify-content-center">
                         {
@@ -91,9 +91,9 @@ const MainUser = () => {
                     </div>
                     <div className="container-fluid px-0">
                         <p className="d-flex align-items-center username-mainuser my-2 fs-2"><img className="pe-2" src="https://img.icons8.com/fluency-systems-filled/40/000000/fairytale.png" />{profile.username}</p>
-                        <p className="m-2 me-0 username text-break">{profile.biography}</p>
+                        <p className="m-2 me-0 username text-break mainuser-data-container">{profile.biography}</p>
                     </div>
-                    <div className="mainuser-data-container">
+                    <div className="">
                         <div className="row m-0 ms-2">
                             <p className="col p-0 m-0 username fs-4">Seguidores:</p>
                             <p className="col p-0 m-0 username fs-4">Seguidos:</p>
