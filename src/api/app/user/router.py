@@ -18,6 +18,13 @@ def user_access():
         return jsonify('user not found'), 404
     return jsonify(user.serialize()), 200
 
+@users.route('/<id>', methods=['GET'])
+def user_info(id):
+    user = User.query.get(id)
+    if user is None:
+        return jsonify('user not found'), 404
+    return jsonify(user.serialize()), 200
+
 # RUTA DE REGISTRO - GENERA UN NUEVO USUARIO
 
 @users.route('/register', methods=['POST'])
@@ -72,7 +79,10 @@ def user_config():
     else:
         return jsonify('Internal server error'), 500
 
-@users.route('/<id>', methods=['GET'])
-def get_users(id):
-    user = User.query.get(id)
-    return jsonify(user.serialize())
+@users.route('/username/<username>', methods=['GET'])
+def get_users(username):
+    user = db.session.query(User).filter(User.username == username).first()
+    if user is None:
+        print(username)
+        return jsonify("No se encontro user."), 401
+    return jsonify(user.serialize()), 200

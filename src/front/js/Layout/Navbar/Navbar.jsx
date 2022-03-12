@@ -70,7 +70,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     getToken(token)
-  }, []);
+  }, [store.refresh]);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between position-fixed navbar-z-index">
