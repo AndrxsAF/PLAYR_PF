@@ -16,5 +16,6 @@ class User(db.Model):
             "email": self.email,
             "username": self.username,
             "biography": self.biography,
-            "img_url": self.img_url
+            "img_url": self.img_url,
+            "id": self.id
         }

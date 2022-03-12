@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useContext} from "react";
+import { Context } from "../../store/appContext"
 import "./sidemenu.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
@@ -12,6 +13,7 @@ import Rigo from "../../../img/rigo-baby.jpg"
 // Component
 
 const SideMenu = (props) => {
+    const { store, actions } = useContext(Context)
 
     return (
         <div className="vh-100 py-4 container-right p-3">
@@ -30,7 +32,7 @@ const SideMenu = (props) => {
                         )}
 
                 </div>
-                <button type="button" className="btn btn-danger w-100 d-flex align-items-top justify-content-center"><p className="m-0 fs-2 line-height">+</p><p className="m-0 fs-5 ps-2">Nuevo Post</p></button>
+                <button onClick={() => actions.handleShow()} type="button" className="btn btn-danger w-100 d-flex align-items-top justify-content-center"><p className="m-0 fs-2 line-height">+</p><p className="m-0 fs-5 ps-2">Nuevo Post</p></button>
             </div>
             <div className="container-fluid border p-2 mt-5">
                 <p className="d-flex align-items-center username mb-2 fs-4"><img className="pe-2" src="https://img.icons8.com/pastel-glyph/30/000000/controller--v1.png" />Tendencias:</p>
