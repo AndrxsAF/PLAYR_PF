@@ -7,8 +7,13 @@ import injectContext from "./store/appContext";
 import Home from "./views/Home/Home.jsx";
 import Detail from "./views/Detail/Detail.jsx";
 
+import Login from "./views/Login/login.jsx";
+
+
 // Layout
 import Layout from "./Layout/Layout.jsx";
+
+
 
 //create your first component
 const AppRouter = () => {
@@ -25,9 +30,9 @@ const AppRouter = () => {
 							<Route exact path="/">
 								<Home />
 							</Route>
-							{/* <Route exact path="/anime/:id">
-								<Detail />
-							</Route> */}
+							 <Route exact path="/login">
+								<Login />
+							</Route>
 							<Route>
 								<h1>Not found!</h1>
 							</Route>
@@ -40,4 +45,5 @@ const AppRouter = () => {
 };
 
 export default injectContext(AppRouter);
+
 

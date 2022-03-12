@@ -22,7 +22,7 @@ const Layout = (props) => {
 }
 
 Layout.propTyps = {
-    children: PropTypes.func
+    children: PropTypes.any
 }
 
-export default Layout
+export default Layout;
