@@ -68,6 +68,8 @@ def config_user(user):
         img = request.files
         if img.to_dict() == {}:
             body = request.form.to_dict()
+            print(body)
+            print(user)
             if list(body.keys())[0] == "password":
                 hash_pass = encryp_pass(list(body.values())[0])
                 setattr(user, "password", hash_pass)
