@@ -7,6 +7,9 @@ import injectContext from "./store/appContext";
 import Home from "./views/Home/Home.jsx";
 import Explore from "./views/Explore/Explore.jsx";
 
+import Register from "./views/Register/register.jsx";
+
+
 // Layout
 import Layout from "./Layout/Layout.jsx";
 
@@ -25,6 +28,9 @@ const AppRouter = () => {
 							<Route exact path="/">
 								<Home />
 							</Route>
+							 <Route exact path="/register">
+								<Register />
+                </Route>
 							<Route exact path="/explore">
 								<Explore />
 							</Route>
