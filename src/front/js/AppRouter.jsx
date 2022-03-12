@@ -9,6 +9,7 @@ import Detail from "./views/Detail/Detail.jsx";
 
 import Register from "./views/Register/register.jsx";
 
+
 // Layout
 import Layout from "./Layout/Layout.jsx";
 
