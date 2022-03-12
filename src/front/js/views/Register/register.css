@@ -1,0 +1,21 @@
+
+
+#body {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+}
+
+
+#Container-lef {
+  margin-top: 100px;
+}
+
+
+·card card-body {
+  margin-bottom: 20px;
+}
+
+a {
+  text-decoration:none
+}

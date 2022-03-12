@@ -1,8 +1,9 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models.index import db, User
-from api.app.user.controler import register_user, login_user
+from api.app.user.controler import register_user, login_user, config_user
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+
 
 users = Blueprint('users', __name__)
 
@@ -49,4 +50,29 @@ def user_login():
         return jsonify('Internal server error'), 500
     else:
         return jsonify(token), 200
-    
+
+# RUTA DE MODIFICACIÓN - CAMBIA CONTRASEÑA, BIOGRAFIA E IMAGEN DE PERFIL
+
+@users.route('/user', methods=['PUT'])
+@jwt_required()
+def user_config():
+    user_token = get_jwt_identity()
+    user = User.query.get(user_token)
+    response = config_user(user) 
+    if response == 1:
+        return jsonify('Biography changed succesfully.'), 200
+    elif response == 2:
+        return jsonify('Profile picture changed succesfully.'), 200
+    elif response == False:
+        return jsonify('Internal server error'), 500
+    elif response == 3:
+        return jsonify('Password changed succesfully.'), 200
+    elif response == 4:
+        return jsonify('User not found.'), 500
+    else:
+        return jsonify('Internal server error'), 500
+
+@users.route('/<id>', methods=['GET'])
+def get_users(id):
+    user = User.query.get(id)
+    return jsonify(user.serialize())
