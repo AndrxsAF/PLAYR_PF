@@ -67,3 +67,5 @@ This boilerplate it's 100% integrated with Herkou, just by pushing your changes 
 		// "prettier-webpack-plugin": "^1.2.0",
 "dotenv-webpack": "^1.7.0",
 		"friendly-errors-webpack-plugin": "^1.7.0",
+
+    Hola

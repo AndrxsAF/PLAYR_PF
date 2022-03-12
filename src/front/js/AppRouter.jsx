@@ -10,8 +10,13 @@ import Explore from "./views/Explore/Explore.jsx";
 import Register from "./views/Register/register.jsx";
 
 
+import Login from "./views/Login/login.jsx";
+
+
 // Layout
 import Layout from "./Layout/Layout.jsx";
+
+
 
 //create your first component
 const AppRouter = () => {
@@ -28,11 +33,16 @@ const AppRouter = () => {
 							<Route exact path="/">
 								<Home />
 							</Route>
+
+							 <Route exact path="/login">
+								<Login />
+                </Route>
 							 <Route exact path="/register">
 								<Register />
                 </Route>
 							<Route exact path="/explore">
 								<Explore />
+
 							</Route>
 							<Route>
 								<h1>Not found!</h1>
@@ -46,4 +56,5 @@ const AppRouter = () => {
 };
 
 export default injectContext(AppRouter);
+
 

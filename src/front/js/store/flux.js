@@ -43,6 +43,29 @@ const getState = ({ getStore, getActions, setStore }) => {
       setUsers: (users) => {
         setStore({ users: users });
       },
+        setLogin: () => {
+				const url = BASE_URL;
+				fetch(url + "/login", {
+					method: postMessage,
+					mode: "no-cors",
+					headers: {
+						"Access-Control-Allow-Origin": "*",
+						"Content-Type": "application/json",
+						},
+						body: JSON.stringify({
+							email: email,
+							user: user,
+							password: password
+						}),
+				}).then((response) => response.json())
+				.then(data => {
+					if (data.token == undefined) 
+					{ setTimeout(function()
+					{window.location.replace ("/login");},4000);
+				} else {setTimeout(function() {window.location.replace ("/");},4000);
+					localStorage.setItem("jwt-token", data.token);
+			}})
+			},
       setRegister: () => {
         const url = BASE_URL;
         fetch(url + "/register", {

@@ -26,4 +26,4 @@ Layout.propTyps = {
     children: PropTypes.any
 }
 
-export default Layout
+export default Layout;
