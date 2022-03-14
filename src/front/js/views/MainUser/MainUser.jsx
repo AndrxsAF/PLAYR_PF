@@ -36,6 +36,7 @@ const MainUser = () => {
     const verifyUser = () => {
         if (profile.id == user.id) {
             setValidUser(true)
+            console.log("hehe")
         } else {
             setValidUser(false)
         }
@@ -81,7 +82,7 @@ const MainUser = () => {
 
     useEffect(() => {
         profile && getPosts()
-    }, [profile])
+    }, [user, profile])
 
     return (
         <div className="container-fluid mainuser-container p-0">

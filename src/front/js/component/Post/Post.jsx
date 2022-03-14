@@ -96,7 +96,7 @@ Post.propTypes = {
     game: PropTypes.string,
     console: PropTypes.string,
     comment: PropTypes.bool,
-    id: PropTypes.id
+    id: PropTypes.number
 }
 
 export default Post;
