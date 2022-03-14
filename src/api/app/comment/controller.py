@@ -1,13 +1,11 @@
 from api.models.index import db, Comment
 
-def delete_comment(user_id, body):
+def delete_comment(body):
     try:
-        if body["user_id"] == user_id["id"]:
-            comment = Comment.query.get(body["comment_id"])
-            db.session.delete(comment)
-            db.session.commit()
-            return 2
-        return 1
+        comment = Comment.query.get(body["id"])
+        db.session.delete(comment)
+        db.session.commit()
+        return 2
     except Exception as error:
         print('[ERROR POST DELETE]: ', error)
         db.session.rollback()
@@ -24,5 +22,5 @@ def create_comment(user, body):
 
     except Exception as err:
         db.session.rollback()
-        print('[ERROR REGISTER USER]: ', err)
+        print('[ERROR REGISTER COMMENT]: ', err)
         return None

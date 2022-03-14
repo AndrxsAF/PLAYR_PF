@@ -22,7 +22,7 @@ def post_create():
 @jwt_required()
 def delete_create():
     user_id = get_jwt_identity()
-    body = request.get_json()
+    body = request.get_json(force=True)
     response = delete_post(user_id, body)
     if response == 1:
         return jsonify("You have no permissions to delete this post."), 400

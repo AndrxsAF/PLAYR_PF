@@ -30,13 +30,12 @@ const MainUser = () => {
     const { username } = useParams()
     const [validUser, setValidUser] = useState(false)
 
-    const showGrid = () => allPosts.length > 0 ? allPosts.map((post, index) => (<Squares key={index} id={post.id} console={post.console} game={post.game} img={post.img_url} />)) : (<Spinner />)
-    const hideGrid = () => allPosts.length > 0 ? allPosts.map((post, index) => (<Post key={index} id={post.id} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />)) : (<Spinner />)
+    const showGrid = () => allPosts.length >= 0 ? allPosts.map((post, index) => (<Squares key={index} id={post.id} console={post.console} game={post.game} img={post.img_url} />)) : (<Spinner />)
+    const hideGrid = () => allPosts.length >= 0 ? allPosts.map((post, index) => (<Post key={index} id={post.id} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />)) : (<Spinner />)
 
     const verifyUser = () => {
         if (profile.id == user.id) {
             setValidUser(true)
-            console.log("hehe")
         } else {
             setValidUser(false)
         }

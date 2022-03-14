@@ -23,7 +23,7 @@ def create_post(token, body, img):
 def delete_post(user_id, body):
     try:
         if body["user_id"] == user_id["id"]:
-            post = Post.query.get(body["post_id"])
+            post = Post.query.get(body["id"])
             db.session.delete(post)
             db.session.commit()
             return 2

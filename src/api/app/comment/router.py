@@ -10,16 +10,14 @@ comments = Blueprint('comments', __name__)
 @jwt_required()
 def post_comment():
     token = get_jwt_identity()
-    body = request.get_json()
+    body = request.get_json(force=True)
     new_comment = create_comment(token, body)
     return jsonify(new_comment), 201
 
 @comments.route("/", methods=['DELETE'])
-@jwt_required()
 def del_comment():
-    user_id = get_jwt_identity()
-    body = request.get_json()
-    response = delete_comment(user_id, body)
+    body = request.get_json(force=True)
+    response = delete_comment(body)
     if response == 1:
         return jsonify("You have no permissions to delete this comment."), 400
     elif response == 2:
