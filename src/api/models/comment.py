@@ -6,7 +6,7 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     description = db.Column(db.String(280), nullable=False)
-    from_user = db.relationship('User', foreign_keys=[user_id])
+    user = db.relationship('User')
     post = db.relationship('Post')
 
     def __repr__(self):

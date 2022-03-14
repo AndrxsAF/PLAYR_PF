@@ -181,9 +181,9 @@ data = {
     ],
     "Comment": [
         {
-        "description": "Primer Comentario!!!",
+        "user_id": 4,
         "post_id": 1,
-        "user_id": 4
+        "description": "Primer Comentario!!!"
         },
         {
         "description": "Primer Comentario!!!",

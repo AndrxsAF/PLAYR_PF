@@ -42,7 +42,7 @@ const Comment = (props) => {
     return (
         <li className="d-flex mb-1 d-flex justify-content-between">
             <p className="text-break m-0">
-                <Link to={`/`} className="username text-color-black pe-2">{users.username}</Link>
+                <Link to={`/user/${users.username}`} className="username text-color-black pe-2">{users.username}</Link>
                 {props.description}
             </p>
             {props.valid || (props.token_id == props.user_id) ? (<button onClick={deleteComments} type="button" className="btn-close"/>) : null}
