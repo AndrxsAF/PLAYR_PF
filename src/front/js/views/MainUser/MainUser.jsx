@@ -22,7 +22,7 @@ const MainUser = () => {
     // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
     const token = store.token
 
-    const [allPosts, setAllPosts] = useState({})
+    const [allPosts, setAllPosts] = useState([])
     // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [user, setUser] = useState({})
     const [profile, setProfile] = useState({})

@@ -9,6 +9,8 @@ import NewPost from "../../component/NewPost/NewPost.jsx";
 
 // Service 
 import { getUser } from "../../service/home.js";
+import { getAllPosts } from "../../service/user";
+import { getComments } from "../../service/post";
 
 export const Navbar = () => {
 
@@ -17,6 +19,8 @@ export const Navbar = () => {
   const [addClassSearch, setClassSearch] = useState("visually-hidden")
   const [addClassNotifications, setClassNotifications] = useState("visually-hidden")
   const [user, setUser] = useState({})
+  const [allPosts, setAllPosts] = useState([])
+  const [comment, setComment] = useState([])
   // const [token, setToken] = useState(sessionStorage.getItem("token"))
 
   // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
@@ -68,9 +72,45 @@ export const Navbar = () => {
     }
   };
 
+  const getPosts = async () => {
+    if (typeof user.id == 'number') {
+        try {
+            const res = await getAllPosts(user.id);
+            const dataJSON = await res.json();
+            setAllPosts(dataJSON)
+        } catch (err) {
+            console.log(err);
+        }
+    }
+  };
+
+const filterComment = () => {
+  let commentList = []
+  allPosts && allPosts.map((post) => getComment(post.id, commentList))
+  setComment(commentList)
+}
+
+const getComment = async (id, commentList) => {
+  try {
+    const res = await getComments(id);
+    const dataJSON = await res.json();
+    commentList.push(dataJSON)
+  } catch (err) {
+    console.log(err);
+  }
+};
+
   useEffect(() => {
     getToken(token)
   }, [store.refresh]);
+
+  useEffect(() => {
+    getPosts()
+  }, [user])
+
+  useEffect(() => {
+    filterComment()
+  }, [allPosts])
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between position-fixed navbar-z-index">
@@ -104,15 +144,11 @@ export const Navbar = () => {
           <img src="https://img.icons8.com/fluency-systems-regular/30/000000/star--v1.png" />
           <p className="m-0 ps-1 text-icon">Notificaciones</p>
           <ul className={"bg-light dropdown-menu user-menu " + addClassNotifications}>
-            <li><a className="dropdown-item" href="#">Notificación 1</a></li>
+            <li><a className="dropdown-item" href="#">Nuevos comentarios:</a></li>
             <li><hr className="dropdown-divider" /></li>
-            <li><a className="dropdown-item" href="#">Notificación 2</a></li>
+            <li><a className="dropdown-item" href="#">Nuevos likes:</a></li>
             <li><hr className="dropdown-divider" /></li>
-            <li><a className="dropdown-item" href="#">Notificación 3</a></li>
-            <li><hr className="dropdown-divider" /></li>
-            <li><a className="dropdown-item" href="#">Notificación 4</a></li>
-            <li><hr className="dropdown-divider" /></li>
-            <li><a className="dropdown-item" href="#">Notificación 5</a></li>
+            <li><a className="dropdown-item" href="#">Nuevos seguidores:</a></li>
           </ul>
         </div>
         <NavLink className="d-flex align-items-center me-3 icon" to={`/explore`}>
