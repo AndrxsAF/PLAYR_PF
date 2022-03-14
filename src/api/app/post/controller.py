@@ -2,9 +2,6 @@ from api.models.index import db, Post
 from api.shared.respose import succes_respose, error_response
 import cloudinary.uploader
 
-def get_post_by_id():
-    pass
-
 def create_post(token, body, img):
     try:
         if img.to_dict() == {}:
