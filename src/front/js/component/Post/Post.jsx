@@ -68,12 +68,19 @@ const Post = (props) => {
                 <div className="container-fluid p-0 d-flex justify-content-between">
                     <div>
                         <img src="https://img.icons8.com/fluency-systems-regular/30/000000/star--v1.png" />
-                        <img className="ps-2" src="https://img.icons8.com/fluency-systems-regular/30/000000/comments--v1.png" />
+                        <Link to={`/post/${props.id}`}>
+                            <img className="ps-2" src="https://img.icons8.com/fluency-systems-regular/30/000000/comments--v1.png" />
+                        </Link>
                     </div>
                     <div>
                         <img src="https://img.icons8.com/material-outlined/30/000000/bookmark-ribbon--v1.png" />
                     </div>
                 </div>
+                {props.comment ? (
+                    <div>
+                    comentarios: ON
+                    </div>) : null}
+                
             </div>
         </div>
     )
@@ -87,7 +94,9 @@ Post.propTypes = {
     date: PropTypes.number,
     tags: PropTypes.array,
     game: PropTypes.string,
-    console: PropTypes.string
+    console: PropTypes.string,
+    comment: PropTypes.bool,
+    id: PropTypes.id
 }
 
 export default Post;

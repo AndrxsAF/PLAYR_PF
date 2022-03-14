@@ -125,7 +125,7 @@ export const Navbar = () => {
           <ul className={"bg-light dropdown-menu user-menu " + addClass}>
             <li><NavLink className="dropdown-item" to={`/user/${user.username}`}>Perfil</NavLink></li>
             <li><hr className="dropdown-divider" /></li>
-            <li><NavLink className="dropdown-item" to={`/login`}>Perfil</NavLink></li>
+            <li><NavLink className="dropdown-item" to={`/login`}>Cerrar Sesión</NavLink></li>
           </ul>
         </div>
       </div>

@@ -57,7 +57,7 @@ const Home = () => {
                 <div className="container-left ps-3 pe-4 pt-4 m-0">
                     {allPosts.length > 0
                         ? allPosts.map((post, index) => (
-                                <Post key={index} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />
+                                <Post key={index} id={post.id} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />
                         )) : (<Spinner/>)}   
                 </div>
                 <div className="container-right-support p-0">

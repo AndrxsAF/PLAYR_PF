@@ -53,7 +53,7 @@ const PostView = () => {
             <div className="d-flex justify-content-center p-0 container-main-phoneview">
                 <div className="container-left ps-3 pe-4 pt-4 m-0">
                     {post 
-                        ? (<Post console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />) 
+                        ? (<Post comment={true} id={post.id} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />) 
                         : (<Spinner/>)
                     }   
                 </div>
