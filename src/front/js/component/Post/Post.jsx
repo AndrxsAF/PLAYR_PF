@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 // Pics
 
 import Rigo from "../../../img/rigo-baby.jpg"
-import PostPic from "../../../img/pokémon-legends-arceus.jpg"
 
 // Service 
 
@@ -32,12 +31,12 @@ const Post = (props) => {
 
     useEffect(() => {
 		getUser(props.user_id)
-	}, []);
+	}, [props.user_id])
 
     return (
         <div className="container-fluid p-0 mb-3">
             <div className="container-fluid bg-light d-flex justify-content-between align-items-center py-2 px-3">
-                <p className="d-flex username align-items-center m-0"><img className="profile-pic-post me-2" src={users.img_url ? users.img_url : Rigo} alt="Profile-Pic" />{users.username}</p>
+                <Link className="d-flex username align-items-center m-0 text-color-black" to={`/user/${users.username}`}><img className="profile-pic-post me-2" src={users.img_url ? users.img_url : Rigo} alt="Profile-Pic" />{users.username}</Link>
                 <p className="m-0 text-secondary">{`${date.getDate()} / ${date.getMonth() + 1}`}</p>
             </div>
             {

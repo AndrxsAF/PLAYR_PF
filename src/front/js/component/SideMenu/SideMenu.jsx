@@ -20,7 +20,7 @@ const SideMenu = (props) => {
             <div className="container-profile-main p-0">
                 <div className="container-fluid p-2 border d-flex mb-3">
                     <div className="container-fluid p-0">
-                        <p className="d-flex align-items-center username mb-2 fs-4"><img className="pe-2" src="https://img.icons8.com/fluency-systems-filled/30/000000/fairytale.png" />{props.username}</p>
+                        <Link className="d-flex align-items-center username mb-2 fs-4 text-color-black" to={`/user/${props.username}`}><img className="pe-2" src="https://img.icons8.com/fluency-systems-filled/30/000000/fairytale.png" />{props.username}</Link>
                         <p className="m-0">{props.biography}</p>
                     </div>
 

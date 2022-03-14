@@ -74,8 +74,11 @@ export const Navbar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between position-fixed navbar-z-index">
-      <img src={Logo} alt="PLAYR" className="logo ps-5" />
-      <img src={PhoneLogo} alt="PLAYR" className="phone-logo" />
+      <NavLink to={`/`}>
+        <img src={Logo} alt="PLAYR" className="logo ps-5" />
+        <img src={PhoneLogo} alt="PLAYR" className="phone-logo" />
+      </NavLink>
+      
 
       <div className="input-group search-bar">
         <input type="text" className="form-control search-form" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1" />
@@ -112,17 +115,17 @@ export const Navbar = () => {
             <li><a className="dropdown-item" href="#">Notificación 5</a></li>
           </ul>
         </div>
-        <div className="d-flex align-items-center me-3 icon">
-          <img src="https://img.icons8.com/ios-filled/30/000000/hashtag.png" />
-          <p className="m-0 ps-1 text-icon">Explora</p>
-        </div>
+        <NavLink className="d-flex align-items-center me-3 icon" to={`/explore`}>
+            <img src="https://img.icons8.com/ios-filled/30/000000/hashtag.png" />
+              <p className="m-0 ps-1 text-icon text-color-black">Explora</p>
+        </NavLink>
         <div onClick={() => classToggle()} className="d-flex align-items-center justify-content-end">
           <p className="m-0 pe-1 username text-icon">{user.username}</p>
           <img src={user.img_url ? user.img_url : Rigo} alt="User" className="profile-pic" />
           <ul className={"bg-light dropdown-menu user-menu " + addClass}>
-            <li><a className="dropdown-item" href="#">Perfil</a></li>
+            <li><NavLink className="dropdown-item" to={`/user/${user.username}`}>Perfil</NavLink></li>
             <li><hr className="dropdown-divider" /></li>
-            <li><a className="dropdown-item" href="#">Cerrar Sesión</a></li>
+            <li><NavLink className="dropdown-item" to={`/login`}>Perfil</NavLink></li>
           </ul>
         </div>
       </div>

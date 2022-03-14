@@ -3,6 +3,18 @@
     top: 60px
 }
 
+.text-color-black {
+    color: black;
+}
+
+.text-color-black:hover {
+    color: black;
+}
+
+.text-color-white {
+    color: white
+}
+
 .container-left {
     width: 600px;
 }

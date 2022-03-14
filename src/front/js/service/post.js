@@ -6,3 +6,20 @@ export const getUsers = (id) => {
     method: "GET",
   });
 };
+
+export const getPost = (id) => {
+  const url = `${BASE_URL}/api/post/${id}`;
+  return fetch(url, {
+    method: "GET",
+  });
+}
+
+export const getUser = (token) => {
+  const url = `${BASE_URL}/api/user/`;
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      authorization: `Bearer ${token}`
+    }
+  });
+};
