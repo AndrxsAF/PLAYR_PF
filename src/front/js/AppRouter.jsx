@@ -7,7 +7,7 @@ import injectContext from "./store/appContext";
 import Home from "./views/Home/Home.jsx";
 import Explore from "./views/Explore/Explore.jsx";
 import MainUser from "./views/MainUser/MainUser.jsx";
-
+import PostView from "./views/PostView/PostView.jsx";
 import Register from "./views/Register/register.jsx";
 
 
@@ -45,6 +45,9 @@ const AppRouter = () => {
 							</Route>
 							<Route exact path="/user/:username">
 								<MainUser />
+							</Route>
+							<Route exact path="/post/:post_id">
+								<PostView />
 							</Route>
 							<Route>
 								<h1>Not found!</h1>

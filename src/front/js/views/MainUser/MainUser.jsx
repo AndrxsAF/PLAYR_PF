@@ -22,7 +22,7 @@ const MainUser = () => {
     // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
     const token = store.token
 
-    const [allPosts, setAllPosts] = useState({})
+    const [allPosts, setAllPosts] = useState([])
     // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [user, setUser] = useState({})
     const [profile, setProfile] = useState({})
@@ -30,8 +30,8 @@ const MainUser = () => {
     const { username } = useParams()
     const [validUser, setValidUser] = useState(false)
 
-    const showGrid = () => allPosts.length > 0 ? allPosts.map((post, index) => (<Squares key={index} console={post.console} game={post.game} img={post.img_url} />)) : (<Spinner />)
-    const hideGrid = () => allPosts.length > 0 ? allPosts.map((post, index) => (<Post key={index} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />)) : (<Spinner />)
+    const showGrid = () => allPosts.length >= 0 ? allPosts.map((post, index) => (<Squares key={index} id={post.id} console={post.console} game={post.game} img={post.img_url} />)) : (<Spinner />)
+    const hideGrid = () => allPosts.length >= 0 ? allPosts.map((post, index) => (<Post key={index} id={post.id} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />)) : (<Spinner />)
 
     const verifyUser = () => {
         if (profile.id == user.id) {
@@ -77,11 +77,11 @@ const MainUser = () => {
     useEffect(() => {
         getToken(token)
         getUserProfile(username)
-    }, [store.refresh]);
+    }, [store.refresh, username]);
 
     useEffect(() => {
         profile && getPosts()
-    }, [user])
+    }, [user, profile])
 
     return (
         <div className="container-fluid mainuser-container p-0">

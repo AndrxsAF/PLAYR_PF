@@ -12,8 +12,6 @@ def post_create():
     token = get_jwt_identity()
     body = request.form.to_dict()
     img = request.files
-    print(img)
-    print(body)
     new_post = create_post(token, body, img)
     if new_post == 'Internal Server Error.':
         return jsonify('Internal Server Error.'), 500
@@ -24,7 +22,7 @@ def post_create():
 @jwt_required()
 def delete_create():
     user_id = get_jwt_identity()
-    body = request.get_json()
+    body = request.get_json(force=True)
     response = delete_post(user_id, body)
     if response == 1:
         return jsonify("You have no permissions to delete this post."), 400
@@ -39,10 +37,9 @@ def delete_create():
 #     "post_id": (POST TO DELETE)
 # }
 
-@posts.route("/", methods=['GET'])
-def get_post():
-    body = request.get_json()
-    post = Post.query.get(body["post_id"])
+@posts.route("/<id>", methods=['GET'])
+def get_post(id):
+    post = Post.query.get(id)
     return jsonify(post.serialize()), 200
 
 # DATA STRUCTURE FOR DELETE
@@ -58,7 +55,5 @@ def show_all_post():
 
 @posts.route('/user/<id>', methods=['GET'])
 def show_user_post(id):
-    print(id)
     posts = db.session.query(Post).filter(Post.user_id == id)
-    print(posts)
     return jsonify(list(map(lambda post: post.serialize(), posts))), 200

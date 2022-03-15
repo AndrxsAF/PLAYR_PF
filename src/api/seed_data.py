@@ -36,6 +36,13 @@ data = {
             "email": 'otracuenta@gmail.com',
             "biography": "This is just another description.",
             "img_url": 'https://res.cloudinary.com/andrxsaf/image/upload/v1646173716/gyaru-anime-character-yl_j5c7q2.jpg'
+        },
+        {
+            "username": "kaccchan",
+            "password":  encryp_pass("123456"),
+            "email": 'kaccchan@gmail.com',
+            "biography": "Me suena a poliedro.",
+            "img_url": 'https://res.cloudinary.com/andrxsaf/image/upload/v1647290555/irelia_rer3b7.jpg'
         }
     ],
     "Post":[
@@ -122,6 +129,150 @@ data = {
             "tag4": "",
             "tag5": "",
             "user_id": 2
+        },
+        {
+            "img_url": "https://res.cloudinary.com/andrxsaf/image/upload/v1647290689/league-of-legends-irelia-wallpaper-preview_gfylim.jpg",
+            "description": "Irelia, maestra de las cuchillas, mi main!!!!!",
+            "game": "League of Legends",
+            "console": "PC",
+            "tag1": "#Irelia",
+            "tag2": "#Cuchillas",
+            "tag3": "#Main",
+            "tag4": "#Gaymer",
+            "tag5": "#LoL",
+            "user_id": 6
+        },
+        {
+            "img_url": "https://res.cloudinary.com/andrxsaf/image/upload/v1647290714/Sentinel-Irelia_Final_mkci2h.jpg",
+            "description": "Esta es mi skin favorita EVER!!!!!",
+            "game": "League of Legends",
+            "console": "PC",
+            "tag1": "#Forajida",
+            "tag2": "#Irelia",
+            "tag3": "#IreliaLaForajida",
+            "tag4": "",
+            "tag5": "",
+            "user_id": 6
+        },
+        {
+            "img_url": "https://res.cloudinary.com/andrxsaf/image/upload/v1647290691/irelia-league-of-legends-project-skin-futuristic-hd-wallpaper-preview_ghs76h.jpg",
+            "description": "Proyecto Irelia es muy cool, ojalá hubiera una Ashe que juegue conmigo :(",
+            "game": "League of Legends",
+            "console": "PC",
+            "tag1": "#Proyecto",
+            "tag2": "#Irelia",
+            "tag3": "#ProyectoIrelia",
+            "tag4": "#CyberPunk",
+            "tag5": "",
+            "user_id": 6
+        },
+        {
+            "img_url": "https://res.cloudinary.com/andrxsaf/image/upload/v1647290713/il_fullxfull.3221448862_laf8_epasri.jpg",
+            "description": "Mi bff Coven Ashe, leyenda one trick pony.",
+            "game": "League of Legends",
+            "console": "PC",
+            "tag1": "#BFF",
+            "tag2": "#Ashe",
+            "tag3": "#CovenAshe",
+            "tag4": "",
+            "tag5": "",
+            "user_id": 6
+        }
+    ],
+    "Comment": [
+        {
+        "user_id": 4,
+        "post_id": 1,
+        "description": "Primer Comentario!!!"
+        },
+        {
+        "description": "Primer Comentario!!!",
+        "post_id": 2,
+        "user_id": 3
+        },
+        {
+        "description": "Primer Comentario!!!",
+        "post_id": 3,
+        "user_id": 2
+        },
+        {
+        "description": "Primer Comentario!!!",
+        "post_id": 4,
+        "user_id": 1
+        },
+        {
+        "description": "Primer Comentario!!!",
+        "post_id": 5,
+        "user_id": 6
+        },
+        {
+        "description": "Primer Comentario!!!",
+        "post_id": 6,
+        "user_id": 5
+        },
+        {
+        "description": "Primer Comentario!!!",
+        "post_id": 7,
+        "user_id": 4
+        },
+        {
+        "description": "Primer Comentario!!!",
+        "post_id": 8,
+        "user_id": 3
+        },
+        {
+        "description": "Primer Comentario!!!",
+        "post_id": 9,
+        "user_id": 2
+        },
+        {
+        "description": "Primer Comentario!!!",
+        "post_id": 10,
+        "user_id": 1
+        },
+        {
+        "description": "Bestieee!!!",
+        "post_id": 11,
+        "user_id": 2
+        },
+        {
+        "description": "Segundo comentario jejeje!!!",
+        "post_id": 1,
+        "user_id": 5
+        },
+        {
+        "description": "Segundo comentario jejeje!!!",
+        "post_id": 2,
+        "user_id": 6
+        },
+        {
+        "description": "Segundo comentario jejeje!!!",
+        "post_id": 3,
+        "user_id": 1
+        },
+        {
+        "description": "Segundo comentario jejeje!!!",
+        "post_id": 4,
+        "user_id": 2
+        },
+        {
+        "description": "Segundo comentario jejeje!!!",
+        "post_id": 5,
+        "user_id": 3
+        },
+        {
+        "description": "Segundo comentario jejeje!!!",
+        "post_id": 6,
+        "user_id": 4
+        }, {
+        "description": "tercer comentario jejeje!!!",
+        "post_id": 1,
+        "user_id": 5
+        },
+        {
+        "description": "tercer comentario jejeje!!!",
+        "post_id": 2,
+        "user_id": 6
         }
     ]
 }

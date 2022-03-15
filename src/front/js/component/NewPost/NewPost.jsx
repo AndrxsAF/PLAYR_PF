@@ -35,7 +35,6 @@ const NewPost = (props) => {
             reader.onload = (e) => {
                 if (reader.readyState == 2) {
                     setFileUrl(reader.result)
-                    console.log(reader)
                 }
             }
             reader.readAsDataURL(e.target.files[0])

@@ -1,30 +1,33 @@
 import React, { useEffect, useContext, useState } from "react";
-import "./explore.css";
+import "./postview.css";
 import { Context } from "../../store/appContext.js"
+import { useParams } from "react-router-dom";
 
 // Service 
-import { getAllPosts, getUser } from "../../service/explore.js";
+import { getPost, getUser } from "../../service/post.js"
 
 // Component
-import Squares from "../../component/Squares/Squares.jsx"
+import Post from "../../component/Post/Post.jsx"
 import Spinner from "../../component/Spinner/Spinner.jsx";
 import SideMenu from "../../component/SideMenu/SideMenu.jsx"
 
-const Explore = () => {
+const PostView = () => {
 
-    const { store, actions } = useContext(Context)
+    const { post_id } = useParams()
+    const { store } = useContext(Context)
 
     // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
     const token = store.token
-    const [allPosts, setAllPosts] = useState({})
+    
+    const [post, setPost] = useState(false)
     // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [user, setUser] = useState({})
 
-    const getPosts = async () => {
+    const getPosts = async (id) => {
 		try {
-			const res = await getAllPosts();
+			const res = await getPost(id);
 			const dataJSON = await res.json();
-			setAllPosts(dataJSON)
+			setPost(dataJSON)
 		} catch (err) {
 			console.log(err);
 		}
@@ -38,35 +41,35 @@ const Explore = () => {
 		} catch (err) {
 			console.log(err);
 		}
-	};  
+	};
 
     useEffect(() => {
-		getPosts()
+		getPosts(post_id)
         getToken(token)
-	}, []);
+    }, [store.refresh]);
 
     return(
         <div className="container-fluid container-main-page p-0">
             <div className="d-flex justify-content-center p-0 container-main-phoneview">
-                <div className="explore-container-left ps-3 pe-4 py-4 m-0 row">
-                    {allPosts.length > 0
-                        ? allPosts.map((post, index) => (
-                                <Squares key={index} id={post.id} console={post.console} game={post.game} img={post.img_url} />
-                        ))
-                    : (<Spinner/>)}   
-                    
+                <div className="container-left ps-3 pe-4 pt-4 m-0">
+                    {post 
+                        ? (<Post comment={true} id={post.id} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />) 
+                        : (<Spinner/>)
+                    }   
                 </div>
-                <div className="container-right-support explore-4kscreen p-0">
+
+                <div className="container-right-support p-0">
                 </div>
                     
                 {user 
                     ? (<SideMenu img={user.img_url} username={user.username} biography={user.biography} />)
                     : (<Spinner/>)
                 }
+
             </div>
         </div>
     )
 
 }
 
-export default Explore;
+export default PostView;
