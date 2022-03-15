@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import "./login.css";
 import { Form } from "bootstrap";
 import { Context } from "../../store/appContext.js";
+import { getUser } from "../../service/home";
 
 
 const Login = () => {
@@ -18,7 +19,7 @@ const Login = () => {
 
 	const handle_user = () => {
 
-		actions.setLogin(email, user, password);
+		actions.getUser(email, user, password);
 		setTimeout(function() { window.location.replace ("/") })
 
 	}

@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import "./register.css";
 import { Form } from "bootstrap";
 import { Context } from "../../store/appContext.js";
+import register  from "../../service/register.js"
 
 const Register = () => {
 
@@ -16,9 +17,8 @@ const Register = () => {
 	const { actions } = useContext(Context);
 
 	const handle_register = () => {
-		
-		actions.setRegister(email, user, password, verifyPassword);
-		setTimeout(function() { window.location.replace ("/main") })
+		register(email, user, password, verifyPassword);
+		setTimeout(function() { window.location.replace ("/login") })
 
 	}
 
