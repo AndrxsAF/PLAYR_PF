@@ -20,7 +20,7 @@ class User(db.Model):
             "id": self.id
         }
 
-    def serialize_comment(self):
+    def serialize_info(self):
         return {
             "username": self.username,
             "img_url": self.img_url,

@@ -12,6 +12,7 @@ class Post(db.Model):
     tag3 = db.Column(db.String(50))
     tag4 = db.Column(db.String(50))
     tag5 = db.Column(db.String(50))
+    isActive = db.Column(db.Boolean(), default=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship('User',  backref='post')
 
@@ -27,5 +28,19 @@ class Post(db.Model):
             "console": self.console,
             "date": self.date,
             "tags": [self.tag1, self.tag2, self.tag3, self.tag4, self.tag5],
-            "user_id": self.user_id
+            "user_id": self.user_id,
+            "isActive": self.isActive
+        } 
+
+    def serialize_user(self):
+        return {
+            "id": self.id,
+            "img_url": self.img_url,
+            "description": self.description,
+            "game": self.game,
+            "console": self.console,
+            "date": self.date,
+            "tags": [self.tag1, self.tag2, self.tag3, self.tag4, self.tag5],
+            "isActive": self.isActive,
+            "user_id": self.user.serialize_info()
         } 

@@ -24,7 +24,7 @@ def delete_post(user_id, body):
     try:
         if body["user_id"] == user_id["id"]:
             post = Post.query.get(body["id"])
-            db.session.delete(post)
+            setattr(post, "isActive", False)
             db.session.commit()
             return 2
         return 1
@@ -33,4 +33,23 @@ def delete_post(user_id, body):
         db.session.rollback()
         return 'Internal Server Error.'
 
-    
+def controller_show_all_post():
+    try:
+        return db.session.query(Post).filter(Post.isActive == True)
+    except Exception as error:
+        print('[ERROR POST SHOW USER POST]: ', error)
+        return 'Internal Server Error.'
+
+def controller_show_user_post(id):
+    try:
+        return db.session.query(Post).filter(Post.user_id == id).filter(Post.isActive == True)
+    except Exception as error:
+        print('[ERROR POST SHOW ALL]: ', error)
+        return 'Internal Server Error.'
+
+def controller_get_post(id):
+    try:
+        return Post.query.get(id)
+    except Exception as error:
+        print('[ERROR POST GET]: ', error)
+        return 'Internal Server Error.'
