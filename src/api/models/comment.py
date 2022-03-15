@@ -6,7 +6,7 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     description = db.Column(db.String(280), nullable=False)
-    user = db.relationship('User')
+    user = db.relationship('User', backref='comment')
     post = db.relationship('Post')
 
     def __repr__(self):
@@ -17,6 +17,16 @@ class Comment(db.Model):
             "id": self.id,
             "date": self.date,
             "user_id": self.user_id,
+            "post_id": self.post_id,
+            "description": self.description
+        } 
+
+    
+    def serialize_user(self):
+        return {
+            "id": self.id,
+            "date": self.date,
+            "user": self.user.serialize(),
             "post_id": self.post_id,
             "description": self.description
         } 

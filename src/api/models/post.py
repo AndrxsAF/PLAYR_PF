@@ -13,7 +13,7 @@ class Post(db.Model):
     tag4 = db.Column(db.String(50))
     tag5 = db.Column(db.String(50))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship('User')
+    user = db.relationship('User',  backref='post')
 
     def __repr__(self):
         return '<Post %r>' % self.id
