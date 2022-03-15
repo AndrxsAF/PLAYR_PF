@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.comment.controller import create_comment, delete_comment
+from api.app.comment.controller import create_comment, delete_comment, controller_show_comment_post
 from api.models.index import db, Comment
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -26,5 +26,7 @@ def del_comment():
 
 @comments.route('/post/<id>', methods=['GET'])
 def show_comment_post(id):
-    comments = db.session.query(Comment).filter(Comment.post_id == id)
+    comments = controller_show_comment_post(id)
+    if comments == 'Internal Server Error.':
+        return jsonify('ERROR'), 401
     return jsonify(list(map(lambda comment: comment.serialize_user(), comments))), 200
