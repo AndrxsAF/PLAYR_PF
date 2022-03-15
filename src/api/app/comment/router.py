@@ -27,4 +27,4 @@ def del_comment():
 @comments.route('/post/<id>', methods=['GET'])
 def show_comment_post(id):
     comments = db.session.query(Comment).filter(Comment.post_id == id)
-    return jsonify(list(map(lambda comment: comment.serialize(), comments))), 200
+    return jsonify(list(map(lambda comment: comment.serialize_user(), comments))), 200

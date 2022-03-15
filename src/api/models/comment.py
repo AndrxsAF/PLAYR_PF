@@ -26,7 +26,7 @@ class Comment(db.Model):
         return {
             "id": self.id,
             "date": self.date,
-            "user": self.user.serialize(),
+            "user": self.user.serialize_comment(),
             "post_id": self.post_id,
             "description": self.description
         } 
