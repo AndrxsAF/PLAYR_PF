@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0Njk0MDU5NSwianRpIjoiMzQwMzlmMjctYzJhMi00YzE1LTljN2YtZTBmOTdmZDYyNTAzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6M30sIm5iZiI6MTY0Njk0MDU5NSwiZXhwIjoxNjQ2OTQxNDk1fQ.o1KhAw8vnpRtA9rT1Rp4DEy1Fw395AF9CjYgPTMUZlQ",
 			showNewPost: false,
-			refresh: false
+			refresh: false,
       topAnime: [],
       anime: {},
       copyTopAnime: [],
@@ -24,7 +24,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			handleRefresh: () => {
 				const store = getStore()
 				return store.refresh ? setStore({refresh: false}) : setStore({refresh: true})
-			}
+			},
       setTopAnime: (topAnimeList) => {
         setStore({ topAnime: topAnimeList });
       },
@@ -97,6 +97,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
     },
   };
-	
+}	
 
-export default getState;
+export default getState

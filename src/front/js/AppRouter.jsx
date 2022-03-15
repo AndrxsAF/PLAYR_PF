@@ -34,15 +34,14 @@ const AppRouter = () => {
 								<Home />
 							</Route>
 
-							 <Route exact path="/login">
+							<Route exact path="/login">
 								<Login />
-                </Route>
-							 <Route exact path="/register">
+							</Route>
+							<Route exact path="/register">
 								<Register />
-                </Route>
+							</Route>
 							<Route exact path="/explore">
 								<Explore />
-
 							</Route>
 							<Route>
 								<h1>Not found!</h1>

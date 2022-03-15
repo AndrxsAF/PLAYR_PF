@@ -27,11 +27,6 @@ const Register = () => {
 	}
 
 
-
-
-
-
-
 	console.log(email)
 	console.log(user)
 	console.log(password)
