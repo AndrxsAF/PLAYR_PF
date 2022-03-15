@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.post.controller import create_post, delete_post
+from api.app.post.controller import create_post, delete_post, controller_show_user_post, controller_show_all_post, controller_get_post
 from api.models.index import db, Post
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -39,8 +39,10 @@ def delete_create():
 
 @posts.route("/<id>", methods=['GET'])
 def get_post(id):
-    post = Post.query.get(id)
-    return jsonify(post.serialize()), 200
+    post = controller_get_post(id)
+    if post == 'Internal Server Error.':
+        return jsonify('ERROR'), 401
+    return jsonify(post.serialize_user()), 200
 
 # DATA STRUCTURE FOR DELETE
 
@@ -50,10 +52,14 @@ def get_post(id):
 
 @posts.route('/all', methods=['GET'])
 def show_all_post():
-    posts = Post.query.all()
-    return jsonify(list(map(lambda post: post.serialize(), posts))), 200
+    posts = controller_show_all_post()
+    if posts == 'Internal Server Error.':
+        return jsonify('ERROR'), 401
+    return jsonify(list(map(lambda post: post.serialize_user(), posts))), 200
 
 @posts.route('/user/<id>', methods=['GET'])
 def show_user_post(id):
-    posts = db.session.query(Post).filter(Post.user_id == id)
-    return jsonify(list(map(lambda post: post.serialize(), posts))), 200
+    posts = controller_show_user_post(id)
+    if posts == 'Internal Server Error.':
+        return jsonify('ERROR'), 401
+    return jsonify(list(map(lambda post: post.serialize_user(), posts))), 200
