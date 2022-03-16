@@ -42,5 +42,5 @@ class Post(db.Model):
             "date": self.date,
             "tags": [self.tag1, self.tag2, self.tag3, self.tag4, self.tag5],
             "isActive": self.isActive,
-            "user_id": self.user.serialize_info()
+            "user": self.user.serialize_info()
         } 

@@ -14,5 +14,5 @@ class Saved(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "post_id": self.post.serialize()
+            "post": self.post.serialize()
         } 
