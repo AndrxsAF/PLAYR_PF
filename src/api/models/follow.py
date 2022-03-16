@@ -15,6 +15,6 @@ class Follow(db.Model):
         return {
             "id": self.id,
             "date": self.date,
-            "from_user_id": self.from_user.serialize_info(),
-            "to_user_id": self.to_user.serialize_info()
+            "from_user": self.from_user.serialize_info(),
+            "to_user": self.to_user.serialize_info()
         } 

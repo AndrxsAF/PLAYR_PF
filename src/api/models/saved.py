@@ -5,7 +5,7 @@ class Saved(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
     user = db.relationship('User')
-    post = db.relationship('Post')
+    post = db.relationship('Post', backref='save')
 
     def __repr__(self):
         return '<Saved %r>' % self.id
@@ -14,5 +14,5 @@ class Saved(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "post_id": self.post_id
+            "post": self.post.serialize()
         } 

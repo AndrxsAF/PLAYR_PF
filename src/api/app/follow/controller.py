@@ -3,7 +3,6 @@ from api.models.index import db, Follow
 def controller_unfollow(to_user_id, from_user_id):
     try:
         follows = db.session.query(Follow).filter(Follow.to_user_id == to_user_id).filter(Follow.from_user_id == from_user_id['id']).first()
-        print(follows.serialize())
         db.session.delete(follows)
         db.session.commit()
         return 2
