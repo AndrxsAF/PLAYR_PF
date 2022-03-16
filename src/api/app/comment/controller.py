@@ -24,3 +24,10 @@ def create_comment(user, body):
         db.session.rollback()
         print('[ERROR REGISTER COMMENT]: ', err)
         return None
+
+def controller_show_comment_post(id):
+    try:
+        return db.session.query(Comment).filter(Comment.post_id == id)
+    except Exception as error:
+        print('[ERROR SHOW COMMENT POST GET]: ', error)
+        return 'Internal Server Error.'
