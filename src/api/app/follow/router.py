@@ -30,8 +30,8 @@ def show_follow(id):
     token = get_jwt_identity()
     follows = controller_show_follow(id, token)
     if follows == False:
-        return jsonify('No se siguen.'), 200
+        return jsonify(False), 200
     elif follows == True:
-        return jsonify('Se siguen.'), 200
+        return jsonify(True), 200
     else:
         return jsonify('ERROR'), 401
