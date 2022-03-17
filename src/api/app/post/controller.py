@@ -1,6 +1,8 @@
-from api.models.index import db, Post
+from api.models.index import db, Post, Follow
 from api.shared.respose import succes_respose, error_response
 import cloudinary.uploader
+
+arrPosts = []
 
 def create_post(token, body, img):
     try:
@@ -38,6 +40,41 @@ def controller_show_all_post():
         return db.session.query(Post).filter(Post.isActive == True)
     except Exception as error:
         print('[ERROR POST SHOW USER POST]: ', error)
+        return 'Internal Server Error.'
+
+def getPosts(user_id):
+    try:
+        user_posts = db.session.query(Post).filter(Post.user_id == user_id).filter(Post.isActive == True)
+        return list(map(lambda post: post, user_posts))
+    except Exception as error:
+        print('[ERROR FUNC GETPOST]: ', error)
+        return 'Internal Server Error.'
+
+# def sortById(e):
+#     post = dict(e.serialize())
+#     print("post", post['id'])
+#     return post['id']
+
+def orderPosts(posts):
+    try:
+        arrPosts = []
+        for x in posts:
+            for y in x:
+                arrPosts.append(y)
+        return arrPosts
+    except Exception as error:
+        print('[ERROR FUNC ORDERPOSTS]: ', error)
+        return 'Internal Server Error.'
+
+def controller_show_follow_post(user_id):
+    try:
+        arrPosts = []
+        getFollow = db.session.query(Follow).filter(Follow.from_user_id == user_id)
+        getFollowList = list(map(lambda follow: follow.serialize_followings(), getFollow))
+        savePosts = list(map(lambda userID: getPosts(userID['to_user_id']), getFollowList))
+        return orderPosts(savePosts)
+    except Exception as error:
+        print('[ERROR POST SHOW FOLLOWS POST]: ', error)
         return 'Internal Server Error.'
 
 def controller_show_user_post(id):

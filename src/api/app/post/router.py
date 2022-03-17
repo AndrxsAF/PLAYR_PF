@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.post.controller import create_post, delete_post, controller_show_user_post, controller_show_all_post, controller_get_post
+from api.app.post.controller import create_post, delete_post, controller_show_user_post, controller_show_all_post, controller_get_post, controller_show_follow_post
 from api.models.index import db, Post
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -53,6 +53,13 @@ def get_post(id):
 @posts.route('/all', methods=['GET'])
 def show_all_post():
     posts = controller_show_all_post()
+    if posts == 'Internal Server Error.':
+        return jsonify('ERROR'), 401
+    return jsonify(list(map(lambda post: post.serialize_user(), posts))), 200
+
+@posts.route('/user/<id>/follow', methods=['GET'])
+def show_follow_post(id):
+    posts = controller_show_follow_post(id)
     if posts == 'Internal Server Error.':
         return jsonify('ERROR'), 401
     return jsonify(list(map(lambda post: post.serialize_user(), posts))), 200
