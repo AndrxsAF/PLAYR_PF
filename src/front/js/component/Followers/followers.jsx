@@ -43,7 +43,7 @@ const Followers = (props) => {
                 <button onClick={props.close} type="button" className="btn-close"></button>
             </div>
             
-            <div className="newpost-main-container">
+            <div className="followers-main-container">
                 { handleSwitch ? (props.followers.map((follow, index) => (
                     <div key={index} className="d-flex align-items-center mb-2">
                         <img className="profile-pic me-2" src={follow.from_user.img_url} alt="profile-pic" /><p className="mb-0 ms-1 username fs-4">{follow.from_user.username}</p>
