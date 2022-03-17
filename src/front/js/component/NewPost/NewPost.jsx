@@ -2,16 +2,9 @@ import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../../store/appContext"
 import "./newpost.css";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { func } from "prop-types";
-
-// Pics
 
 // Service 
 import { uploadNewPost } from "../../service/newpost.js"
-
-// Component
-
 
 const NewPost = (props) => {
 

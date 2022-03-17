@@ -50,8 +50,8 @@ const Explore = () => {
             <div className="d-flex justify-content-center p-0 container-main-phoneview">
                 <div className="explore-container-left ps-3 pe-4 py-4 m-0 row">
                     {allPosts.length > 0
-                        ? allPosts.map((post, index) => (
-                                <Squares key={index} id={post.id} console={post.console} game={post.game} img={post.img_url} />
+                        ? allPosts.map((posts, index) => (
+                                <Squares key={index} post={posts} />
                         ))
                     : (<Spinner/>)}   
                     

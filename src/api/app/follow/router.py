@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.follow.controller import controller_follow, controller_unfollow, controller_show_follow
+from api.app.follow.controller import controller_follow, controller_unfollow, controller_show_follow, controller_show_followers, controller_show_followings
 from api.models.index import db, Follow
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -35,3 +35,17 @@ def show_follow(id):
         return jsonify(True), 200
     else:
         return jsonify('ERROR'), 401
+
+@follows.route('/followers/<id>', methods=['GET'])
+def show_followers(id):
+    followers = controller_show_followers(id)
+    if followers is None: 
+        return jsonify("ERROR."), 401
+    return jsonify(list(map(lambda follow: follow.serialize(), followers))), 200
+
+@follows.route('/followings/<id>', methods=['GET'])
+def show_followings(id):
+    followings = controller_show_followings(id)
+    if followings is None: 
+        return jsonify("ERROR."), 401
+    return jsonify(list(map(lambda follow: follow.serialize(), followings))), 200

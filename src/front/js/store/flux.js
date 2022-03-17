@@ -2,12 +2,13 @@ import { getAllPosts, getUser } from "../service/home.js";
 import { getUsers } from "../service/post.js";
 import BASE_URL from "../service/index.js";
 
-const getState = ({ getStore, getActions, setStore }) => {
+const getState = ({ getStore, setStore }) => {
   return {
     store: {
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzI5OTEyNCwianRpIjoiZjY5MWM2NDUtOWQ0ZC00YjY0LThkY2UtZTY2OGM2NzBlM2Q0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Mn0sIm5iZiI6MTY0NzI5OTEyNCwiZXhwIjoxNjQ3MzAwMDI0fQ.ew-ZwXPYlSgwYBjUHmVCeaR9nDPVNEfke3zon94ELb4",
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzQ4NTkyMCwianRpIjoiNjE2Y2U2NjEtYmUyNC00OGUyLTllNGYtOWIyYWQ1MzQ3NjhiIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6MX0sIm5iZiI6MTY0NzQ4NTkyMCwiZXhwIjoxNjQ3NDg2ODIwfQ.C9dUFtkRRwFrz5fBoUekw8FwPMWeXhudIvsX8bIdegc",
       showNewPost: false,
       showUserCongif: false,
+      showFollowers: false,
       refresh: false,
       getAllPosts: [],
       user: [],
@@ -21,6 +22,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       handleShowUserConfig: () => {
         const store = getStore()
         return store.showUserConfig ? setStore({ showUserConfig: false }) : setStore({ showUserConfig: true })
+      },
+      handleShowFollowers: () => {
+        const store = getStore()
+        return store.showFollowers ? setStore({ showFollowers: false }) : setStore({ showFollowers: true })
       },
       handleRefresh: () => {
         const store = getStore()

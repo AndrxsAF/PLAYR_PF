@@ -35,3 +35,17 @@ def controller_show_follow(to_user_id, from_user_id):
     except Exception as error:
         print('[ERROR SHOW FOLLOW STATUS GET]: ', error)
         return False
+
+def controller_show_followings(user_id):
+    try:
+        return db.session.query(Follow).filter(Follow.from_user_id == user_id)
+    except Exception as error:
+        print('[ERROR SHOW FOLLOWINGS GET]: ', error)
+        return None
+
+def controller_show_followers(user_id):
+    try:
+        return db.session.query(Follow).filter(Follow.to_user_id == user_id)
+    except Exception as error:
+        print('[ERROR SHOW FOLLOWERS GET]: ', error)
+        return None

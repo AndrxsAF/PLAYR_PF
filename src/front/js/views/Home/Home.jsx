@@ -2,8 +2,6 @@ import React, { useEffect, useContext, useState } from "react";
 import "./home.css";
 import { Context } from "../../store/appContext.js"
 
-// Pics
-
 // Service 
 import { getAllPosts, getUser } from "../../service/home.js";
 
@@ -14,7 +12,7 @@ import SideMenu from "../../component/SideMenu/SideMenu.jsx"
 
 const Home = () => {
 
-    const { store, actions } = useContext(Context)
+    const { store } = useContext(Context)
 
     // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
     const token = store.token
@@ -56,8 +54,8 @@ const Home = () => {
             <div className="d-flex justify-content-center p-0 container-main-phoneview">
                 <div className="container-left ps-3 pe-4 pt-4 m-0">
                     {allPosts.length > 0
-                        ? allPosts.map((post, index) => (
-                                <Post key={index} id={post.id} console={post.console} game={post.game} user_id={post.user_id} description={post.description} img={post.img_url} tags={post.tags} date={Date.parse(post.date)} />
+                        ? allPosts.map((posts, index) => (
+                                <Post key={index} post={posts} date={Date.parse(posts.date)} />
                         )) : (<Spinner/>)}   
                 </div>
                 <div className="container-right-support p-0">

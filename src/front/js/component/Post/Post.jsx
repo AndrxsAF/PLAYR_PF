@@ -6,15 +6,13 @@ import { Context } from "../../store/appContext";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 // Pics
-
 import Rigo from "../../../img/rigo-baby.jpg"
 
 // Service 
-
-import { getUsers, getComments, uploadNewComment, getUserByToken, deletePost, deleteComment } from "../../service/post.js";
+import { getComments, uploadNewComment, getUserByToken, deletePost } from "../../service/post.js";
+import { userSaved, showSaved, save, unsave } from "../../service/saved.js"
 
 // Component
-
 import Comment from "../Comment/Comment.jsx"
 
 const Post = (props) => {
@@ -24,7 +22,6 @@ const Post = (props) => {
     // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
     const token = store.token
     // const [token, setToken] = useState(sessionStorage.getItem("token"))
-    const [users, setUsers] = useState({})
     const [user, setUser] = useState(false)
     const [comments, setComments] = useState([])
     const [alert, setAlert] = useState(false)
@@ -33,9 +30,47 @@ const Post = (props) => {
     const date = new Date(props.date)
     const [validUser, setValidUser] = useState(false)
     const [redirect, setRedirect] = useState(false)
+    const [saved, setSaved] = useState(true)
+
+    const savePost = async () => {
+        try {
+            const body = {
+                post_id: props.post.id
+            }
+            if (!saved) {
+                const res = await save(token, body);
+                const dataJSON = await res.json();
+                setSaved(dataJSON)
+            } else {
+                const res = await unsave(token, body);
+                const dataJSON = await res.json();
+                setSaved(dataJSON)
+            }
+        } catch (err) {
+            console.log(err)
+        } 
+    }
+
+    const saveStatus = async () => {
+        try {
+            const res = await userSaved(token, props.post.id);
+            const dataJSON = await res.json();
+            setSaved(dataJSON)
+        } catch (err) {
+            console.log(err)
+        } 
+    }
+
+    const handleSave = () => {
+        if (saved) {
+            return (<img onClick={savePost} src="https://img.icons8.com/material-rounded/30/000000/bookmark-ribbon--v1.png"/>)
+        } else {
+            return (<img onClick={savePost} src="https://img.icons8.com/material-outlined/30/000000/bookmark-ribbon--v1.png" />)
+        }
+    }
 
     const verifyUser = () => {
-        if (props.user_id == user.id) {
+        if (props.post.user.id == user.id) {
             setValidUser(true)
         } else {
             setValidUser(false)
@@ -53,17 +88,6 @@ const Post = (props) => {
         }
     };
 
-    const getUser = async (id) => {
-		try {
-			const res = await getUsers(id);
-			const dataJSON = await res.json();
-			setUsers(dataJSON)
-		} catch (err) {
-			console.log(err);
-		}
-	};
-
-
     const uploadComment = async () => {
         setAlert(false)
         const alertArr = []
@@ -79,7 +103,7 @@ const Post = (props) => {
         if (alertArr.length == 0) {
             try {
                 const body = {
-                    post_id: props.id,
+                    post_id: props.post.id,
                     description: description
                 }
                 const resp = await uploadNewComment(body, token)
@@ -103,26 +127,12 @@ const Post = (props) => {
 		}
 	};
 
-    const deleteComments = async (user_id, id) => {
-        try {
-            const body = {
-                user_id: user_id,
-                id: id
-            }
-			const res = await deleteComment(body);
-            actions.handleRefresh()
-		} catch (err) {
-			console.log(err);
-		}
-    }
-
     const deletePosts = async () => {
         try {
             const body = {
-                user_id: props.user_id,
-                id: props.id
+                user_id: props.post.user.id,
+                id: props.post.id
             }
-            comments && await comments.map((comment) => deleteComments(comment.user_id, comment.id))
 			const res = await deletePost(body, token);
             actions.handleRefresh()
             setRedirect(true)
@@ -132,31 +142,31 @@ const Post = (props) => {
     }
 
     useEffect(() => {
-		getUser(props.user_id)
         getToken(store.token)
-	}, [props.user_id])
+        saveStatus()
+	}, [])
 
     useEffect(() => {
-        getComment(props.id)
+        getComment(props.post.id)
     }, [store.refresh])
 
     return (
         <div className="container-fluid p-0 mb-3">
             <div className="container-fluid bg-light d-flex justify-content-between align-items-center py-2 px-3">
-                <Link className="d-flex username align-items-center m-0 text-color-black" to={`/user/${users.username}`}><img className="profile-pic-post me-2" src={users.img_url ? users.img_url : Rigo} alt="Profile-Pic" />{users.username}</Link>
+                <Link className="d-flex username align-items-center m-0 text-color-black" to={`/user/${props.post.user.username}`}><img className="profile-pic-post me-2" src={props.post.user.img_url ? props.post.user.img_url : Rigo} alt="Profile-Pic" />{props.post.user.username}</Link>
                 <p className="m-0 text-secondary">{`${date.getDate()} / ${date.getMonth() + 1}`}</p>
             </div>
             {
-                props.img ? (
+                props.post.img_url ? (
                     <div className="carousel-inner container-fluid p-0 ">
-                        <img className="post-pic" src={props.img} alt="Post" />
+                        <img className="post-pic" src={props.post.img_url} alt="Post" />
                         <div className="px-2 games carousel-caption d-none d-md-block">
-                            <h6>{`${props.game} / ${props.console}`}</h6>
+                            <h6>{`${props.post.game} / ${props.post.console}`}</h6>
                         </div>
                     </div>
                 ) : (
                     <div className="container-fluid pt-2 pb-0 px-3 bg-light">
-                        <h6 className="color-black m-0">{`${props.game} / ${props.console}`}</h6>
+                        <h6 className="color-black m-0">{`${props.post.game} / ${props.post.console}`}</h6>
                     </div>
                 )
             }
@@ -166,21 +176,21 @@ const Post = (props) => {
                 <div className="container-fluid p-0 pb-2 d-flex justify-content-between">
                     <div>
                         <img src="https://img.icons8.com/fluency-systems-regular/30/000000/star--v1.png" />
-                        {props.comment ? null : (<Link to={`/post/${props.id}`}>
+                        {props.comment ? null : (<Link to={`/post/${props.post.id}`}>
                             <img className="ps-2" src="https://img.icons8.com/fluency-systems-regular/30/000000/comments--v1.png" />
                         </Link>)}
                     </div>
                     <div>
                         {
-                            validUser ? (<button onClick={deletePosts} type="button" className="btn-close"/>) : (<img src="https://img.icons8.com/material-outlined/30/000000/bookmark-ribbon--v1.png" />)
+                            validUser ? (<button onClick={deletePosts} type="button" className="btn-close"/>) : handleSave()
                         }
                     </div>
                 </div>
                 {
-                    props.img ? ( <p className="mb-2"><strong className="username">{users.username}</strong> {props.description}</p> )
-                    : (<p className="mb-2">{props.description}</p>)
+                    props.post.img_url ? ( <p className="mb-2"><strong className="username">{props.post.user.username}</strong> {props.post.description}</p> )
+                    : (<p className="mb-2">{props.post.description}</p>)
                 }
-                <p className={`username ${props.comment && `m-0`}`}>{props.tags.map((tag) => {
+                <p className={`username ${props.comment && `m-0`}`}>{props.post.tags.map((tag) => {
                     if (tag !== "") {
                         return `${tag} `
                     }
@@ -191,7 +201,7 @@ const Post = (props) => {
                 <div className="container-fluid py-2 px-3 bg-light border-top">
                     <div className="container-fluid p-0">
                         <ul className="py-0 m-0 px-1">
-                            {comments ? comments.map((comment, index) => (<Comment token_id={user.id} id={comment.id} valid={validUser} description={comment.description} user_id={comment.user_id} key={index}/>)) : null}
+                            {comments ? comments.map((comments, index) => (<Comment token_id={user.id} comment={comments} valid={validUser} key={index}/>)) : null}
                         </ul>
                     </div>
                     {alert ? (
@@ -210,15 +220,8 @@ const Post = (props) => {
 }
 
 Post.propTypes = {
-    user_id: PropTypes.number,
-    description: PropTypes.string,
-    img: PropTypes.string,
     date: PropTypes.number,
-    tags: PropTypes.array,
-    game: PropTypes.string,
-    console: PropTypes.string,
-    comment: PropTypes.bool,
-    id: PropTypes.number
+    post: PropTypes.object
 }
 
 export default Post;

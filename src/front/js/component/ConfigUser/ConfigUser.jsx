@@ -2,16 +2,9 @@ import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../../store/appContext"
 import "./configuser.css";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { func } from "prop-types";
-
-// Pics
 
 // Service 
 import { changeUserConfig } from "../../service/configuser.js"
-
-// Component
-
 
 const ConfigUser = (props) => {
 

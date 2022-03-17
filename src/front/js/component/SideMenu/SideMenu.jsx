@@ -5,12 +5,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 // Pics
-
 import Rigo from "../../../img/rigo-baby.jpg"
-
-// Service 
-
-// Component
 
 const SideMenu = (props) => {
     const { store, actions } = useContext(Context)

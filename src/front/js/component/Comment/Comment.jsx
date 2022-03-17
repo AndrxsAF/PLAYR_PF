@@ -1,31 +1,20 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext.js";
+import "./comment.css"
 
 // Service 
-
-import { getUsers, deleteComment } from "../../service/post.js";
+import { deleteComment } from "../../service/post.js";
 
 const Comment = (props) => {
-    const [users, setUsers] = useState({})
-    const { store, actions } = useContext(Context)
-
-    const getUser = async (id) => {
-		try {
-			const res = await getUsers(id);
-			const dataJSON = await res.json();
-			setUsers(dataJSON)
-		} catch (err) {
-			console.log(err);
-		}
-	};
+    const { actions } = useContext(Context)
 
     const deleteComments = async () => {
         try {
             const body = {
-                user_id: props.user_id,
-                id: props.id
+                user_id: props.comment.user.id,
+                id: props.comment.id
             }
 			const res = await deleteComment(body);
             actions.handleRefresh()
@@ -34,18 +23,17 @@ const Comment = (props) => {
 		}
     }
 
-
-    useEffect(() => {
-		getUser(props.user_id)
-	}, [props.user_id])
-
     return (
         <li className="d-flex mb-1 d-flex justify-content-between">
-            <p className="text-break m-0">
-                <Link to={`/user/${users.username}`} className="username text-color-black pe-2">{users.username}</Link>
-                {props.description}
-            </p>
-            {props.valid || (props.token_id == props.user_id) ? (<button onClick={deleteComments} type="button" className="btn-close"/>) : null}
+            <div className="d-flex">
+                <Link to={`/user/${props.comment.user.username}`} className="me-2"><img className="profile-pic-comment" src={props.comment.user.img_url} alt="profile pic" /></Link>
+                <p className="text-break m-0">
+                    <Link to={`/user/${props.comment.user.username}`} className="username text-color-black pe-2">{props.comment.user.username}</Link>
+                    {props.comment.description}
+                </p>    
+            </div>
+            
+            {props.valid || (props.token_id == props.comment.user.id) ? (<button onClick={deleteComments} type="button" className="btn-close"/>) : null}
         </li>
                         
     )
@@ -53,11 +41,9 @@ const Comment = (props) => {
 }
 
 Comment.propTypes = {
-    user_id: PropTypes.number,
-    description: PropTypes.string,
     valid: PropTypes.bool,
-    id: PropTypes.number,
-    token_id: PropTypes.number
+    token_id: PropTypes.number,
+    comment: PropTypes.object
 }
 
 export default Comment;
