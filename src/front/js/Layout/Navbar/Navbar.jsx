@@ -115,7 +115,7 @@ const getComment = async (id, commentList) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between position-fixed navbar-z-index">
       <NavLink to={`/`}>
-        <img src={Logo} alt="PLAYR" className="logo ps-5" />
+        <img src={Logo} alt="PLAYR" className="logo ms-5" />
         <img src={PhoneLogo} alt="PLAYR" className="phone-logo" />
       </NavLink>
       

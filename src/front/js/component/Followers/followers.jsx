@@ -26,7 +26,7 @@ const Followers = (props) => {
             <div className="modal-header p-0 pb-2 mb-2">
                 { handleSwitch ? (<ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <a className="nav-link active" aria-current="page" href="#">Seguidos</a>
+                        <a className="nav-link active" aria-current="page" href="#">Seguidores</a>
                     </li>
                     <li onClick={changeSwitch} className="nav-item">
                         <a className="nav-link" href="#">Siguiendo</a>
