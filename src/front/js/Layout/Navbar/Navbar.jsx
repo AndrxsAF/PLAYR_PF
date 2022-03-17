@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Context } from "../../store/appContext"
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import Logo from "../../../img/logo-proyecto.png"
 import PhoneLogo from "../../../img/small-logo.png"
 import Rigo from "../../../img/rigo-baby.jpg"
@@ -21,10 +22,42 @@ export const Navbar = () => {
   const [user, setUser] = useState({})
   const [allPosts, setAllPosts] = useState([])
   const [comment, setComment] = useState([])
+  const [search, setSearch] = useState("")
+  const [alert, setAlert] = useState(false)
+  const [redirect, setRedirect] = useState(false)
+  const [searchMethod, setMethod] = useState("")
+  const [container, setContainer] = useState("")
   // const [token, setToken] = useState(sessionStorage.getItem("token"))
 
   // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
   const token = store.token
+
+  const handleSearch = () => {
+    setAlert(false)
+    if (search[0] == "#") {
+        setMethod("tags")
+        setContainer(search.slice(1))
+        setSearch("")
+        setRedirect(true)
+        searchClassToggle()
+        setTimeout(() => {
+          actions.handleRefresh()
+          setRedirect(false)
+        }, 1000);
+    } else if (search[0] == "@") {
+        setMethod("user")
+        setContainer(search.slice(1))
+        setSearch("")
+        setRedirect(true)
+        searchClassToggle()
+        setTimeout(() => {
+          actions.handleRefresh()
+          setRedirect(false)
+        }, 1000);
+    } else {
+      setAlert(true)
+    }
+  }
 
   const classToggle = () => {
     if (addClass == "d-block") {
@@ -112,6 +145,10 @@ const getComment = async (id, commentList) => {
     filterComment()
   }, [allPosts])
 
+  useEffect(() => {
+    setRedirect(false)
+  }, [])
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between position-fixed navbar-z-index">
       <NavLink to={`/`}>
@@ -120,14 +157,24 @@ const getComment = async (id, commentList) => {
       </NavLink>
       
 
-      <div className="input-group search-bar">
+      {/* <div className="input-group search-bar">
         <input type="text" className="form-control search-form" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1" />
-      </div>
+      </div> */}
       <div className="d-flex pe-5 user">
-        <div onClick={() => searchClassToggle()} className="me-3 icon d-flex align-items-center">
-          <img className="search" src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png" />
-          <ul className={"bg-light dropdown-menu search search-dropdown " + addClassSearch}>
-            <li className="px-3"><input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1" /></li>
+        <div className="me-3 icon d-flex align-items-center">
+          <div onClick={() => searchClassToggle()} className="d-flex align-items-center">
+            <img src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png" />
+            <p className="m-0 ps-1 text-icon">Buscar</p>
+          </div>
+          <ul className={"bg-light dropdown-menu search search-dropdown px-2 " + addClassSearch}>
+            <div className="input-group">
+              <input onChange={(e) => setSearch(e.target.value)} type="text" className="form-control" placeholder="Encuentra @Usuarios y #Tendencias" aria-describedby="button-addon2" value={search}/>
+              <button onClick={handleSearch} className="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+            </div>
+            {alert ? (
+            <div className="alert alert-danger p-2 mt-2 mb-0" role="alert">
+                <p className="m-0">Debes utilizar @ para buscar usernames o # para buscar tags.</p>
+            </div>) : null}
           </ul>
         </div>
         <div className="d-flex align-items-center me-3 icon" onClick={() => actions.handleShow()}>
@@ -140,9 +187,11 @@ const getComment = async (id, commentList) => {
         }
 
 
-        <div onClick={() => notificationsClassToggle()} className="d-flex align-items-center me-3 icon">
-          <img src="https://img.icons8.com/fluency-systems-regular/30/000000/star--v1.png" />
-          <p className="m-0 ps-1 text-icon">Notificaciones</p>
+        <div className="me-3 icon d-flex align-items-center">
+          <div onClick={() => notificationsClassToggle()} className="d-flex align-items-center">
+            <img src="https://img.icons8.com/fluency-systems-regular/30/000000/star--v1.png" />
+            <p className="m-0 ps-1 text-icon">Notificaciones</p>
+          </div>
           <ul className={"bg-light dropdown-menu user-menu " + addClassNotifications}>
             <li><a className="dropdown-item" href="#">Nuevos comentarios:</a></li>
             <li><hr className="dropdown-divider" /></li>
@@ -165,6 +214,7 @@ const getComment = async (id, commentList) => {
           </ul>
         </div>
       </div>
+      {redirect ? <Redirect to={`/${searchMethod}/${container}`}/> : null}
     </nav>
   );
 };

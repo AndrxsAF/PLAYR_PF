@@ -35,19 +35,24 @@
     font-weight: 600;
 }
 
-.search {
+/* .search {
     display: none;
-}
+} */
 
 .search-dropdown {
-    position: absolute;
-    left: 0px;
-    width: 100vw;
-    top: 98%
+    position: fixed;
+    width: 400px;
+    top: 60px;
 }
 
 
 @media only screen and (max-width: 1000px) {
+    .search-dropdown {
+        position: absolute;
+        left: 0px;
+        width: 100vw;
+        top: 98%
+    }
     .logo {
         display: none;
     }

@@ -9,6 +9,7 @@ import Explore from "./views/Explore/Explore.jsx";
 import MainUser from "./views/MainUser/MainUser.jsx";
 import PostView from "./views/PostView/PostView.jsx";
 import Register from "./views/Register/register.jsx";
+import Tags from "./views/Tags/Tags.jsx";
 
 
 import Login from "./views/Login/login.jsx";
@@ -49,7 +50,10 @@ const AppRouter = () => {
 							<Route exact path="/post/:post_id">
 								<PostView />
 							</Route>
-							<Route>
+							<Route exact path="/tags/:tag">
+								<Tags />
+							</Route>
+							<Route exact path="/notfound">
 								<h1>Not found!</h1>
 							</Route>
 						</Switch>
