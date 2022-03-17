@@ -94,6 +94,7 @@ const NewPost = (props) => {
                         body.append(`tag${Number(i) + 1}`, "")
                     }
                 }
+                console.log(body)
                 const resp = await uploadNewPost(body, token)
                 const data = await resp.json()
                 actions.handleShow()

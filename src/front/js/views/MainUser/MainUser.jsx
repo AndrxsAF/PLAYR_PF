@@ -105,6 +105,7 @@ const MainUser = () => {
             try {
                 const res = await getAllPosts(profile.id);
                 const dataJSON = await res.json();
+                dataJSON.sort((a, b) => b.id - a.id)
                 setAllPosts(dataJSON)
                 if (!saved) {
                     setPosts(dataJSON)
@@ -120,6 +121,7 @@ const MainUser = () => {
         try {
             const res = await showSaved(token);
             const dataJSON = await res.json();
+            dataJSON.sort((a, b) => b.id - a.id)
             setSavedPosts(dataJSON)
         } catch (err) {
             console.log(err);

@@ -57,9 +57,11 @@ def show_all_post():
         return jsonify('ERROR'), 401
     return jsonify(list(map(lambda post: post.serialize_user(), posts))), 200
 
-@posts.route('/user/<id>/follow', methods=['GET'])
-def show_follow_post(id):
-    posts = controller_show_follow_post(id)
+@posts.route('/user/follow', methods=['GET'])
+@jwt_required()
+def show_follow_post():
+    id = get_jwt_identity()
+    posts = controller_show_follow_post(id['id'])
     if posts == 'Internal Server Error.':
         return jsonify('ERROR'), 401
     return jsonify(list(map(lambda post: post.serialize_user(), posts))), 200
