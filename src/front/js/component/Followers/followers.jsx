@@ -46,12 +46,12 @@ const Followers = (props) => {
                 { handleSwitch ? (props.followers.map((follow, index) => (
                     <div key={index} className="mb-2">
                         <Link onClick={props.close} to={`/user/${follow.from_user.username}`} className="d-flex align-items-center">
-                            <img className="profile-pic me-2" src={follow.from_user.img_url} alt="profile-pic" /><p className="mb-0 ms-1 username fs-4">{follow.from_user.username}</p>
+                            <img className="profile-pic me-2" src={follow.from_user.img_url} alt="profile-pic" /><p className="mb-0 ms-1 username fs-4 text-color-black">{follow.from_user.username}</p>
                         </Link>
                     </div>))) : (props.followings.map((follow, index) => (
                     <div key={index} className="mb-2">
                         <Link onClick={props.close} to={`/user/${follow.to_user.username}`} className="d-flex align-items-center">
-                            <img className="profile-pic me-2" src={follow.to_user.img_url} alt="profile-pic" /><p className="mb-0 ms-1 username fs-4">{follow.to_user.username}</p>
+                            <img className="profile-pic me-2" src={follow.to_user.img_url} alt="profile-pic" /><p className="mb-0 ms-1 username fs-4 text-color-black">{follow.to_user.username}</p>
                         </Link>
                     </div>))) }
             </div>
