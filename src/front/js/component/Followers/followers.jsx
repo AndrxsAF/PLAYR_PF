@@ -19,9 +19,7 @@ const Followers = (props) => {
             setSwitch(true)
         }
     }
-
-    console.log(props)
-
+    
     return (
         <div className="p-3 rounded pop-up-followers">
             <div className="modal-header p-0 pb-2 mb-2">
