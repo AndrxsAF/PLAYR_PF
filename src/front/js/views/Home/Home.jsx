@@ -21,10 +21,11 @@ const Home = () => {
     // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [user, setUser] = useState({})
 
-    const getPosts = async () => {
+    const getPosts = async (token) => {
 		try {
-			const res = await getAllPosts();
+			const res = await getAllPosts(token);
 			const dataJSON = await res.json();
+            dataJSON.sort((a, b) => b.id - a.id)
 			setAllPosts(dataJSON)
 		} catch (err) {
 			console.log(err);
@@ -42,7 +43,7 @@ const Home = () => {
 	};
 
     useEffect(() => {
-		getPosts()
+		getPosts(token)
     }, [store.refresh]);
 
     useEffect(() => {

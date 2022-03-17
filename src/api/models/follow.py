@@ -18,3 +18,8 @@ class Follow(db.Model):
             "from_user": self.from_user.serialize_info(),
             "to_user": self.to_user.serialize_info()
         } 
+
+    def serialize_followings(self):
+        return {
+            "to_user_id": self.to_user_id
+        }

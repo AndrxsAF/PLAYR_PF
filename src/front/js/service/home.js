@@ -1,9 +1,12 @@
 import BASE_URL from "./index.js";
 
-export const getAllPosts = () => {
-  const url = `${BASE_URL}/api/post/all`;
+export const getAllPosts = (token) => {
+  const url = `${BASE_URL}/api/post/user/follow`;
   return fetch(url, {
     method: "GET",
+    headers: {
+      authorization: `Bearer ${token}`
+    }
   });
 };
 
