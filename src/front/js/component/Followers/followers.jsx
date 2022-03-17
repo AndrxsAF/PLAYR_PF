@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../../store/appContext"
 import "./followers.css";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 // Service 
 
@@ -19,7 +20,7 @@ const Followers = (props) => {
             setSwitch(true)
         }
     }
-    
+
     return (
         <div className="p-3 rounded pop-up-followers">
             <div className="modal-header p-0 pb-2 mb-2">
@@ -43,11 +44,15 @@ const Followers = (props) => {
             
             <div className="followers-main-container">
                 { handleSwitch ? (props.followers.map((follow, index) => (
-                    <div key={index} className="d-flex align-items-center mb-2">
-                        <img className="profile-pic me-2" src={follow.from_user.img_url} alt="profile-pic" /><p className="mb-0 ms-1 username fs-4">{follow.from_user.username}</p>
+                    <div key={index} className="mb-2">
+                        <Link onClick={props.close} to={`/user/${follow.from_user.username}`} className="d-flex align-items-center">
+                            <img className="profile-pic me-2" src={follow.from_user.img_url} alt="profile-pic" /><p className="mb-0 ms-1 username fs-4">{follow.from_user.username}</p>
+                        </Link>
                     </div>))) : (props.followings.map((follow, index) => (
-                    <div key={index} className="d-flex align-items-center mb-2">
-                        <img className="profile-pic me-2" src={follow.to_user.img_url} alt="profile-pic" /><p className="mb-0 ms-1 username fs-4">{follow.to_user.username}</p>
+                    <div key={index} className="mb-2">
+                        <Link onClick={props.close} to={`/user/${follow.to_user.username}`} className="d-flex align-items-center">
+                            <img className="profile-pic me-2" src={follow.to_user.img_url} alt="profile-pic" /><p className="mb-0 ms-1 username fs-4">{follow.to_user.username}</p>
+                        </Link>
                     </div>))) }
             </div>
             <div className="modal-footer mt-2 pb-0">
