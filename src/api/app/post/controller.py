@@ -1,8 +1,7 @@
 from api.models.index import db, Post, Follow
 from api.shared.respose import succes_respose, error_response
 import cloudinary.uploader
-
-arrPosts = []
+from sqlalchemy import or_, func
 
 def create_post(token, body, img):
     try:
@@ -89,4 +88,12 @@ def controller_get_post(id):
         return Post.query.get(id)
     except Exception as error:
         print('[ERROR POST GET]: ', error)
+        return 'Internal Server Error.'
+
+def controller_get_post_by_tag(tag):
+    try:
+        print(tag)
+        return db.session.query(Post).filter(or_(func.lower(Post.tag1) == tag, func.lower(Post.tag2) == tag, func.lower(Post.tag3) == tag, func.lower(Post.tag4) == tag, func.lower(Post.tag5) == tag)).filter(Post.isActive == True)
+    except Exception as error:
+        print('[ERROR POST SHOW BY TAG]: ', error)
         return 'Internal Server Error.'
