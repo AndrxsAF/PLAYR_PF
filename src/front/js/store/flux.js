@@ -5,7 +5,7 @@ import BASE_URL from "../service/index.js";
 const getState = ({ getStore, setStore }) => {
   return {
     store: {
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzU1MjcwMCwianRpIjoiMjNkM2VlYjQtZTM4Yi00OGVhLTllYWYtNGI0NDE2ZGJkYzQyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6MX0sIm5iZiI6MTY0NzU1MjcwMCwiZXhwIjoxNjQ3NTUzNjAwfQ.LAtt80nkKVzrzSuOrCwMdRXf42yu2Sllf3qw2r8ghCk",
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzY5MDAwNSwianRpIjoiZjM3YjE5MDctOGNkZS00ZTQ3LWJhZjktZmVlNDQ5YTMyZWEwIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6MX0sIm5iZiI6MTY0NzY5MDAwNSwiZXhwIjoxNjQ3NjkwOTA1fQ.gKw1HQq0yFfJ6dJtuIuDfBQ95GWOmgdfXHgjdiqysPE",
       showNewPost: false,
       showUserCongif: false,
       showFollowers: false,

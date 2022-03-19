@@ -104,7 +104,8 @@ const Post = (props) => {
             try {
                 const body = {
                     post_id: props.post.id,
-                    description: description
+                    description: description,
+                    user_id: props.post.user.id
                 }
                 const resp = await uploadNewComment(body, token)
                 const data = await resp.json()

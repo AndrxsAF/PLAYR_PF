@@ -12,6 +12,8 @@ def follow():
     token = get_jwt_identity()
     body = request.get_json(force=True)
     new_follow = controller_follow(token, body)
+    if new_follow == 2:
+        return jsonify("Follow already exists."), 401
     return jsonify(new_follow), 201
 
 @follows.route("/", methods=['DELETE'])
