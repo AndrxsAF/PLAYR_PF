@@ -17,3 +17,4 @@ def setup_admin(app):
     admin.add_view(ModelView(Follow, db.session))
     admin.add_view(ModelView(Comment, db.session))
     admin.add_view(ModelView(Notification, db.session))
+    
