@@ -5,7 +5,7 @@ import BASE_URL from "../service/index.js";
 const getState = ({ getStore, setStore }) => {
   return {
     store: {
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzgyMTk2MiwianRpIjoiZWU5MGFjMjYtOGM0ZS00ZWNiLTg0ZjQtZmI3NzAxMzRjMjhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Nn0sIm5iZiI6MTY0NzgyMTk2MiwiZXhwIjoxNjQ3ODIyODYyfQ.0WjUOX6FEHQJaK_wS9SJFVtKsiVF5hG0JSYILfwFFeg",
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzgyMjg3MCwianRpIjoiOTk2NDJlNWMtYzQ4ZC00NzFhLTlhM2EtYmViNWNhZWEzNjlmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Nn0sIm5iZiI6MTY0NzgyMjg3MCwiZXhwIjoxNjQ3ODIzNzcwfQ.19g1hs8oRvJeVUXXJb06qjv1VbJt5-biyXD97DxXxRg",
       showNewPost: false,
       showUserCongif: false,
       showFollowers: false,
@@ -54,7 +54,7 @@ const getState = ({ getStore, setStore }) => {
         store.showNewPost && setStore({ showNewPost: false })
         store.showUserConfig && setStore({ showUserConfig: false })
         store.showFollowers && setStore({ showFollowers: false })
-        store.showLikes ? setStore({ showLikes: false }) : setStore({ showLikes: true })
+        store.showLikes && setStore({ showLikes: false })
       },
       handleRefresh: () => {
         const store = getStore()

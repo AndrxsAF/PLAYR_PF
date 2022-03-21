@@ -129,7 +129,8 @@ export const Navbar = () => {
         <Link to={`/user/${notificationByFollow.from_user_id.username}`} className="d-flex">
           <img className="profile-pic-comment me-2" src={notificationByFollow.from_user_id.img_url} alt="profile pic" />
           <p className="text-break m-0 text-color-black">
-            {`${notificationByFollow.from_user_id.username} te ha comenzado a seguir.`}
+          <strong className="username">{notificationByFollow.from_user_id.username}</strong>
+            {` te ha comenzado a seguir.`}
           </p>
         </Link>
       </li>)
@@ -144,7 +145,8 @@ export const Navbar = () => {
         <Link to={`/post/${notificationByComment.post_id}`} className="d-flex">
           <img className="profile-pic-comment me-2" src={notificationByComment.from_user_id.img_url} alt="profile pic" />
           <p className="text-break m-0 text-color-black">
-            {`${notificationByComment.from_user_id.username} ha comentado en tu post.`}
+            <strong className="username">{notificationByComment.from_user_id.username}</strong>
+            {` ha comentado en tu post.`}
           </p>
         </Link>
       </li>)
@@ -159,7 +161,8 @@ export const Navbar = () => {
         <Link to={`/post/${notificationByLike.post_id}`} className="d-flex">
           <img className="profile-pic-comment me-2" src={notificationByLike.from_user_id.img_url} alt="profile pic" />
           <p className="text-break m-0 text-color-black">
-            {`${notificationByLike.from_user_id.username} le ha gustado tu post.`}
+              <strong className="username">{notificationByLike.from_user_id.username}</strong>
+            {` le ha gustado tu post.`}
           </p>
         </Link>
       </li>)
