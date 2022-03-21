@@ -5,10 +5,11 @@ import BASE_URL from "../service/index.js";
 const getState = ({ getStore, setStore }) => {
   return {
     store: {
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzgxNDA0MywianRpIjoiOWIzZDIwZmMtMGQ1NS00YjA3LWFjNDUtYWU3YmMwMjM5YjAzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Mn0sIm5iZiI6MTY0NzgxNDA0MywiZXhwIjoxNjQ3ODE0OTQzfQ.vNJFpucbcs5PaUHXffnTmC-WqymigaeptzOETL0aUnI",
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzgyMTk2MiwianRpIjoiZWU5MGFjMjYtOGM0ZS00ZWNiLTg0ZjQtZmI3NzAxMzRjMjhlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Nn0sIm5iZiI6MTY0NzgyMTk2MiwiZXhwIjoxNjQ3ODIyODYyfQ.0WjUOX6FEHQJaK_wS9SJFVtKsiVF5hG0JSYILfwFFeg",
       showNewPost: false,
       showUserCongif: false,
       showFollowers: false,
+      showLikes: false,
       refresh: false,
       getAllPosts: [],
       user: [],
@@ -21,13 +22,15 @@ const getState = ({ getStore, setStore }) => {
         store.close ? setStore({ close: false }) : setStore({ close: true })
         store.showFollowers && setStore({ showFollowers: false }) 
         store.showUserConfig && setStore({ showUserConfig: false })
+        store.showLikes && setStore({ showLikes: false }) 
         return store.showNewPost ? setStore({ showNewPost: false }) : setStore({ showNewPost: true })
       },
       handleShowUserConfig: () => {
         const store = getStore()
         store.close ? setStore({ close: false }) : setStore({ close: true })
         store.showNewPost && setStore({ showNewPost: false }) 
-        store.showFollowers & setStore({ showFollowers: false })
+        store.showFollowers && setStore({ showFollowers: false })
+        store.showLikes && setStore({ showLikes: false })
         return store.showUserConfig ? setStore({ showUserConfig: false }) : setStore({ showUserConfig: true })
       },
       handleShowFollowers: () => {
@@ -35,13 +38,23 @@ const getState = ({ getStore, setStore }) => {
         store.close ? setStore({ close: false }) : setStore({ close: true })
         store.showUserConfig && setStore({ showUserConfig: false }) 
         store.showNewPost && setStore({ showNewPost: false }) 
+        store.showLikes && setStore({ showLikes: false })
         return store.showFollowers ? setStore({ showFollowers: false }) : setStore({ showFollowers: true })
+      },
+      handleShowLikes: () => {
+        const store = getStore()
+        store.close ? setStore({ close: false }) : setStore({ close: true })
+        store.showUserConfig && setStore({ showUserConfig: false }) 
+        store.showNewPost && setStore({ showNewPost: false }) 
+        store.showFollowers && setStore({ showFollowers: false })
+        return store.showLikes ? setStore({ showLikes: false }) : setStore({ showLikes: true })
       },
       closeShow: () => {
         const store = getStore()
         store.showNewPost && setStore({ showNewPost: false })
         store.showUserConfig && setStore({ showUserConfig: false })
         store.showFollowers && setStore({ showFollowers: false })
+        store.showLikes ? setStore({ showLikes: false }) : setStore({ showLikes: true })
       },
       handleRefresh: () => {
         const store = getStore()

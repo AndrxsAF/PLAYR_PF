@@ -11,17 +11,20 @@ likes = Blueprint('likes', __name__)
 def like():
     token = get_jwt_identity()
     body = request.get_json(force=True)
+    print("body", body)
     new_like = controller_like(token["id"], body)
-    return jsonify(new_like), 201
+    if new_like == 2:
+        return jsonify(True), 200
+    return jsonify('Internal Server Error.'), 500
 
 @likes.route("/", methods=['DELETE'])
 @jwt_required()
 def dislike():
     token = get_jwt_identity()
     body = request.get_json(force=True)
-    response = controller_dislike(token["id"], body['post_id'])
+    response = controller_dislike(token["id"], body)
     if response == 2:
-        return jsonify("dislike succesfully."), 200
+        return jsonify(False), 200
     return jsonify("Internal Server Error."), 500
 
 @likes.route("/<id>", methods=['GET'])

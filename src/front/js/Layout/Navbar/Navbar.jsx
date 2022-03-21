@@ -153,6 +153,21 @@ export const Navbar = () => {
     }
   }
 
+  const sortNotificationByLike = (notificationByLike) => {
+    if (notificationByLike.type == "like") {
+      return (<li className="list-group-item bg-light" key={notificationByLike.id}>
+        <Link to={`/post/${notificationByLike.post_id}`} className="d-flex">
+          <img className="profile-pic-comment me-2" src={notificationByLike.from_user_id.img_url} alt="profile pic" />
+          <p className="text-break m-0 text-color-black">
+            {`${notificationByLike.from_user_id.username} le ha gustado tu post.`}
+          </p>
+        </Link>
+      </li>)
+    } else {
+      return null
+    }
+  }
+
   const checkNotification = (type) => {
     return notification.some((element) => element.type == type)
   }
@@ -219,6 +234,7 @@ export const Navbar = () => {
               (<div>
                 <p className="username m-0">Nuevos likes:</p>
                 <ul className="list-group list-group-flush ">
+                  {notification ? notification.map((like) => sortNotificationByLike(like)) : null}
                 </ul>
               </div>) : null
             }
