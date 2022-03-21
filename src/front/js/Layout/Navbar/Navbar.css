@@ -3,6 +3,12 @@
     width: 100%;
 }
 
+.notification-menu {
+    width: 350px;
+    left: auto;
+    top: 98%;
+}
+
 .logo {
     height: 44px;
 }
@@ -79,7 +85,13 @@
     .user-menu {
         position: absolute;
         left: 0px;
-        width: 100vw;
+        width: 100vw !important;
+        top: 98%
+    }
+    .notification-menu {
+        position: absolute;
+        left: 0px;
+        width: 100vw !important;
         top: 98%
     }
 }

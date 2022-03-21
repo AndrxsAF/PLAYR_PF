@@ -14,7 +14,7 @@ import SideMenu from "../../component/SideMenu/SideMenu.jsx"
 const PostView = () => {
 
     const { post_id } = useParams()
-    const { store } = useContext(Context)
+    const { store, actions } = useContext(Context)
 
     // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
     const token = store.token
@@ -46,14 +46,14 @@ const PostView = () => {
     useEffect(() => {
 		getPosts(post_id)
         getToken(token)
-    }, [store.refresh]);
+    }, [store.refresh, post_id]);
 
     return(
         <div className="container-fluid container-main-page p-0">
             <div className="d-flex justify-content-center p-0 container-main-phoneview">
                 <div className="container-left ps-3 pe-4 pt-4 m-0">
                     {post 
-                        ? (<Post comment={true} post={post} date={Date.parse(post.date)} />) 
+                        ? (<Post comment={true} post={post} date={Date.parse(post.date)} key={post.id}/>) 
                         : (<Spinner/>)
                     }   
                 </div>

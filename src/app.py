@@ -14,6 +14,7 @@ from api.app.comment.router import comments
 from api.app.follow.router import follows
 from api.app.saved.router import save
 from api.app.notification.router import notifications
+from api.app.like.router import likes
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
 #from models import Person
@@ -58,6 +59,7 @@ app.register_blueprint(comments, url_prefix="/api/comment")
 app.register_blueprint(follows, url_prefix="/api/follow")
 app.register_blueprint(save, url_prefix="/api/saved")
 app.register_blueprint(notifications, url_prefix="/api/notification")
+app.register_blueprint(likes, url_prefix="/api/like")
 
 cloudinary.config( 
   cloud_name = app.config["CLOUD_NAME"], 

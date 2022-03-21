@@ -10,10 +10,12 @@ import Rigo from "../../../img/rigo-baby.jpg"
 
 // Service 
 import { getComments, uploadNewComment, getUserByToken, deletePost } from "../../service/post.js";
-import { userSaved, showSaved, save, unsave } from "../../service/saved.js"
+import { userSaved, save, unsave } from "../../service/saved.js"
+import { getLikes, likePost, dislikePost, showLikeStatus } from "../../service/like";
 
 // Component
 import Comment from "../Comment/Comment.jsx"
+import Likes from "../likes/likes.jsx";
 
 const Post = (props) => {
 
@@ -31,6 +33,52 @@ const Post = (props) => {
     const [validUser, setValidUser] = useState(false)
     const [redirect, setRedirect] = useState(false)
     const [saved, setSaved] = useState(true)
+    const [liked, setLiked] = useState(true)
+    const [likes, setLikes] = useState([])
+
+    const getLike = async (id) => {
+		try {
+			const res = await getLikes(id);
+			const dataJSON = await res.json();
+			setLikes(dataJSON)
+            console.log("dataJSON", dataJSON)
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+    const likePosts = async () => {
+        try {
+            const body = {
+                post_id: props.post.id,
+                user_id: props.post.user.id
+            }
+            console.log(body)
+            if (!liked) {
+                const res = await likePost(token, body);
+                const dataJSON = await res.json();
+                setLiked(dataJSON)
+                actions.handleRefresh()
+            } else {
+                const res = await dislikePost(token, body);
+                const dataJSON = await res.json();
+                setLiked(dataJSON)
+                actions.handleRefresh()
+            }
+        } catch (err) {
+            console.log(err)
+        } 
+    }
+
+    const likeStatus = async () => {
+        try {
+            const res = await showLikeStatus(token, props.post.id);
+            const dataJSON = await res.json();
+            setLiked(dataJSON)
+        } catch (err) {
+            console.log(err)
+        } 
+    }
 
     const savePost = async () => {
         try {
@@ -145,11 +193,15 @@ const Post = (props) => {
     useEffect(() => {
         getToken(store.token)
         saveStatus()
+        likeStatus()
 	}, [])
 
     useEffect(() => {
         getComment(props.post.id)
+        getLike(props.post.id)
     }, [store.refresh])
+
+    console.log(likes)
 
     return (
         <div className="container-fluid p-0 mb-3">
@@ -157,7 +209,10 @@ const Post = (props) => {
                 <Link className="d-flex username align-items-center m-0 text-color-black" to={`/user/${props.post.user.username}`}><img className="profile-pic-post me-2" src={props.post.user.img_url ? props.post.user.img_url : Rigo} alt="Profile-Pic" />{props.post.user.username}</Link>
                 <p className="m-0 text-secondary">{`${date.getDate()} / ${date.getMonth() + 1}`}</p>
             </div>
-            {
+
+            {store.showLikes ? (<Likes close={() => actions.handleShowLikes()} likes={likes}/>) : null}
+            
+            {  
                 props.post.img_url ? (
                     <div className="carousel-inner container-fluid p-0 ">
                         <img className="post-pic" src={props.post.img_url} alt="Post" />
@@ -174,9 +229,10 @@ const Post = (props) => {
 
 
             <div className="container-fluid py-2 px-3 bg-light">
+                { props.comment ? (<p onClick={actions.handleShowLikes} className="m-0 liked-post px-1 py-1 username">{likes.length == 0 ? (`Se el primero en dar like a este post.`) : (`A ${likes.length} usuarios les ha gustado este post.`)}</p>) : null}
                 <div className="container-fluid p-0 pb-2 d-flex justify-content-between">
                     <div>
-                        <img src="https://img.icons8.com/fluency-systems-regular/30/000000/star--v1.png" />
+                        { liked ? (<img onClick={likePosts} src="https://img.icons8.com/material-rounded/30/000000/hearts.png"/>) : (<img onClick={likePosts} src="https://img.icons8.com/material-outlined/30/000000/hearts.png" />)}
                         {props.comment ? null : (<Link to={`/post/${props.post.id}`}>
                             <img className="ps-2" src="https://img.icons8.com/fluency-systems-regular/30/000000/comments--v1.png" />
                         </Link>)}

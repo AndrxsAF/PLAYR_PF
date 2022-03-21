@@ -1,22 +1,32 @@
-from api.models.index import db, Like
+from api.models.index import db, Like, Notification
 
-def create_like(from_user_id, to_post_id):
+
+def controller_like(user_id, body):
     try:
-        new_like = Like(from_user_id=user["id"], post_id=body['post_id'])
+        print(user_id, body)
+        new_like = Like(from_user_id = user_id, post_id = body["post_id"])
         db.session.add(new_like)
         db.session.commit()
-        return new_like.serialize()
 
+        new_notification = Notification(to_user_id=body["user_id"], from_user_id=user_id, post_id=body['post_id'], type="like")
+        db.session.add(new_notification)
+        db.session.commit()
+
+        return 2
     except Exception as error:
         db.session.rollback()
         print('[ERROR LIKE]: ', error)
         return None
 
-def dislike(from_user_id, to_post_id):
+
+def controller_dislike(from_user_id, body):
     try:
-        like = db.session.query(Like).filter(like.to_post_id == to_user_id).filter(like.from_user_id == from_post_id['id']).first()
-        
-        db.session.delete(likes)
+        dislike = db.session.query(Like).filter(Like.post_id == body["post_id"]).filter(Like.from_user_id == from_user_id).first()
+        db.session.delete(dislike)
+        db.session.commit()
+
+        notification = db.session.query(Notification).filter(Notification.to_user_id == body["user_id"]).filter(Notification.post_id == body["post_id"]).filter(Notification.from_user_id == from_user_id).filter(Notification.type == "like").first()
+        db.session.delete(notification)
         db.session.commit()
         return 2
     except Exception as error:
@@ -24,17 +34,22 @@ def dislike(from_user_id, to_post_id):
         db.session.rollback()
         return None
 
-def like_status(user_id):
+
+def controller_like_status(post_id, user_id):
     try:
-        return db.session.query(Likes).filter(Likes_to_post_id == user_id['id']).filter(likes.from_user_id == post_id['post'])
+        liked = db.session.query(Like).filter(Like.from_user_id == user_id).filter(Like.post_id == post_id).first()
+        if liked == None:
+            return False
+        else:
+            return True
     except Exception as error:
-        print('[ERROR] ', error)
+        print('[ERROR SHOW LIKE STATUS] ', error)
         return None
 
-def show_all_likes(user_id):
-   try:
-        return db.session.query(Likes).filter(Like.isActive == True)
+
+def controller_show_all_likes(post_id):
+    try:
+        return db.session.query(Like).filter(Like.post_id == post_id)
     except Exception as error:
         print('[ERROR LIKES SHOW USER LIKES]: ', error)
-        return 'Internal Server Error.'
-
+        return None
