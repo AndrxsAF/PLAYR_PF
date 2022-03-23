@@ -1,6 +1,6 @@
 // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
 
 const BASE_URL =
-  "https://3001-andrxsaf-playrpf-tofbqfykgr9.ws-eu38.gitpod.io";
+  "https://3001-andrxsaf-playrpf-n9eimyctmxg.ws-eu38.gitpod.io";
 
 export default BASE_URL;

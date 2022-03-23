@@ -3,6 +3,8 @@ from api.models.index import db, User
 from flask_jwt_extended import create_access_token
 from flask import Flask, request
 import cloudinary.uploader
+from datetime import timedelta
+from sqlalchemy import func
 
 
 def register_user(body):
@@ -52,7 +54,7 @@ def login_user(body):
         if validate_pass == False:
             return 3  # ERROR 3: INCORRECT PASSWORD
 
-        new_token = create_access_token(identity={'id': user.id})
+        new_token = create_access_token(identity={'id': user.id}, expires_delta=timedelta(weeks=4))
 
         return {'token': new_token}
 

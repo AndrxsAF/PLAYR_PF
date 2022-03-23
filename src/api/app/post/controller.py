@@ -92,7 +92,6 @@ def controller_get_post(id):
 
 def controller_get_post_by_tag(tag):
     try:
-        print(tag)
         return db.session.query(Post).filter(or_(func.lower(Post.tag1) == tag, func.lower(Post.tag2) == tag, func.lower(Post.tag3) == tag, func.lower(Post.tag4) == tag, func.lower(Post.tag5) == tag)).filter(Post.isActive == True)
     except Exception as error:
         print('[ERROR POST SHOW BY TAG]: ', error)

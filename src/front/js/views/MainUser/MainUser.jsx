@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import "./mainuser.css";
 import { Context } from "../../store/appContext.js"
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 
 // Pics
 import Rigo from "../../../img/rigo-baby.jpg"
@@ -39,6 +39,7 @@ const MainUser = () => {
     const [follow, setFollow] = useState(false) 
     const [followings, setFollowings] = useState([])
     const [followers, setFollowers] = useState([])
+    const [redirect, setRedirect] = useState(false)
 
     const showGrid = () => posts.length >= 0 ? posts.map((eachPost) => (<Squares key={saved ? eachPost.post.id : eachPost.id} post={saved ? eachPost.post : eachPost } />)) : (<Spinner />)
     const hideGrid = () => posts.length >= 0 ? posts.map((eachPost) => (<Post key={saved ? eachPost.post.id : eachPost.id} post={saved ? eachPost.post : eachPost } date={saved ? Date.parse(eachPost.post["date"]) : Date.parse(eachPost.date)} />)) : (<Spinner />)
@@ -73,8 +74,10 @@ const MainUser = () => {
     const getFollowers = async () => {
         try {
             const res = await showFollowers(profile.id);
-            const dataJSON = await res.json();
-            setFollowers(dataJSON)
+            if (res !== false) {
+                const dataJSON = await res.json();
+                setFollowers(dataJSON)
+            } 
         } catch (err) {
             console.log(err)
         }
@@ -83,8 +86,10 @@ const MainUser = () => {
     const getFollowings = async () => {
         try {
             const res = await showFollowings(profile.id);
-            const dataJSON = await res.json();
-            setFollowings(dataJSON)
+            if (res !== false) {
+                const dataJSON = await res.json();
+                setFollowings(dataJSON)
+            }
         } catch (err) {
             console.log(err)
         }
@@ -93,8 +98,10 @@ const MainUser = () => {
     const getFollowStatus = async () => {
         try {
             const res = await showFollowStatus(token, profile.id);
-            const dataJSON = await res.json();
-            setFollow(dataJSON)
+            if (res !== false) {
+                const dataJSON = await res.json();
+                setFollow(dataJSON)
+            }
         } catch (err) {
             console.log(err)
         }
@@ -142,7 +149,11 @@ const MainUser = () => {
         try {
             const res = await getUserByUsername(username);
             const dataJSON = await res.json();
-            setProfile(dataJSON)
+            if (dataJSON === false){
+                setRedirect(true)
+            } else {
+                setProfile(dataJSON)
+            }
         } catch (err) {
             console.log(err);
         }
@@ -284,6 +295,7 @@ const MainUser = () => {
                     </div>
                 </div>
             </div>
+            {redirect ? <Redirect to={`/notfound`}/> : null}
         </div>
     )
 
