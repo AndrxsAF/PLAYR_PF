@@ -3,6 +3,7 @@ from api.models.index import db, User
 from api.app.user.controler import register_user, login_user, config_user
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+from sqlalchemy import func
 
 
 users = Blueprint('users', __name__)
