@@ -545,7 +545,7 @@ data = {
             "post_id": 11
         }
     ],
-    "Likes": [
+    "Like": [
         {
             "from_user_id": 1,
             "post_id": 1
