@@ -711,7 +711,6 @@ data = {
         {
             "to_user_id": 3,
             "from_user_id": 6,
-            "post_id": 11,
             "type": "follow"
         },
         {
