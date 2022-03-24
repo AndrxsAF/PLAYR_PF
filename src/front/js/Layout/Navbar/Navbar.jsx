@@ -2,8 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Context } from "../../store/appContext"
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import Logo from "../../../img/logo-proyecto.png"
-import PhoneLogo from "../../../img/small-logo.png"
 import "./Navbar.css"
 import NewPost from "../../component/NewPost/NewPost.jsx";
 
@@ -190,8 +188,8 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between position-fixed navbar-z-index">
       <NavLink to={`/`}>
-        <img src={Logo} alt="PLAYR" className="logo ms-5" />
-        <img src={PhoneLogo} alt="PLAYR" className="phone-logo" />
+        <img src="https://res.cloudinary.com/andrxsaf/image/upload/v1648148563/logo_proyecto_usumwb.png" alt="PLAYR" className="logo ms-5" />
+        <img src="https://res.cloudinary.com/andrxsaf/image/upload/v1648148562/small-logo_u310km.png" alt="PLAYR" className="phone-logo" />
       </NavLink>
 
       { token == "" ? (<p>nothing</p>) :
