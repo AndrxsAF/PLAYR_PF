@@ -4,7 +4,6 @@ import { Context } from "../../store/appContext"
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import Logo from "../../../img/logo-proyecto.png"
 import PhoneLogo from "../../../img/small-logo.png"
-import Rigo from "../../../img/rigo-baby.jpg"
 import "./Navbar.css"
 import NewPost from "../../component/NewPost/NewPost.jsx";
 
@@ -268,7 +267,7 @@ export const Navbar = () => {
         </NavLink>
         <div onClick={() => classToggle()} className="d-flex align-items-center justify-content-end">
           <p className="m-0 pe-1 username text-icon">{user.username}</p>
-          <img src={user.img_url ? user.img_url : Rigo} alt="User" className="profile-pic" />
+          <img src={user.img_url ? user.img_url : "https://res.cloudinary.com/andrxsaf/image/upload/v1648148308/4622925_yos0je.png"} alt="User" className="profile-pic" />
           <ul className={"bg-light dropdown-menu user-menu " + addClass}>
             <li><NavLink className="dropdown-item" to={`/user/${user.username}`}>Perfil</NavLink></li>
             <li><hr className="dropdown-divider" /></li>

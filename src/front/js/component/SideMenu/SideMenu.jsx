@@ -7,9 +7,6 @@ import { Link } from "react-router-dom";
 // Services
 import { getAllPosts } from "../../service/explore.js";
 
-// Pics
-import Rigo from "../../../img/rigo-baby.jpg"
-
 const SideMenu = (props) => {
     const { store, actions } = useContext(Context)
     const [allPosts, setAllPosts] = useState({})
@@ -61,7 +58,7 @@ const SideMenu = (props) => {
                         props.img ? (
                             <img className="profile-pic-main ms-3 d-flex align-self-center" src={props.img} alt="Profile-Pic" />
                         ) : (
-                            <img className="profile-pic-main ms-3 d-flex align-self-center" src={Rigo} alt="Profile-Pic" />
+                            <img className="profile-pic-main ms-3 d-flex align-self-center" src="https://res.cloudinary.com/andrxsaf/image/upload/v1648148308/4622925_yos0je.png" alt="Profile-Pic" />
                         )}
 
                 </div>

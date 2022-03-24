@@ -3,9 +3,6 @@ import "./mainuser.css";
 import { Context } from "../../store/appContext.js"
 import { useParams, Redirect } from "react-router-dom";
 
-// Pics
-import Rigo from "../../../img/rigo-baby.jpg"
-
 // Service 
 import { getAllPosts, getUser, getUserByUsername } from "../../service/user.js";
 import { showSaved } from "../../service/saved.js"
@@ -197,7 +194,7 @@ const MainUser = () => {
                             profile.img_url ? (
                                 <img className="profile-pic-mainuser" src={profile.img_url} alt="Profile-Pic" />
                             ) : (
-                                <img className="profile-pic-mainuser" src={Rigo} alt="Profile-Pic" />
+                                <img className="profile-pic-mainuser" src="https://res.cloudinary.com/andrxsaf/image/upload/v1648148308/4622925_yos0je.png" alt="Profile-Pic" />
                             )}
                     </div>
                     <div className="container-fluid px-0">

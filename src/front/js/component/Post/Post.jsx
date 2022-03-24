@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
-// Pics
-import Rigo from "../../../img/rigo-baby.jpg"
-
 // Service 
 import { getComments, uploadNewComment, getUserByToken, deletePost } from "../../service/post.js";
 import { userSaved, save, unsave } from "../../service/saved.js"
@@ -200,7 +197,7 @@ const Post = (props) => {
     return (
         <div className="container-fluid p-0 mb-3">
             <div className="container-fluid bg-light d-flex justify-content-between align-items-center py-2 px-3">
-                <Link className="d-flex username align-items-center m-0 text-color-black" to={`/user/${props.post.user.username}`}><img className="profile-pic-post me-2" src={props.post.user.img_url ? props.post.user.img_url : Rigo} alt="Profile-Pic" />{props.post.user.username}</Link>
+                <Link className="d-flex username align-items-center m-0 text-color-black" to={`/user/${props.post.user.username}`}><img className="profile-pic-post me-2" src={props.post.user.img_url ? props.post.user.img_url : "https://res.cloudinary.com/andrxsaf/image/upload/v1648148308/4622925_yos0je.png"} alt="Profile-Pic" />{props.post.user.username}</Link>
                 <p className="m-0 text-secondary">{`${date.getDate()} / ${date.getMonth() + 1}`}</p>
             </div>
 
