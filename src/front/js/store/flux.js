@@ -14,7 +14,8 @@ const getState = ({ getStore, setStore }) => {
       getAllPosts: [],
       user: [],
       users: [],
-      close: false
+      close: false,
+      message: ""
     },
     actions: {
       handleShow: () => {
@@ -121,7 +122,11 @@ const getState = ({ getStore, setStore }) => {
       setToken: () => {
         localStorage.setItem("token", token);
         setStore({ token: token });
+      },
+      setMessage: () => {
+        setStore({ message: message});
       }
+
     }
   };
 }

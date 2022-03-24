@@ -68,4 +68,4 @@ This boilerplate it's 100% integrated with Herkou, just by pushing your changes 
 "dotenv-webpack": "^1.7.0",
 		"friendly-errors-webpack-plugin": "^1.7.0",
 
-    Hola
+    

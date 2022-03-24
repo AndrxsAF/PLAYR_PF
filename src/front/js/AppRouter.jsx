@@ -10,6 +10,7 @@ import MainUser from "./views/MainUser/MainUser.jsx";
 import PostView from "./views/PostView/PostView.jsx";
 import Register from "./views/Register/register.jsx";
 import Tags from "./views/Tags/Tags.jsx";
+import Message from "./views/Message/Message.jsx";
 
 
 import Login from "./views/Login/login.jsx";
@@ -34,15 +35,16 @@ const AppRouter = () => {
 								<Home />
 							</Route>
 
-							 <Route exact path="/login">
+							<Route exact path="/login">
 								<Login />
-                </Route>
-							 <Route exact path="/register">
+							</Route>
+							<Route exact path="/register">
 								<Register />
-                </Route>
+							</Route>
 							<Route exact path="/explore">
 								<Explore />
-
+								<Route exact path="/message">
+								</Route>
 							</Route>
 							<Route exact path="/user/:username">
 								<MainUser />
