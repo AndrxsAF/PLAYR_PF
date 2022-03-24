@@ -1,7 +1,7 @@
   
 import os
 from flask_admin import Admin
-from api.models.index import User, Post, Saved, Like, Follow, Comment, Notification
+from api.models.index import User, Post, Saved, Like, Follow, Comment, Notification, Message
 from api.models.db import db
 from flask_admin.contrib.sqla import ModelView
 
@@ -17,4 +17,5 @@ def setup_admin(app):
     admin.add_view(ModelView(Follow, db.session))
     admin.add_view(ModelView(Comment, db.session))
     admin.add_view(ModelView(Notification, db.session))
+    admin.add_view(ModelView(Message, db.session))
     
