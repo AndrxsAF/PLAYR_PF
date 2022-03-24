@@ -5,7 +5,7 @@ import BASE_URL from "../service/index.js";
 const getState = ({ getStore, setStore }) => {
   return {
     store: {
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzgyMjg3MCwianRpIjoiOTk2NDJlNWMtYzQ4ZC00NzFhLTlhM2EtYmViNWNhZWEzNjlmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Nn0sIm5iZiI6MTY0NzgyMjg3MCwiZXhwIjoxNjQ3ODIzNzcwfQ.19g1hs8oRvJeVUXXJb06qjv1VbJt5-biyXD97DxXxRg",
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0ODAwMzgwOSwianRpIjoiZmFhNTRmZjctZmM2OS00OTNkLTgyMDgtZTliMzE3ZjU4OGJlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Nn0sIm5iZiI6MTY0ODAwMzgwOSwiZXhwIjoxNjUwNDIzMDA5fQ.f-DEZdaLUzvzLf4p_uZ6WVrchdVLD0OuQnwNphQfFHQ",
       showNewPost: false,
       showUserCongif: false,
       showFollowers: false,
@@ -69,54 +69,47 @@ const getState = ({ getStore, setStore }) => {
       setUsers: (users) => {
         setStore({ users: users });
       },
-      setLogin: () => {
+      setLogin: (email, password, history) => {
         const url = BASE_URL;
-        fetch(url + "/login", {
-          method: postMessage,
-          mode: "no-cors",
+        fetch(url + "/api/user/login", {
+          method: "POST",
           headers: {
-            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: email,
-            user: user,
+            user: email,
             password: password
           }),
         }).then((response) => response.json())
           .then(data => {
-            if (data.token == undefined) {
-              setTimeout(function () { window.location.replace("/login"); }, 4000);
-            } else {
-              setTimeout(function () { window.location.replace("/"); }, 4000);
-              localStorage.setItem("jwt-token", data.token);
+            console.log({data})
+            if(data.token){
+              localStorage.setItem("token", data.token);
+              history.push("/")
             }
           })
       },
-      setRegister: () => {
+      setRegister: (email, user, password, history) => {
         const url = BASE_URL;
-        fetch(url + "/register", {
-          method: POST,
-          mode: "no-cors",
+        fetch(url + "/api/user/register", {
+          method: "POST",
           headers: {
-            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
             email: email,
-            user: user,
+            username: user,
             password: password,
-            verifypassword: verifypassword,
           }),
-        }).then((response) => response.json());
+        }).then((response) => response.json())
+        .then( (data) => {
+          console.log(data)
+          history.push("/login")
+        })
+        .catch(err => console.log(err))
       },
       getToken: () => {
-        const store = getStore();
-        if (store.token) {
-          return store.token;
-        } else {
-          return localStorage.getItem("token");
-        }
+        return localStorage.getItem("token");
       },
       setToken: () => {
         localStorage.setItem("token", token);

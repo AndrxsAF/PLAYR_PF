@@ -41,7 +41,6 @@ const Post = (props) => {
 			const res = await getLikes(id);
 			const dataJSON = await res.json();
 			setLikes(dataJSON)
-            console.log("dataJSON", dataJSON)
 		} catch (err) {
 			console.log(err);
 		}
@@ -53,7 +52,6 @@ const Post = (props) => {
                 post_id: props.post.id,
                 user_id: props.post.user.id
             }
-            console.log(body)
             if (!liked) {
                 const res = await likePost(token, body);
                 const dataJSON = await res.json();
@@ -200,8 +198,6 @@ const Post = (props) => {
         getComment(props.post.id)
         getLike(props.post.id)
     }, [store.refresh])
-
-    console.log(likes)
 
     return (
         <div className="container-fluid p-0 mb-3">

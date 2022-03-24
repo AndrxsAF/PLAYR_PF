@@ -26,7 +26,6 @@ const ConfigUser = (props) => {
             reader.onload = (e) => {
                 if (reader.readyState == 2) {
                     setFileUrl(reader.result)
-                    console.log(reader)
                 }
             }
             reader.readAsDataURL(e.target.files[0])
@@ -55,7 +54,6 @@ const ConfigUser = (props) => {
         setAlertContent(alertArr)
         if (alertArr.length == 0) {
             try {
-                console.log("chao")
                 if (password && password == passwordCheck) {
                     const bodypass = new FormData();
                     bodypass.append("password", password)

@@ -12,10 +12,10 @@ import SideMenu from "../../component/SideMenu/SideMenu.jsx"
 
 const Home = () => {
 
-    const { store } = useContext(Context)
+    const { store, actions } = useContext(Context)
 
     // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
-    const token = store.token
+    const token = actions.getToken();
     
     const [allPosts, setAllPosts] = useState({})
     // const [token, setToken] = useState(sessionStorage.getItem("token"))

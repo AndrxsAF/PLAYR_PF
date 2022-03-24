@@ -3,6 +3,8 @@ from api.models.index import db, User
 from flask_jwt_extended import create_access_token
 from flask import Flask, request
 import cloudinary.uploader
+from datetime import timedelta
+from sqlalchemy import func, or_
 
 
 def register_user(body):
@@ -33,26 +35,20 @@ def register_user(body):
 
 def login_user(body):
     try:
-        print(body['email'])
-        if body['email'] is None:
-            user = db.session.query(User).filter(
-                User.username == body['username']).first()
-            if user is None:
-                return 1  # ERROR 1: USERNAME DOESNT EXISTS
-        elif body['username'] is None:
-            user = db.session.query(User).filter(
-                User.email == body['email']).first()
-            if user is None:
-                return 2  # ERROR 2: EMAIL DOESNT EXISTS
-        else:
-            return 4  # ERROR 4: INTERNAL SERVER ERROR.
+        print(body)
+        if body is None:
+            return 1
 
+        user = db.session.query(User).filter(or_(User.email==body["user"], User.username==body["user"])).first()
+
+        if user is None:
+            return 1
         validate_pass = compare_pass(body['password'], user.password)
 
         if validate_pass == False:
             return 3  # ERROR 3: INCORRECT PASSWORD
 
-        new_token = create_access_token(identity={'id': user.id})
+        new_token = create_access_token(identity={'id': user.id}, expires_delta=timedelta(weeks=4))
 
         return {'token': new_token}
 

@@ -7,6 +7,8 @@
     width: 350px;
     left: auto;
     top: 98%;
+    overflow-y: scroll;
+    max-height: 70vh;
 }
 
 .logo {
@@ -92,7 +94,8 @@
         position: absolute;
         left: 0px;
         width: 100vw !important;
-        top: 98%
+        top: 98%;
+        max-height: 94vh;
     }
 }
 
