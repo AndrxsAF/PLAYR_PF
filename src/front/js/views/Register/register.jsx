@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./register.css";
-import { Form } from "bootstrap";
 import { Context } from "../../store/appContext.js";
+import { useHistory } from "react-router-dom";
 
 const Register = () => {
-
+	const history = useHistory();
 	const [email, setEmail] = useState("")
 	
 	const [user, setUser] = useState("")
@@ -17,24 +17,13 @@ const Register = () => {
 
 	const handle_register = () => {
 		
-		actions.setRegister(email, user, password, verifyPassword);
-		setTimeout(function() { window.location.replace ("/main") })
+		actions.setRegister(email, user, password, history);
 
 	}
 
 	const handle_click = () => {
 		return window.location.replace ("/login")
 	}
-
-
-
-
-
-
-
-	console.log(email)
-	console.log(user)
-	console.log(password)
 
 	return (
 	

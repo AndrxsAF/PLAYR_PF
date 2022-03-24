@@ -59,7 +59,7 @@ const AppRouter = () => {
 								<Tags />
 							</Route>
 
-							<Route exact path="/notfound">
+							<Route>
 								<NotFound />
 							</Route>
 						</Switch>

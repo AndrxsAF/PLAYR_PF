@@ -69,54 +69,47 @@ const getState = ({ getStore, setStore }) => {
       setUsers: (users) => {
         setStore({ users: users });
       },
-      setLogin: () => {
+      setLogin: (email, password, history) => {
         const url = BASE_URL;
-        fetch(url + "/login", {
-          method: postMessage,
-          mode: "no-cors",
+        fetch(url + "/api/user/login", {
+          method: "POST",
           headers: {
-            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: email,
-            user: user,
+            user: email,
             password: password
           }),
         }).then((response) => response.json())
           .then(data => {
-            if (data.token == undefined) {
-              setTimeout(function () { window.location.replace("/login"); }, 4000);
-            } else {
-              setTimeout(function () { window.location.replace("/"); }, 4000);
-              localStorage.setItem("jwt-token", data.token);
+            console.log({data})
+            if(data.token){
+              localStorage.setItem("token", data.token);
+              history.push("/")
             }
           })
       },
-      setRegister: () => {
+      setRegister: (email, user, password, history) => {
         const url = BASE_URL;
-        fetch(url + "/register", {
-          method: POST,
-          mode: "no-cors",
+        fetch(url + "/api/user/register", {
+          method: "POST",
           headers: {
-            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
             email: email,
-            user: user,
+            username: user,
             password: password,
-            verifypassword: verifypassword,
           }),
-        }).then((response) => response.json());
+        }).then((response) => response.json())
+        .then( (data) => {
+          console.log(data)
+          history.push("/login")
+        })
+        .catch(err => console.log(err))
       },
       getToken: () => {
-        const store = getStore();
-        if (store.token) {
-          return store.token;
-        } else {
-          return localStorage.getItem("token");
-        }
+        return localStorage.getItem("token");
       },
       setToken: () => {
         localStorage.setItem("token", token);

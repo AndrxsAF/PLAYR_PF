@@ -2,35 +2,23 @@ import React, { useContext, useState, useEffect } from "react";
 import "./login.css";
 import { Form } from "bootstrap";
 import { Context } from "../../store/appContext.js";
-
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
-
-		const [email, setEmail] = useState("")
-
-		const [user, setUse] = useState("")
-
-		const [password, setPassword] = useState("")
-
-		const { actions } = useContext(Context);
+	const history = useHistory();
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const { actions } = useContext(Context);
 
 	
-
 	const handle_user = () => {
-
-		actions.setLogin(email, user, password);
-		setTimeout(function() { window.location.replace ("/") })
-
+		console.log("aqui")
+		actions.setLogin(email, password, history);
 	}
 
 	const handle_click = () => {
-		return window.location.replace ("/register")
+		return history.push("/register")
 	}
-
-
-	console.log(email)
-	console.log(password)
-
 
 	return (
 		<div className="container-fluid container-main-page p-0">
