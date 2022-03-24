@@ -82,7 +82,7 @@ def user_config():
 
 @users.route('/username/<username>', methods=['GET'])
 def get_users(username):
-    user = db.session.query(User).filter(func.lower(User.username) == username).first()
+    user = db.session.query(User).filter(func.lower(User.username) == func.lower(username)).first()
     if user is None:
         print(username)
         return jsonify(False), 401

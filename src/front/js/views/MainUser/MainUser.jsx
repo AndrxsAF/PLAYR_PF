@@ -21,13 +21,9 @@ import Followers from "../../component/Followers/followers.jsx";
 const MainUser = () => {
 
     const { store, actions } = useContext(Context)
-
-    // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
-    const token = store.token
-
+    const token = actions.getToken();
     const [allPosts, setAllPosts] = useState([])
     const [posts, setPosts] = useState([])
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [user, setUser] = useState({})
     const [profile, setProfile] = useState({})
     const [handleGrid, setHandleGrid] = useState(false)
@@ -76,7 +72,7 @@ const MainUser = () => {
             const res = await showFollowers(profile.id);
             if (res !== false) {
                 const dataJSON = await res.json();
-                setFollowers(dataJSON)
+                setFollowers(dataJSON.slice(1))
             } 
         } catch (err) {
             console.log(err)
@@ -88,7 +84,7 @@ const MainUser = () => {
             const res = await showFollowings(profile.id);
             if (res !== false) {
                 const dataJSON = await res.json();
-                setFollowings(dataJSON)
+                setFollowings(dataJSON.slice(1))
             }
         } catch (err) {
             console.log(err)
@@ -296,6 +292,7 @@ const MainUser = () => {
                 </div>
             </div>
             {redirect ? <Redirect to={`/notfound`}/> : null}
+            {token == "" ? <Redirect to={`/login`}/> : null}
         </div>
     )
 

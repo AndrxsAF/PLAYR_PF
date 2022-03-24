@@ -8,9 +8,6 @@ import { Link } from "react-router-dom";
 
 const Followers = (props) => {
 
-    const { store, actions } = useContext(Context)
-    const token = store.token
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [handleSwitch, setSwitch] = useState(true)
 
     const changeSwitch = () => {

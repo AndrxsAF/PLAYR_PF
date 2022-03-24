@@ -25,10 +25,7 @@ export const Navbar = () => {
   const [searchMethod, setMethod] = useState("")
   const [container, setContainer] = useState("")
   const [notification, setNotification] = useState([])
-  // const [token, setToken] = useState(sessionStorage.getItem("token"))
-
-  // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
-  const token = store.token
+  const token = actions.getToken();
 
   const handleSearch = () => {
     setAlert(false)
@@ -177,7 +174,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     getToken(token)
-  }, [store.refresh]);
+  }, [store.refresh, token]);
 
   useEffect(() => {
     setRedirect(false)
@@ -198,7 +195,8 @@ export const Navbar = () => {
         <img src={PhoneLogo} alt="PLAYR" className="phone-logo" />
       </NavLink>
 
-      <div className="d-flex pe-5 user">
+      { token == "" ? (<p>nothing</p>) :
+      (<div className="d-flex pe-5 user">
         <div className="me-3 icon d-flex align-items-center">
           <div onClick={() => searchClassToggle()} className="d-flex align-items-center">
             <img src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png" />
@@ -274,10 +272,10 @@ export const Navbar = () => {
           <ul className={"bg-light dropdown-menu user-menu " + addClass}>
             <li><NavLink className="dropdown-item" to={`/user/${user.username}`}>Perfil</NavLink></li>
             <li><hr className="dropdown-divider" /></li>
-            <li><NavLink className="dropdown-item" to={`/login`}>Cerrar Sesión</NavLink></li>
+            <li onClick={() => localStorage.setItem("token", "")} ><NavLink className="dropdown-item" to={`/login`}>Cerrar Sesión</NavLink></li>
           </ul>
         </div>
-      </div>
+      </div>)}
       {redirect ? <Redirect to={`/${searchMethod}/${container}`} /> : null}
     </nav>
   );

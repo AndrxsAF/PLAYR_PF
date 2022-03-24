@@ -12,8 +12,8 @@ const Login = () => {
 
 	
 	const handle_user = () => {
-		console.log("aqui")
 		actions.setLogin(email, password, history);
+		setTimeout(() => actions.handleRefresh(), 500)
 	}
 
 	const handle_click = () => {

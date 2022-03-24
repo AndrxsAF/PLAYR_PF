@@ -5,7 +5,7 @@ import BASE_URL from "../service/index.js";
 const getState = ({ getStore, setStore }) => {
   return {
     store: {
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0ODAwMzgwOSwianRpIjoiZmFhNTRmZjctZmM2OS00OTNkLTgyMDgtZTliMzE3ZjU4OGJlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Nn0sIm5iZiI6MTY0ODAwMzgwOSwiZXhwIjoxNjUwNDIzMDA5fQ.f-DEZdaLUzvzLf4p_uZ6WVrchdVLD0OuQnwNphQfFHQ",
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0ODE0NDIyMSwianRpIjoiOTVlZjQ3OWItNjU3ZS00ODZjLWIyMjEtYWU2MGNkMDU1ZmFhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Nn0sIm5iZiI6MTY0ODE0NDIyMSwiZXhwIjoxNjUwNTYzNDIxfQ.zaK9TrSYiZKDWZq2sH11QphkIQzb_Zl1oMwPQZpF7m4",
       showNewPost: false,
       showUserCongif: false,
       showFollowers: false,
@@ -71,6 +71,7 @@ const getState = ({ getStore, setStore }) => {
       },
       setLogin: (email, password, history) => {
         const url = BASE_URL;
+        console.log(email, password)
         fetch(url + "/api/user/login", {
           method: "POST",
           headers: {

@@ -21,9 +21,7 @@ const Post = (props) => {
 
     
     const { store, actions } = useContext(Context)
-    // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
-    const token = store.token
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
+    const token = actions.getToken();
     const [user, setUser] = useState(false)
     const [comments, setComments] = useState([])
     const [alert, setAlert] = useState(false)

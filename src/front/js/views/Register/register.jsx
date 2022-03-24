@@ -6,13 +6,9 @@ import { useHistory } from "react-router-dom";
 const Register = () => {
 	const history = useHistory();
 	const [email, setEmail] = useState("")
-	
 	const [user, setUser] = useState("")
-
 	const [password, setPassword] = useState("")
-
 	const [verifyPassword, setVerifyPassword] = useState("")
-
 	const { actions } = useContext(Context);
 
 	const handle_register = () => {

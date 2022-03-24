@@ -9,9 +9,7 @@ import { uploadNewPost } from "../../service/newpost.js"
 const NewPost = (props) => {
 
     const { store, actions } = useContext(Context)
-    const token = store.token
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
-
+    const token = actions.getToken();
     const [file, setFile] = useState('')
     const [fileUrl, setFileUrl] = useState('')
     const [game, setGame] = useState('')

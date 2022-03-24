@@ -1,5 +1,5 @@
 from api.shared.encrypte_pass import encryp_pass, compare_pass
-from api.models.index import db, User
+from api.models.index import db, User, Follow
 from flask_jwt_extended import create_access_token
 from flask import Flask, request
 import cloudinary.uploader
@@ -23,6 +23,11 @@ def register_user(body):
         password=hash_pass, username=body['username'])
 
         db.session.add(new_user)
+        db.session.commit()
+
+        info = new_user.serialize()
+        new_follow = Follow(from_user_id=info["id"], to_user_id=info['id'])
+        db.session.add(new_follow)
         db.session.commit()
 
         return new_user.serialize()

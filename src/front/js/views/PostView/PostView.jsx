@@ -17,11 +17,8 @@ const PostView = () => {
     const { post_id } = useParams()
     const { store, actions } = useContext(Context)
     const [redirect, setRedirect] = useState(false)
-    // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
-    const token = store.token
-    
+    const token = actions.getToken();
     const [post, setPost] = useState(false)
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [user, setUser] = useState({})
 
     const getPosts = async (id) => {
@@ -72,6 +69,7 @@ const PostView = () => {
 
             </div>
             {redirect ? <Redirect to={`/notfound`}/> : null}
+            {token == "" ? <Redirect to={`/login`}/> : null}
         </div>
     )
 
