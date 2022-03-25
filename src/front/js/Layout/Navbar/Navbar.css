@@ -11,8 +11,13 @@
     max-height: 70vh;
 }
 
+.menu-on-hover:hover {
+    cursor: pointer;
+}
+
 .logo {
     height: 44px;
+    width: fit-content;
 }
 
 .user-menu {

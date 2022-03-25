@@ -23,6 +23,7 @@ export const Navbar = () => {
   const [container, setContainer] = useState("")
   const [notification, setNotification] = useState([])
   const token = actions.getToken();
+  const switcher = store.loginSwitch
 
   const handleSearch = () => {
     setAlert(false)
@@ -192,10 +193,14 @@ export const Navbar = () => {
         <img src="https://res.cloudinary.com/andrxsaf/image/upload/v1648148562/small-logo_u310km.png" alt="PLAYR" className="phone-logo" />
       </NavLink>
 
-      { token == "" ? (<p>nothing</p>) :
+      { token == "" ? (
+      <NavLink className="d-flex align-items-center me-5 icon" to={switcher ? `/register` : `/login`}>
+        <p className="m-0 ps-1 text-icon text-color-black username">{ switcher ? "Registrarse" : "Iniciar Sesión"}</p>
+      </NavLink>
+      ) :
       (<div className="d-flex pe-5 user">
         <div className="me-3 icon d-flex align-items-center">
-          <div onClick={() => searchClassToggle()} className="d-flex align-items-center">
+          <div onClick={() => searchClassToggle()} className="menu-on-hover d-flex align-items-center">
             <img src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png" />
             <p className="m-0 ps-1 text-icon">Buscar</p>
           </div>
@@ -210,7 +215,7 @@ export const Navbar = () => {
               </div>) : null}
           </ul>
         </div>
-        <div className="d-flex align-items-center me-3 icon" onClick={() => actions.handleShow()}>
+        <div className="d-flex align-items-center me-3 icon menu-on-hover" onClick={() => actions.handleShow()}>
           <img src="https://img.icons8.com/ios-filled/30/000000/plus-math.png" />
           <p className="m-0 ps-1 text-icon">Nuevo</p>
         </div>
@@ -221,7 +226,7 @@ export const Navbar = () => {
 
 
         <div className="me-3 icon d-flex align-items-center">
-          <div onClick={() => notificationsClassToggle()} className="d-flex align-items-center">
+          <div onClick={() => notificationsClassToggle()} className="d-flex align-items-center menu-on-hover">
             <img src="https://img.icons8.com/fluency-systems-regular/30/000000/star--v1.png" />
             <p className="m-0 ps-1 text-icon">Notificaciones</p>
           </div>
@@ -263,7 +268,7 @@ export const Navbar = () => {
           <img src="https://img.icons8.com/ios-filled/30/000000/hashtag.png" />
           <p className="m-0 ps-1 text-icon text-color-black">Explora</p>
         </NavLink>
-        <div onClick={() => classToggle()} className="d-flex align-items-center justify-content-end">
+        <div onClick={() => classToggle()} className="menu-on-hover d-flex align-items-center justify-content-end">
           <p className="m-0 pe-1 username text-icon">{user.username}</p>
           <img src={user.img_url ? user.img_url : "https://res.cloudinary.com/andrxsaf/image/upload/v1648148308/4622925_yos0je.png"} alt="User" className="profile-pic" />
           <ul className={"bg-light dropdown-menu user-menu " + addClass}>

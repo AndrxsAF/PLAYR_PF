@@ -9,7 +9,7 @@ const Register = () => {
 	const [user, setUser] = useState("")
 	const [password, setPassword] = useState("")
 	const [verifyPassword, setVerifyPassword] = useState("")
-	const { actions } = useContext(Context);
+	const { actions, store } = useContext(Context);
 
 	const handle_register = () => {
 		
@@ -20,6 +20,10 @@ const Register = () => {
 	const handle_click = () => {
 		return window.location.replace ("/login")
 	}
+
+	useEffect(() => {
+		actions.setLoginSwitchFalse()
+	}, [])
 
 	return (
 	

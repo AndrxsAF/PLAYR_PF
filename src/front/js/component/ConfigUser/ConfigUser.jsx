@@ -119,7 +119,7 @@ const ConfigUser = (props) => {
             </div>
             <div className="modal-footer mt-2 pb-0">
                 <button onClick={props.close} type="button" className="btn btn-secondary">Cerrar</button>
-                <button onClick={uploadChanges} type="button" className="btn btn-primary">Guardar cambios</button>
+                <button onClick={uploadChanges} type="button" className="btn btn-danger">Guardar cambios</button>
             </div>
         </div>
     )

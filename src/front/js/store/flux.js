@@ -14,9 +14,12 @@ const getState = ({ getStore, setStore }) => {
       getAllPosts: [],
       user: [],
       users: [],
-      close: false
+      close: false,
+      loginSwitch: false
     },
     actions: {
+      setLoginSwitchFalse: () => setStore({ loginSwitch: false }),
+      setLoginSwitchTrue: () => setStore({ loginSwitch: true }),
       handleShow: () => {
         const store = getStore()
         store.close ? setStore({ close: false }) : setStore({ close: true })
@@ -110,7 +113,7 @@ const getState = ({ getStore, setStore }) => {
         .catch(err => console.log(err))
       },
       getToken: () => {
-        return localStorage.getItem("token");
+        return localStorage.getItem("token") ? localStorage.getItem("token") : "";
       },
       setToken: () => {
         localStorage.setItem("token", token);

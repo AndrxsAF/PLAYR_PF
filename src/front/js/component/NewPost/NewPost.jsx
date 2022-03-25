@@ -146,7 +146,7 @@ return (
         </div>
         <div className="modal-footer pb-0">
             <button onClick={() => props.close()} type="button" className="btn btn-secondary">Cerrar</button>
-            <button onClick={() => uploadPost()} type="button" className="btn btn-primary">Hacer Post</button>
+            <button onClick={() => uploadPost()} type="button" className="btn btn-danger">Hacer Post</button>
         </div>
     </div>
 )

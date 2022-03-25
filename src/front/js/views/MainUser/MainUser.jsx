@@ -202,11 +202,11 @@ const MainUser = () => {
                         <p className="m-2 me-0 username text-break mainuser-data-container">{profile.biography}</p>
                     </div>
                     <div className="">
-                        <div onClick={() => actions.handleShowFollowers()} className="row m-0 ms-2">
+                        <div onClick={() => actions.handleShowFollowers()} className="row m-0 ms-2 menu-on-hover">
                             <p className="col p-0 m-0 username fs-4">Seguidores:</p>
                             <p className="col p-0 m-0 username fs-4">Siguiendo:</p>
                         </div>
-                        <div onClick={() => actions.handleShowFollowers()} className="row m-0 ms-2">
+                        <div onClick={() => actions.handleShowFollowers()} className="row m-0 ms-2 menu-on-hover">
                             <p className="col p-0 m-0 fs-4">{followers.length}</p>
                             <p className="col p-0 m-0 fs-4">{followings.length}</p>
                         </div>
@@ -216,10 +216,10 @@ const MainUser = () => {
                         </div>
                         {validUser ? (<div className="btn-group my-3 change-grid-button w-100" role="group" aria-label="Basic radio toggle button group">
                             <input onClick={() => actions.handleShowUserConfig()} type="button" className="btn-check" name="follow" id="btnradio6" />
-                            <label className="btn btn-outline-secondary" htmlFor="btnradio6">Configuración</label>
+                            <label className="btn btn-outline-danger" htmlFor="btnradio6">Configuración</label>
                         </div>) : (<div className="btn-group my-3 change-grid-button w-100" role="group" aria-label="Basic radio toggle button group">
                             <input onClick={handleFollow} type="button" className="btn-check" name="follow" id="follow" />
-                            <label className={`btn btn-outline-secondary px-3 py-1 ${follow ? "bg-secondary text-color-white" : null}`} htmlFor="follow">{follow ? "Unfollow" : "Follow"}</label>
+                            <label className={`btn btn-outline-danger px-3 py-1 ${follow ? "bg-danger text-color-white" : null}`} htmlFor="follow">{follow ? "Unfollow" : "Follow"}</label>
                         </div>)}
                     </div>
                 </div>
@@ -242,18 +242,18 @@ const MainUser = () => {
                                     </div>
                                     {validUser ? (<div className="btn-group change-grid-button m-0" role="group" aria-label="Basic radio toggle button group">
                                         <input onClick={() => actions.handleShowUserConfig()} type="button" className="btn-check" name="config" id="btnradio5" />
-                                        <label className="btn btn-outline-secondary p-1" htmlFor="btnradio5"><img src="https://img.icons8.com/ios-filled/26/000000/settings.png" /></label>
+                                        <label className="btn btn-outline-danger p-1" htmlFor="btnradio5"><img src="https://img.icons8.com/ios-filled/26/000000/settings.png" /></label>
                                     </div>) : (<div className="btn-group change-grid-button m-0" role="group" aria-label="Basic radio toggle button group">
                                         <input onClick={handleFollow} type="button" className="btn-check" name="follow" id="follow" />
-                                        <label className={`btn btn-outline-secondary px-3 py-1 ${follow ? "bg-secondary text-color-white" : null}`} htmlFor="follow">{follow ? "Unfollow" : "Follow"}</label>
+                                        <label className={`btn btn-outline-danger px-3 py-1 ${follow ? "bg-danger text-color-white" : null}`} htmlFor="follow">{follow ? "Unfollow" : "Follow"}</label>
                                     </div>)}
                                 </div>
                                 <div className="row">
-                                    <div onClick={() => actions.handleShowFollowers()} className="col d-flex flex-column align-items-center">
+                                    <div onClick={() => actions.handleShowFollowers()} className="col d-flex flex-column align-items-center menu-on-hover">
                                         <p className="m-0 fs-4 lh-1">{followers.length}</p>
                                         <p className="m-0 username">Seguidores</p>
                                     </div>
-                                    <div onClick={() => actions.handleShowFollowers()} className="col d-flex flex-column align-items-center">
+                                    <div onClick={() => actions.handleShowFollowers()} className="col d-flex flex-column align-items-center menu-on-hover">
                                         <p className="m-0 fs-4 lh-1">{followings.length}</p>
                                         <p className="m-0 username">Siguiendo</p>
                                     </div>
@@ -273,11 +273,11 @@ const MainUser = () => {
                     <div className="d-flex justify-content-center">
                         <div className="btn-group mb-3 change-grid-button" role="group" aria-label="Basic radio toggle button group">
                             <input onClick={() => handleGrid ? setHandleGrid(false) : setHandleGrid(true)} type="checkbox" className="btn-check" name="btnradio" id="btnradio1" />
-                            <label className="btn btn-outline-secondary p-0" htmlFor="btnradio1"><img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/30/000000/external-grid-alignment-and-tools-kiranshastry-lineal-kiranshastry-1.png" /></label>
+                            <label className="btn btn-outline-light border-dark p-0" htmlFor="btnradio1"><img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/30/000000/external-grid-alignment-and-tools-kiranshastry-lineal-kiranshastry-1.png" /></label>
                         </div>
                         {validUser ? (<div className="btn-group mb-3 change-grid-button mx-1" role="group" aria-label="Basic radio toggle button group">
                             <input onClick={handleSave} type="button" className="btn-check" name="saved" id="saved" />
-                            <label className="btn btn-outline-secondary py-0 px-1" htmlFor="saved"><img src={bookmark} /></label>
+                            <label className="btn btn-outline-light border-dark py-0 px-1" htmlFor="saved"><img src={bookmark} /></label>
                         </div>) : null}
                     </div>
 

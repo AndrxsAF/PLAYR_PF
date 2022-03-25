@@ -104,9 +104,9 @@ const Post = (props) => {
 
     const handleSave = () => {
         if (saved) {
-            return (<img onClick={savePost} src="https://img.icons8.com/material-rounded/30/000000/bookmark-ribbon--v1.png"/>)
+            return (<img onClick={savePost} className="menu-on-hover" src="https://img.icons8.com/material-rounded/30/000000/bookmark-ribbon--v1.png"/>)
         } else {
-            return (<img onClick={savePost} src="https://img.icons8.com/material-outlined/30/000000/bookmark-ribbon--v1.png" />)
+            return (<img onClick={savePost} className="menu-on-hover" src="https://img.icons8.com/material-outlined/30/000000/bookmark-ribbon--v1.png" />)
         }
     }
 
@@ -223,14 +223,14 @@ const Post = (props) => {
                 { props.comment ? (<p onClick={actions.handleShowLikes} className="m-0 liked-post px-1 py-1 username">{likes.length == 0 ? (`Se el primero en dar like a este post.`) : (`A ${likes.length} usuarios les ha gustado este post.`)}</p>) : null}
                 <div className="container-fluid p-0 pb-2 d-flex justify-content-between">
                     <div>
-                        { liked ? (<img onClick={likePosts} src="https://img.icons8.com/material-rounded/30/000000/hearts.png"/>) : (<img onClick={likePosts} src="https://img.icons8.com/material-outlined/30/000000/hearts.png" />)}
+                        { liked ? (<img onClick={likePosts} className="menu-on-hover" src="https://img.icons8.com/material-rounded/30/000000/hearts.png"/>) : (<img onClick={likePosts} className="menu-on-hover" src="https://img.icons8.com/material-outlined/30/000000/hearts.png" />)}
                         {props.comment ? null : (<Link to={`/post/${props.post.id}`}>
                             <img className="ps-2" src="https://img.icons8.com/fluency-systems-regular/30/000000/comments--v1.png" />
                         </Link>)}
                     </div>
                     <div>
                         {
-                            validUser ? (<button onClick={deletePosts} type="button" className="btn-close"/>) : handleSave()
+                            validUser ? (<button onClick={deletePosts} type="button" className="btn-close menu-on-hover"/>) : handleSave()
                         }
                     </div>
                 </div>
