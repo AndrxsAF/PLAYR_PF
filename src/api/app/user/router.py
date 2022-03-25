@@ -47,15 +47,15 @@ def user_login():
     body = request.get_json()
     token = login_user(body)
     if token == 1:
-        return jsonify("Username doesn't exists"), 400
+        return jsonify(False), 400
     elif token == 2:
-        return jsonify("Email doesn't exists"), 400
+        return jsonify(False), 400
     elif token == 3:
-        return jsonify("Incorrect password."), 400
+        return jsonify(False), 400
     elif token == 4:
-        return jsonify("Internal server error"), 500
+        return jsonify(False), 500
     elif token is None:
-        return jsonify('Internal server error'), 500
+        return jsonify(False), 500
     else:
         return jsonify(token), 200
 

@@ -20,6 +20,10 @@
     width: fit-content;
 }
 
+.custom-font {
+    font-family: 'Press Start 2P', cursive;
+}
+
 .user-menu {
     left: auto;
     top: 98%;
@@ -60,6 +64,9 @@
 
 
 @media only screen and (max-width: 1000px) {
+    .menu-register-login {
+        margin-right: 10px !important;
+    }
     .search-dropdown {
         position: absolute;
         left: 0px;

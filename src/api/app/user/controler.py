@@ -9,11 +9,11 @@ from sqlalchemy import func, or_
 
 def register_user(body):
     try:
-        if db.session.query(User).filter(User.email == body['email']).first():
+        if db.session.query(User).filter(func.lower(User.email) == func.lower(body['email'])).first():
             print('email already taken.')
             return 1  # ERROR 1: WRONG EMAIL
 
-        if db.session.query(User).filter(User.username == body['username']).first():
+        if db.session.query(User).filter(func.lower(User.username) == func.lower(body['username'])).first():
             print('username already taken.')
             return 2  # ERROR 2: WRONG USERNAME
 
@@ -44,7 +44,7 @@ def login_user(body):
         if body is None:
             return 1
 
-        user = db.session.query(User).filter(or_(User.email==body["user"], User.username==body["user"])).first()
+        user = db.session.query(User).filter(or_(func.lower(User.email) == func.lower(body["user"]), func.lower(User.username) == func.lower(body["user"]))).first()
 
         if user is None:
             return 1

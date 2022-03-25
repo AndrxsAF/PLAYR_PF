@@ -17,7 +17,6 @@ from api.app.notification.router import notifications
 from api.app.like.router import likes
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
-#from models import Person
 
 import cloudinary
 import cloudinary.uploader

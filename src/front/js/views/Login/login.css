@@ -17,15 +17,44 @@
 }
 
 .login-container-left {
-  max-width: 500px;
+  width: calc(100vw / 2);
   max-height: 600px;
 }
 
 .login-container-right {
-  max-width: 380px;
-  max-height: 400px;
+  width: calc(100vw / 2);
+}
+
+.login-form {
+  width: 380px;
 }
 
 .img-login {
   width: 300px;
+}
+
+.title-login {
+  display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+  .login-form {
+    width: 100%;
+  }
+  .login-container-left {
+    display: none !important;
+  }
+  .login-container-right {
+    width: 100% !important;
+  }
+  .login-form {
+    background: none !important;
+    border: none !important;
+  }
+  .title-login {
+    display: block;
+  } 
+  .register-form {
+    background: rgba(255, 255, 255, 0.4) !important;
+  }
 }

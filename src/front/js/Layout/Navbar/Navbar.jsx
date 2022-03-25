@@ -194,8 +194,8 @@ export const Navbar = () => {
       </NavLink>
 
       { token == "" ? (
-      <NavLink className="d-flex align-items-center me-5 icon" to={switcher ? `/register` : `/login`}>
-        <p className="m-0 ps-1 text-icon text-color-black username">{ switcher ? "Registrarse" : "Iniciar Sesión"}</p>
+      <NavLink className="d-flex align-items-center me-5 menu-register-login" to={switcher ? `/register` : `/login`}>
+        <p className="m-0 ps-1 text-color-black username">{ switcher ? "Registrarse" : "Iniciar Sesión"}</p>
       </NavLink>
       ) :
       (<div className="d-flex pe-5 user">
