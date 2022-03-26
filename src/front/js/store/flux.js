@@ -5,7 +5,6 @@ import BASE_URL from "../service/index.js";
 const getState = ({ getStore, setStore }) => {
   return {
     store: {
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0ODAwMzgwOSwianRpIjoiZmFhNTRmZjctZmM2OS00OTNkLTgyMDgtZTliMzE3ZjU4OGJlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Nn0sIm5iZiI6MTY0ODAwMzgwOSwiZXhwIjoxNjUwNDIzMDA5fQ.f-DEZdaLUzvzLf4p_uZ6WVrchdVLD0OuQnwNphQfFHQ",
       showNewPost: false,
       showUserCongif: false,
       showFollowers: false,
@@ -14,9 +13,12 @@ const getState = ({ getStore, setStore }) => {
       getAllPosts: [],
       user: [],
       users: [],
-      close: false
+      close: false,
+      loginSwitch: false
     },
     actions: {
+      setLoginSwitchFalse: () => setStore({ loginSwitch: false }),
+      setLoginSwitchTrue: () => setStore({ loginSwitch: true }),
       handleShow: () => {
         const store = getStore()
         store.close ? setStore({ close: false }) : setStore({ close: true })
@@ -69,47 +71,8 @@ const getState = ({ getStore, setStore }) => {
       setUsers: (users) => {
         setStore({ users: users });
       },
-      setLogin: (email, password, history) => {
-        const url = BASE_URL;
-        fetch(url + "/api/user/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            user: email,
-            password: password
-          }),
-        }).then((response) => response.json())
-          .then(data => {
-            console.log({data})
-            if(data.token){
-              localStorage.setItem("token", data.token);
-              history.push("/")
-            }
-          })
-      },
-      setRegister: (email, user, password, history) => {
-        const url = BASE_URL;
-        fetch(url + "/api/user/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            username: user,
-            password: password,
-          }),
-        }).then((response) => response.json())
-        .then( (data) => {
-          console.log(data)
-          history.push("/login")
-        })
-        .catch(err => console.log(err))
-      },
       getToken: () => {
-        return localStorage.getItem("token");
+        return localStorage.getItem("token") ? localStorage.getItem("token") : "";
       },
       setToken: () => {
         localStorage.setItem("token", token);

@@ -47,15 +47,15 @@ def user_login():
     body = request.get_json()
     token = login_user(body)
     if token == 1:
-        return jsonify("Username doesn't exists"), 400
+        return jsonify(False), 400
     elif token == 2:
-        return jsonify("Email doesn't exists"), 400
+        return jsonify(False), 400
     elif token == 3:
-        return jsonify("Incorrect password."), 400
+        return jsonify(False), 400
     elif token == 4:
-        return jsonify("Internal server error"), 500
+        return jsonify(False), 500
     elif token is None:
-        return jsonify('Internal server error'), 500
+        return jsonify(False), 500
     else:
         return jsonify(token), 200
 
@@ -82,7 +82,7 @@ def user_config():
 
 @users.route('/username/<username>', methods=['GET'])
 def get_users(username):
-    user = db.session.query(User).filter(func.lower(User.username) == username).first()
+    user = db.session.query(User).filter(func.lower(User.username) == func.lower(username)).first()
     if user is None:
         print(username)
         return jsonify(False), 401

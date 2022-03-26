@@ -15,14 +15,11 @@ import SideMenu from "../../component/SideMenu/SideMenu.jsx"
 
 const Tags = () => {
 
-    const { store } = useContext(Context)
-
-    // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
-    const token = store.token
+    const { actions, store } = useContext(Context)
+    const token = actions.getToken();
     const { tag } = useParams()
     const [allPosts, setAllPosts] = useState({})
     const [redirect, setRedirect] = useState(false)
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [user, setUser] = useState({})
 
     const getPosts = async (token) => {
@@ -77,6 +74,7 @@ const Tags = () => {
 
             </div>
             {redirect ? <Redirect to={`/notfound`}/> : null}
+            {token == "" ? <Redirect to={`/login`}/> : null}
         </div>
     )
 

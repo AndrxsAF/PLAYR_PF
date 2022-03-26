@@ -8,10 +8,6 @@ import { Link } from "react-router-dom";
 
 const Likes = (props) => {
 
-    const { store, actions } = useContext(Context)
-    const token = store.token
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
-
     return (
         <div className="p-3 rounded pop-up-followers">
             <div className="modal-header p-0 pb-2 mb-2">
