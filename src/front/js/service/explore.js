@@ -1,7 +1,7 @@
 import BASE_URL from "./index.js";
 
 export const getAllPosts = () => {
-  const url = `${BASE_URL}/api/post/all`;
+  const url = `${BASE_URL}/api/like/explore`;
   return fetch(url, {
     method: "GET",
   });

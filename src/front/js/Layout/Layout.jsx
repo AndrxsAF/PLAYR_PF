@@ -15,9 +15,9 @@ const Layout = (props) => {
             <div>
                 {props.children}
             </div>
-            <footer>
+            {/* <footer>
                 <Footer/>
-            </footer>
+            </footer> */}
         </>
     )
 }

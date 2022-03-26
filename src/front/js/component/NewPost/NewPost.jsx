@@ -9,9 +9,7 @@ import { uploadNewPost } from "../../service/newpost.js"
 const NewPost = (props) => {
 
     const { store, actions } = useContext(Context)
-    const token = store.token
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
-
+    const token = actions.getToken();
     const [file, setFile] = useState('')
     const [fileUrl, setFileUrl] = useState('')
     const [game, setGame] = useState('')
@@ -94,7 +92,6 @@ const NewPost = (props) => {
                         body.append(`tag${Number(i) + 1}`, "")
                     }
                 }
-                console.log(body)
                 const resp = await uploadNewPost(body, token)
                 const data = await resp.json()
                 actions.handleShow()
@@ -149,7 +146,7 @@ return (
         </div>
         <div className="modal-footer pb-0">
             <button onClick={() => props.close()} type="button" className="btn btn-secondary">Cerrar</button>
-            <button onClick={() => uploadPost()} type="button" className="btn btn-primary">Hacer Post</button>
+            <button onClick={() => uploadPost()} type="button" className="btn btn-danger">Hacer Post</button>
         </div>
     </div>
 )

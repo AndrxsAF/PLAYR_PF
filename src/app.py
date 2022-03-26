@@ -19,7 +19,6 @@ from api.app.message.router import chat
 
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
-#from models import Person
 
 import cloudinary
 import cloudinary.uploader

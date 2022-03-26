@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
-// Pics
-import Rigo from "../../../img/rigo-baby.jpg"
-
 // Service 
 import { getComments, uploadNewComment, getUserByToken, deletePost } from "../../service/post.js";
 import { userSaved, save, unsave } from "../../service/saved.js"
@@ -21,9 +18,7 @@ const Post = (props) => {
 
     
     const { store, actions } = useContext(Context)
-    // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
-    const token = store.token
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
+    const token = actions.getToken();
     const [user, setUser] = useState(false)
     const [comments, setComments] = useState([])
     const [alert, setAlert] = useState(false)
@@ -41,7 +36,6 @@ const Post = (props) => {
 			const res = await getLikes(id);
 			const dataJSON = await res.json();
 			setLikes(dataJSON)
-            console.log("dataJSON", dataJSON)
 		} catch (err) {
 			console.log(err);
 		}
@@ -53,7 +47,6 @@ const Post = (props) => {
                 post_id: props.post.id,
                 user_id: props.post.user.id
             }
-            console.log(body)
             if (!liked) {
                 const res = await likePost(token, body);
                 const dataJSON = await res.json();
@@ -111,9 +104,9 @@ const Post = (props) => {
 
     const handleSave = () => {
         if (saved) {
-            return (<img onClick={savePost} src="https://img.icons8.com/material-rounded/30/000000/bookmark-ribbon--v1.png"/>)
+            return (<img onClick={savePost} className="menu-on-hover" src="https://img.icons8.com/material-rounded/30/000000/bookmark-ribbon--v1.png"/>)
         } else {
-            return (<img onClick={savePost} src="https://img.icons8.com/material-outlined/30/000000/bookmark-ribbon--v1.png" />)
+            return (<img onClick={savePost} className="menu-on-hover" src="https://img.icons8.com/material-outlined/30/000000/bookmark-ribbon--v1.png" />)
         }
     }
 
@@ -201,12 +194,10 @@ const Post = (props) => {
         getLike(props.post.id)
     }, [store.refresh])
 
-    console.log(likes)
-
     return (
         <div className="container-fluid p-0 mb-3">
             <div className="container-fluid bg-light d-flex justify-content-between align-items-center py-2 px-3">
-                <Link className="d-flex username align-items-center m-0 text-color-black" to={`/user/${props.post.user.username}`}><img className="profile-pic-post me-2" src={props.post.user.img_url ? props.post.user.img_url : Rigo} alt="Profile-Pic" />{props.post.user.username}</Link>
+                <Link className="d-flex username align-items-center m-0 text-color-black" to={`/user/${props.post.user.username}`}><img className="profile-pic-post me-2" src={props.post.user.img_url ? props.post.user.img_url : "https://res.cloudinary.com/andrxsaf/image/upload/v1648148308/4622925_yos0je.png"} alt="Profile-Pic" />{props.post.user.username}</Link>
                 <p className="m-0 text-secondary">{`${date.getDate()} / ${date.getMonth() + 1}`}</p>
             </div>
 
@@ -232,14 +223,14 @@ const Post = (props) => {
                 { props.comment ? (<p onClick={actions.handleShowLikes} className="m-0 liked-post px-1 py-1 username">{likes.length == 0 ? (`Se el primero en dar like a este post.`) : (`A ${likes.length} usuarios les ha gustado este post.`)}</p>) : null}
                 <div className="container-fluid p-0 pb-2 d-flex justify-content-between">
                     <div>
-                        { liked ? (<img onClick={likePosts} src="https://img.icons8.com/material-rounded/30/000000/hearts.png"/>) : (<img onClick={likePosts} src="https://img.icons8.com/material-outlined/30/000000/hearts.png" />)}
+                        { liked ? (<img onClick={likePosts} className="menu-on-hover" src="https://img.icons8.com/material-rounded/30/000000/hearts.png"/>) : (<img onClick={likePosts} className="menu-on-hover" src="https://img.icons8.com/material-outlined/30/000000/hearts.png" />)}
                         {props.comment ? null : (<Link to={`/post/${props.post.id}`}>
                             <img className="ps-2" src="https://img.icons8.com/fluency-systems-regular/30/000000/comments--v1.png" />
                         </Link>)}
                     </div>
                     <div>
                         {
-                            validUser ? (<button onClick={deletePosts} type="button" className="btn-close"/>) : handleSave()
+                            validUser ? (<button onClick={deletePosts} type="button" className="btn-close menu-on-hover"/>) : handleSave()
                         }
                     </div>
                 </div>

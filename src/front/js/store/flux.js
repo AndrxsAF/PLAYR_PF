@@ -5,7 +5,6 @@ import BASE_URL from "../service/index.js";
 const getState = ({ getStore, setStore }) => {
   return {
     store: {
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzgyMjg3MCwianRpIjoiOTk2NDJlNWMtYzQ4ZC00NzFhLTlhM2EtYmViNWNhZWEzNjlmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6eyJpZCI6Nn0sIm5iZiI6MTY0NzgyMjg3MCwiZXhwIjoxNjQ3ODIzNzcwfQ.19g1hs8oRvJeVUXXJb06qjv1VbJt5-biyXD97DxXxRg",
       showNewPost: false,
       showUserCongif: false,
       showFollowers: false,
@@ -14,9 +13,12 @@ const getState = ({ getStore, setStore }) => {
       getAllPosts: [],
       user: [],
       users: [],
-      close: false
+      close: false,
+      loginSwitch: false
     },
     actions: {
+      setLoginSwitchFalse: () => setStore({ loginSwitch: false }),
+      setLoginSwitchTrue: () => setStore({ loginSwitch: true }),
       handleShow: () => {
         const store = getStore()
         store.close ? setStore({ close: false }) : setStore({ close: true })
@@ -69,54 +71,8 @@ const getState = ({ getStore, setStore }) => {
       setUsers: (users) => {
         setStore({ users: users });
       },
-      setLogin: () => {
-        const url = BASE_URL;
-        fetch(url + "/login", {
-          method: postMessage,
-          mode: "no-cors",
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            user: user,
-            password: password
-          }),
-        }).then((response) => response.json())
-          .then(data => {
-            if (data.token == undefined) {
-              setTimeout(function () { window.location.replace("/login"); }, 4000);
-            } else {
-              setTimeout(function () { window.location.replace("/"); }, 4000);
-              localStorage.setItem("jwt-token", data.token);
-            }
-          })
-      },
-      setRegister: () => {
-        const url = BASE_URL;
-        fetch(url + "/register", {
-          method: POST,
-          mode: "no-cors",
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            user: user,
-            password: password,
-            verifypassword: verifypassword,
-          }),
-        }).then((response) => response.json());
-      },
       getToken: () => {
-        const store = getStore();
-        if (store.token) {
-          return store.token;
-        } else {
-          return localStorage.getItem("token");
-        }
+        return localStorage.getItem("token") ? localStorage.getItem("token") : "";
       },
       setToken: () => {
         localStorage.setItem("token", token);

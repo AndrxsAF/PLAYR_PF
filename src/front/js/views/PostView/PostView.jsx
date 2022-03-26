@@ -2,6 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import "./postview.css";
 import { Context } from "../../store/appContext.js"
 import { useParams } from "react-router-dom";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 // Service 
 import { getPost, getUser } from "../../service/post.js"
@@ -15,18 +16,18 @@ const PostView = () => {
 
     const { post_id } = useParams()
     const { store, actions } = useContext(Context)
-
-    // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
-    const token = store.token
-    
+    const [redirect, setRedirect] = useState(false)
+    const token = actions.getToken();
     const [post, setPost] = useState(false)
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [user, setUser] = useState({})
 
     const getPosts = async (id) => {
 		try {
 			const res = await getPost(id);
 			const dataJSON = await res.json();
+            if (dataJSON === false){
+                setRedirect(true)
+            }
 			setPost(dataJSON)
 		} catch (err) {
 			console.log(err);
@@ -67,6 +68,8 @@ const PostView = () => {
                 }
 
             </div>
+            {redirect ? <Redirect to={`/notfound`}/> : null}
+            {token == "" ? <Redirect to={`/login`}/> : null}
         </div>
     )
 

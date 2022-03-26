@@ -9,8 +9,7 @@ import { changeUserConfig } from "../../service/configuser.js"
 const ConfigUser = (props) => {
 
     const { store, actions } = useContext(Context)
-    const token = store.token
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
+    const token = actions.getToken();
     const [alert, setAlert] = useState(false)
     const [alertContent, setAlertContent] = useState([])
     const [file, setFile] = useState('')
@@ -26,7 +25,6 @@ const ConfigUser = (props) => {
             reader.onload = (e) => {
                 if (reader.readyState == 2) {
                     setFileUrl(reader.result)
-                    console.log(reader)
                 }
             }
             reader.readAsDataURL(e.target.files[0])
@@ -55,7 +53,6 @@ const ConfigUser = (props) => {
         setAlertContent(alertArr)
         if (alertArr.length == 0) {
             try {
-                console.log("chao")
                 if (password && password == passwordCheck) {
                     const bodypass = new FormData();
                     bodypass.append("password", password)
@@ -122,7 +119,7 @@ const ConfigUser = (props) => {
             </div>
             <div className="modal-footer mt-2 pb-0">
                 <button onClick={props.close} type="button" className="btn btn-secondary">Cerrar</button>
-                <button onClick={uploadChanges} type="button" className="btn btn-primary">Guardar cambios</button>
+                <button onClick={uploadChanges} type="button" className="btn btn-danger">Guardar cambios</button>
             </div>
         </div>
     )
