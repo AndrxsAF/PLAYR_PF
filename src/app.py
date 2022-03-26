@@ -15,6 +15,8 @@ from api.app.follow.router import follows
 from api.app.saved.router import save
 from api.app.notification.router import notifications
 from api.app.like.router import likes
+from api.app.message.router import chat
+
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
 #from models import Person
@@ -60,6 +62,10 @@ app.register_blueprint(follows, url_prefix="/api/follow")
 app.register_blueprint(save, url_prefix="/api/saved")
 app.register_blueprint(notifications, url_prefix="/api/notification")
 app.register_blueprint(likes, url_prefix="/api/like")
+app.register_blueprint(chat, url_prefix="/api/chats")
+
+
+
 
 cloudinary.config( 
   cloud_name = app.config["CLOUD_NAME"], 

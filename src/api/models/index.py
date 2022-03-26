@@ -6,3 +6,4 @@ from api.models.comment import Comment
 from api.models.follow import Follow
 from api.models.saved import Saved
 from api.models.notification import Notification
+from api.models.message import Message
