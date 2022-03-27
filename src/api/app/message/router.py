@@ -10,16 +10,18 @@ chat = Blueprint('chat', __name__)
 @jwt_required()
 def send_message():
     token = get_jwt_identity()
-    if (token == token):
-        return message()
-    else: return jsonify({"alert": "Token invalid"}), 400
-    body = request.get.json(force=True)
+    print(token)
+
+    body = request.get_json(force=True)
     new_message = controller_message(token, body)
     return jsonify(new_message), 201
 
 @chat.route("/message/recv", methods=['GET'])
 def recv_message():
-    response = controller_recv_message()
-    if response == 1:
-        return jsonify("You have a new message."), 200
+    token = jwt_required()
+    print(token)
+
+    body = request.get_json(force=True)
+    new_message = controller_recv_message(token, body)
+    return jsonify(new_message), 201
 

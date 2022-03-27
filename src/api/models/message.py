@@ -22,8 +22,9 @@ class Message(db.Model):
         return {
             "id": self.id,
             "date": self.date,
-            "user": self.user.serialize_info(),
-            "message": self.message
+            "user": self.to_user.serialize_info(),
+            "message": self.message,
+            "from_user": self.from_user_id
         }
 
 
