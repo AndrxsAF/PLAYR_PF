@@ -25,3 +25,4 @@ def recv_message():
     new_message = controller_recv_message(token, body)
     return jsonify(new_message), 201
 
+

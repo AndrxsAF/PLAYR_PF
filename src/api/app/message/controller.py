@@ -17,6 +17,7 @@ def controller_message(user_id, body):
 
 def controller_recv_message(user_id, message):
     try:
+        print(user_id, body)
         new_message = Message(from_user_id=body["user_id"], to_user_id=user["id"], message=body["message"])
         db.session.add(new_message)
         db.session.commit()
