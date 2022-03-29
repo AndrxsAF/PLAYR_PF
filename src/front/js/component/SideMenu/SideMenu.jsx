@@ -67,7 +67,7 @@ const SideMenu = (props) => {
             <div className="container-fluid border p-2 mt-5">
                 <p className="d-flex align-items-center username mb-2 fs-4"><img className="pe-2" src="https://img.icons8.com/pastel-glyph/30/000000/controller--v1.png" />Tendencias:</p>
                 <div className="container-fluid px-2">
-                    { trends ? trends.map((trend) => (<Link to={`/tags/${trend.slice(1, trend.length).toLowerCase()}`} className="mb-2 text-color-black d-block username" key={trend}>{trend}</Link>)) : null}
+                    { trends.length > 0 ? trends.map((trend) => (<Link to={`/tags/${trend.slice(1, trend.length).toLowerCase()}`} className="mb-2 text-color-black d-block username" key={trend}>{trend}</Link>)) : (<p className="mb-2 text-color-black d-block username">-- No hay tendencias aún:(</p>)}
                 </div>
             </div>
         </div>

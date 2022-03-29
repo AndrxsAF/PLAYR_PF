@@ -44,7 +44,6 @@ const Register = () => {
 	}
 
 	const handle_register = async () => {
-		console.log("holis")
 		setAlert(false)
         const alertArr = []
 		if (terms == false) {

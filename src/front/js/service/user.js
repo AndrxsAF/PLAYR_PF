@@ -22,7 +22,7 @@ export const registerUser = (email, user, password, history) => {
     body: JSON.stringify({
       email: email,
       username: user,
-      password: password,
+      password: password
     }),
   })
 }
