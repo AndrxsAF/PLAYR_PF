@@ -1,4 +1,4 @@
 const BASE_URL =
-  process.env.BASENAME;
+  process.env.BACKEND_URL;
 
 export default BASE_URL;
