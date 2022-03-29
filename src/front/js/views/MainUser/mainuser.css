@@ -1,0 +1,83 @@
+.mainuser-container {
+  position: absolute;
+  top: 54px;
+}
+
+.user-container-right {
+  width: 600px;
+}
+
+.user-container-left-support {
+  width: auto;
+  max-height: 1px;
+  width: 400px;
+}
+
+.change-grid-button {
+  z-index: 0;
+}
+
+.mainuser-menu {
+  position: fixed;
+  left: calc((100vw - 1000px) / 2);
+  width: 400px;
+  height: 100vh;
+  border-right: 1px solid gray;
+}
+
+.profile-pic-mainuser {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.username-mainuser {
+    font-weight: 600;
+    size: 20px;
+}
+
+.mainuser-data-container {
+    min-height: 150px;
+}
+
+.mainuser-container-profile-phone {
+  display: none;
+}
+
+.profile-pic-mainuser-phoneview {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .mainuser-container-profile-phone {
+    display: block;
+  }
+  .user-container-right {
+    width: 100% !important;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    padding-top: 15px !important;
+  }
+
+  .user-container-left-support {
+    display: none;
+  }
+
+  .mainuser-menu {
+    display: none;
+  }
+}
+
+@media (min-width: 1564px) {
+  .user-container-right {
+    width: 900px;
+  }
+  .explore-4kscreen {
+    width: 700px;
+    }
+}

@@ -1,0 +1,48 @@
+.container-main-page {
+    position: absolute;
+    top: 60px
+}
+
+.border-nopost {
+    border: 1px solid #dee2e6;
+}
+
+.text-color-black {
+    color: black;
+}
+
+.text-color-black:hover {
+    color: black;
+}
+
+.text-color-white {
+    color: white
+}
+
+.container-left {
+    width: 600px;
+}
+
+.container-right-support {
+    width: auto;
+    max-height: 1px;
+    width: 400px;
+}
+
+@media only screen and (max-width: 1000px) { 
+    
+    .container-left {
+        width: 100% !important;
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
+    
+    .container-right-support {
+        display: none;
+    }
+
+    .border-nopost {
+        border: 1px none #dee2e6;
+    }
+    
+}
