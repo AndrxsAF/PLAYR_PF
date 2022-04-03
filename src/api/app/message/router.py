@@ -17,12 +17,13 @@ def send_message():
     return jsonify(new_message), 201
 
 @chat.route("/message/recv", methods=['GET'])
+@jwt_required()
 def recv_message():
-    token = jwt_required()
+    token = get_jwt_identity()
     print(token)
 
     body = request.get_json(force=True)
-    new_message = controller_recv_message(token, body)
-    return jsonify(new_message), 201
+    message = controller_recv_message(token, body)
+    return jsonify(message), 201
 
 

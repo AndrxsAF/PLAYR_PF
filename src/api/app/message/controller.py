@@ -17,13 +17,18 @@ def controller_message(user_id, body):
 
 def controller_recv_message(user_id, message):
     try:
+
         print(user_id, body)
-        new_message = Message(from_user_id=body["user_id"], to_user_id=user["id"], message=body["message"])
-        db.session.add(new_message)
-        db.session.commit()
-        print(new_message)
-        return new_message.user_recv_message()
+        message = session.query(message).filter(id == "message").filter(message)
+        filter(or_(From.User.id == 'message', To.User.id == 'message')
+        (or_(To.User.id == 'message', From.User.id == 'message')))
         
+        print(message)
+        return message.controller_message()
+       
+      
     except Exception as error:
         print(error)
         db.session.rollback()
+
+
