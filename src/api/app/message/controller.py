@@ -19,14 +19,15 @@ def controller_recv_message(user_id, message):
     try:
 
         print(user_id, body)
-        message = session.query(message).filter(id == "message").filter(message)
+        message = session.query(message).filter(user_id == "message").filter(message)
+        print("@@@@@")
         filter(or_(From.User.id == 'message', To.User.id == 'message')
         (or_(To.User.id == 'message', From.User.id == 'message')))
         
         print(message)
         return message.controller_message()
        
-      
+     
     except Exception as error:
         print(error)
         db.session.rollback()
