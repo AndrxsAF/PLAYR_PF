@@ -12,6 +12,9 @@ import Register from "./views/Register/register.jsx";
 import Tags from "./views/Tags/Tags.jsx";
 import NotFound from "./views/NotFound/NotFound.jsx";
 
+import Message from "./views/Message/Message.jsx";
+
+
 
 import Login from "./views/Login/login.jsx";
 
@@ -37,6 +40,7 @@ const AppRouter = () => {
 
 							<Route exact path="/login">
 								<Login />
+
                				</Route>
 
 							 <Route exact path="/register">
@@ -45,9 +49,13 @@ const AppRouter = () => {
 
 							<Route exact path="/explore">
 								<Explore />
-							</Route>
 
-							<Route exact path="/user/:username">
+							</Route>
+							
+								<Route exact path="/message">
+								</Route>
+
+						<Route exact path="/user/:username">
 								<MainUser />
 							</Route>
 

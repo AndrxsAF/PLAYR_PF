@@ -14,7 +14,11 @@ const getState = ({ getStore, setStore }) => {
       user: [],
       users: [],
       close: false,
+
       loginSwitch: false
+
+      message: ""
+
     },
     actions: {
       setLoginSwitchFalse: () => setStore({ loginSwitch: false }),
@@ -77,7 +81,11 @@ const getState = ({ getStore, setStore }) => {
       setToken: () => {
         localStorage.setItem("token", token);
         setStore({ token: token });
+      },
+      setMessage: () => {
+        setStore({ message: message});
       }
+
     }
   };
 }
