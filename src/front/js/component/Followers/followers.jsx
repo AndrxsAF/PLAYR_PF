@@ -8,9 +8,6 @@ import { Link } from "react-router-dom";
 
 const Followers = (props) => {
 
-    const { store, actions } = useContext(Context)
-    const token = store.token
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [handleSwitch, setSwitch] = useState(true)
 
     const changeSwitch = () => {
@@ -26,17 +23,17 @@ const Followers = (props) => {
             <div className="modal-header p-0 pb-2 mb-2">
                 { handleSwitch ? (<ul className="nav nav-pills nav-fill">
                     <li className="nav-item">
-                        <a className="nav-link active" aria-current="page" href="#">Seguidores</a>
+                        <a className="nav-link active bg-danger" aria-current="page" href="#">Seguidores</a>
                     </li>
                     <li onClick={changeSwitch} className="nav-item">
-                        <a className="nav-link" href="#">Siguiendo</a>
+                        <a className="nav-link text-color-black" href="#">Siguiendo</a>
                     </li>
                 </ul>) : (<ul className="nav nav-pills nav-fill">
                     <li onClick={changeSwitch} className="nav-item">
-                        <a className="nav-link" aria-current="page" href="#">Seguidores</a>
+                        <a className="nav-link text-color-black" aria-current="page" href="#">Seguidores</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link active" href="#">Siguiendo</a>
+                        <a className="nav-link active bg-danger" href="#">Siguiendo</a>
                     </li>
                 </ul>)}
                 <button onClick={props.close} type="button" className="btn-close"></button>

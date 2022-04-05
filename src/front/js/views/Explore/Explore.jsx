@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import "./explore.css";
 import { Context } from "../../store/appContext.js"
+import { Redirect } from "react-router-dom";
 
 // Service 
 import { getAllPosts, getUser } from "../../service/explore.js";
@@ -13,11 +14,8 @@ import SideMenu from "../../component/SideMenu/SideMenu.jsx"
 const Explore = () => {
 
     const { store, actions } = useContext(Context)
-
-    // OJO CON EL TOKEN Y CON LA URL HAY QUE EDITARLA
-    const token = store.token
+    const token = actions.getToken();
     const [allPosts, setAllPosts] = useState({})
-    // const [token, setToken] = useState(sessionStorage.getItem("token"))
     const [user, setUser] = useState({})
 
     const getPosts = async () => {
@@ -64,6 +62,7 @@ const Explore = () => {
                     : (<Spinner/>)
                 }
             </div>
+            { token == "" ? <Redirect to={`/login`}/> : null}
         </div>
     )
 

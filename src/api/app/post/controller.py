@@ -5,6 +5,7 @@ from sqlalchemy import or_, func
 
 def create_post(token, body, img):
     try:
+        print(img)
         if img.to_dict() == {}:
             new_post = Post(img_url=None, description=body['description'], game=body['game'], console=body['console'], tag1=body['tag1'], tag2=body['tag2'], tag3=body['tag3'], tag4=body['tag4'], tag5=body["tag5"], user_id=token["id"])
             db.session.add(new_post)
@@ -92,8 +93,7 @@ def controller_get_post(id):
 
 def controller_get_post_by_tag(tag):
     try:
-        print(tag)
-        return db.session.query(Post).filter(or_(func.lower(Post.tag1) == tag, func.lower(Post.tag2) == tag, func.lower(Post.tag3) == tag, func.lower(Post.tag4) == tag, func.lower(Post.tag5) == tag)).filter(Post.isActive == True)
+        return db.session.query(Post).filter(or_(func.lower(Post.tag1) == func.lower(tag), func.lower(Post.tag2) == func.lower(tag), func.lower(Post.tag3) == func.lower(tag), func.lower(Post.tag4) == func.lower(tag), func.lower(Post.tag5) == func.lower(tag))).filter(Post.isActive == True)
     except Exception as error:
         print('[ERROR POST SHOW BY TAG]: ', error)
         return 'Internal Server Error.'

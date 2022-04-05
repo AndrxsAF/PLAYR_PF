@@ -10,7 +10,10 @@ import MainUser from "./views/MainUser/MainUser.jsx";
 import PostView from "./views/PostView/PostView.jsx";
 import Register from "./views/Register/register.jsx";
 import Tags from "./views/Tags/Tags.jsx";
+import NotFound from "./views/NotFound/NotFound.jsx";
+
 import Message from "./views/Message/Message.jsx";
+
 
 
 import Login from "./views/Login/login.jsx";
@@ -37,26 +40,35 @@ const AppRouter = () => {
 
 							<Route exact path="/login">
 								<Login />
-							</Route>
-							<Route exact path="/register">
+
+               				</Route>
+
+							 <Route exact path="/register">
 								<Register />
-							</Route>
+                			</Route>
+
 							<Route exact path="/explore">
 								<Explore />
+
+							</Route>
+							
 								<Route exact path="/message">
 								</Route>
-							</Route>
-							<Route exact path="/user/:username">
+
+						<Route exact path="/user/:username">
 								<MainUser />
 							</Route>
+
 							<Route exact path="/post/:post_id">
 								<PostView />
 							</Route>
+
 							<Route exact path="/tags/:tag">
 								<Tags />
 							</Route>
-							<Route exact path="/notfound">
-								<h1>Not found!</h1>
+
+							<Route>
+								<NotFound />
 							</Route>
 						</Switch>
 					</Layout>

@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.app.like.controller import controller_like, controller_dislike, controller_like_status, controller_show_all_likes
+from api.app.like.controller import controller_like, controller_dislike, controller_like_status, controller_show_all_likes, controller_explore
 from api.models.index import db, Like
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -47,5 +47,13 @@ def show_all_likes(id):
         return jsonify("No likes."), 401
     print(likes)
     return jsonify(list(map(lambda elem: elem.serialize(), likes))), 200
+
+@likes.route('/explore', methods=['GET'])
+def explore():
+    posts = controller_explore()
+    if posts is None:
+        return jsonify("ERROR."), 401
+    return jsonify(list(map(lambda elem: elem.serialize(), posts))), 200
+
 
 

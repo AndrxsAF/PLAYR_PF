@@ -3,6 +3,10 @@
     top: 60px
 }
 
+.border-nopost {
+    border: 1px solid #dee2e6;
+}
+
 .text-color-black {
     color: black;
 }
@@ -36,4 +40,9 @@
     .container-right-support {
         display: none;
     }
+
+    .border-nopost {
+        border: 1px none #dee2e6;
+    }
+    
 }

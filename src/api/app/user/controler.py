@@ -1,17 +1,19 @@
 from api.shared.encrypte_pass import encryp_pass, compare_pass
-from api.models.index import db, User
+from api.models.index import db, User, Follow
 from flask_jwt_extended import create_access_token
 from flask import Flask, request
 import cloudinary.uploader
+from datetime import timedelta
+from sqlalchemy import func, or_
 
 
 def register_user(body):
     try:
-        if db.session.query(User).filter(User.email == body['email']).first():
+        if db.session.query(User).filter(func.lower(User.email) == func.lower(body['email'])).first():
             print('email already taken.')
             return 1  # ERROR 1: WRONG EMAIL
 
-        if db.session.query(User).filter(User.username == body['username']).first():
+        if db.session.query(User).filter(func.lower(User.username) == func.lower(body['username'])).first():
             print('username already taken.')
             return 2  # ERROR 2: WRONG USERNAME
 
@@ -21,6 +23,11 @@ def register_user(body):
         password=hash_pass, username=body['username'])
 
         db.session.add(new_user)
+        db.session.commit()
+
+        info = new_user.serialize()
+        new_follow = Follow(from_user_id=info["id"], to_user_id=info['id'])
+        db.session.add(new_follow)
         db.session.commit()
 
         return new_user.serialize()
@@ -33,26 +40,20 @@ def register_user(body):
 
 def login_user(body):
     try:
-        print(body['email'])
-        if body['email'] is None:
-            user = db.session.query(User).filter(
-                User.username == body['username']).first()
-            if user is None:
-                return 1  # ERROR 1: USERNAME DOESNT EXISTS
-        elif body['username'] is None:
-            user = db.session.query(User).filter(
-                User.email == body['email']).first()
-            if user is None:
-                return 2  # ERROR 2: EMAIL DOESNT EXISTS
-        else:
-            return 4  # ERROR 4: INTERNAL SERVER ERROR.
+        print(body)
+        if body is None:
+            return 1
 
+        user = db.session.query(User).filter(or_(func.lower(User.email) == func.lower(body["user"]), func.lower(User.username) == func.lower(body["user"]))).first()
+
+        if user is None:
+            return 1
         validate_pass = compare_pass(body['password'], user.password)
 
         if validate_pass == False:
             return 3  # ERROR 3: INCORRECT PASSWORD
 
-        new_token = create_access_token(identity={'id': user.id})
+        new_token = create_access_token(identity={'id': user.id}, expires_delta=timedelta(weeks=4))
 
         return {'token': new_token}
 
