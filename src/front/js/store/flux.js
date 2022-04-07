@@ -134,7 +134,7 @@ const getState = ({ getStore, setStore }) => {
           },
           body: JSON.stringify({
             message: message,
-            user: user
+            user_id: user_id
           }),
         }).then((response) => response.json());
       },
