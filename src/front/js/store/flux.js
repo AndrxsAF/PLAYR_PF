@@ -124,8 +124,20 @@ const getState = ({ getStore, setStore }) => {
         setStore({ token: token });
       },
       setMessage: () => {
-        setStore({ message: message});
-      }
+        const url = BASE_URL;
+        fetch(url + "/message", {
+          method: POST,
+          mode: "no-cors",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: message,
+            user: user
+          }),
+        }).then((response) => response.json());
+      },
 
     }
   };
